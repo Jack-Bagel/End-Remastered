@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "minecraft:ender_eye"
+    },
+    {
+      "item": "endrem:witch_pupil"
+    }
+  ],
+  "result": {
+    "item": "endrem:witch_eye"
+  }
+}

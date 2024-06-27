@@ -1,0 +1,34 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "BCF",
+    "GEG",
+    "HCT"
+  ],
+  "key": {
+    "F": {
+      "item": "minecraft:fire_coral"
+    },
+    "T": {
+      "item": "minecraft:tube_coral"
+    },
+    "H": {
+      "item": "minecraft:horn_coral"
+    },
+    "B": {
+      "item": "minecraft:bubble_coral"
+    },
+    "E": {
+      "item": "minecraft:ender_eye"
+    },
+    "G": {
+      "item": "minecraft:glow_ink_sac"
+    },
+    "C": {
+      "item": "minecraft:conduit"
+    }
+  },
+  "result": {
+    "item": "endrem:exotic_eye"
+  }
+}
