@@ -1,7 +1,7 @@
 package com.teamremastered.endrem.events;
 
 import com.teamremastered.endrem.config.ERConfig;
-import com.teamremastered.endrem.registers.ERItems;
+import com.teamremastered.endrem.registry.ERItems;
 import net.minecraft.network.chat.Component;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.Entity;

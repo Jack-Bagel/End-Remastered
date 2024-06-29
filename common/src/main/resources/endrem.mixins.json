@@ -6,7 +6,10 @@
   "compatibilityLevel": "JAVA_21",
   "mixins": [],
   "client": [
-    "MixinMinecraft"
+    "PlayerEnchantMixin",
+    "StrongholdPiecesMixin",
+    "accessor.EyeOfEnderEntityAccessorMixin"
+
   ],
   "server": [],
   "injectors": {

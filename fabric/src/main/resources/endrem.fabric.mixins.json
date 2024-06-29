@@ -6,9 +6,11 @@
   "compatibilityLevel": "JAVA_21",
   "mixins": [],
   "client": [
-    "MixinTitleScreen"
   ],
-  "server": [],
+  "server": [
+    "EnderEyeItemMixin",
+    "accessor.PlayerEntityAccessorMixin"
+  ],
   "injectors": {
     "defaultRequire": 1
   }

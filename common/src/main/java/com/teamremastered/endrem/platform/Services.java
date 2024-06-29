@@ -1,6 +1,7 @@
 package com.teamremastered.endrem.platform;
 
 import com.teamremastered.endrem.Constants;
+import com.teamremastered.endrem.platform.services.IConfigHelper;
 import com.teamremastered.endrem.platform.services.IPlatformHelper;
 
 import java.util.ServiceLoader;
@@ -13,6 +14,7 @@ public class Services {
     // In this example we provide a platform helper which provides information about what platform the mod is running on.
     // For example this can be used to check if the code is running on Forge vs Fabric, or to ask the modloader if another
     // mod is loaded.
+    public static final IConfigHelper CONFIG_HELPER = load(IConfigHelper.class);
     public static final IPlatformHelper PLATFORM = load(IPlatformHelper.class);
 
     // This code is used to load a service for the current environment. Your implementation of the service must be defined

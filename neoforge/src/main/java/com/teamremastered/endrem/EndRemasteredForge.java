@@ -2,7 +2,7 @@ package com.teamremastered.endrem;
 
 
 import com.teamremastered.endrem.config.ERConfig;
-import com.teamremastered.endrem.registers.RegisterHandler;
+import com.teamremastered.endrem.registry.RegisterHandler;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.common.Mod;
 

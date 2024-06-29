@@ -1,8 +1,12 @@
 package com.teamremastered.endrem.registry;
 
+import com.teamremastered.endrem.CommonClass;
 import com.teamremastered.endrem.config.ERConfigHandler;
-import com.teamremastered.endrem.items.ERTrades;
 import com.teamremastered.endrem.util.LootInjection;
+import net.minecraft.core.Registry;
+import net.minecraft.core.registries.BuiltInRegistries;
+
+import java.util.Collection;
 
 public class RegisterHandler {
 
@@ -14,8 +18,14 @@ public class RegisterHandler {
         LootInjection.initRegister();
 
         /* Blocks & Items */
-        ERBlocks.initRegister();
-        ERItems.initRegister();
+        register(BuiltInRegistries.BLOCK, CommonBlockRegistry.registerERBlocks());
+        register(BuiltInRegistries.ITEM, CommonItemRegistry.registerERItems());
 
+    }
+
+    public static <T> void register(Registry<T> registry, Collection<ERRegistryObject<T>> objects) {
+        for (ERRegistryObject<T> object : objects) {
+            Registry.register(registry, CommonClass.ModResourceLocation(object.id()), object.object());
+        }
     }
 }
