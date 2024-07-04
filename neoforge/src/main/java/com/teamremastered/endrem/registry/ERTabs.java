@@ -3,10 +3,13 @@ package com.teamremastered.endrem.registry;
 import com.teamremastered.endrem.Constants;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.ItemStack;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredRegister;
+
+import java.util.function.Supplier;
 
 public class ERTabs {
 
@@ -16,34 +19,33 @@ public class ERTabs {
         TABS.register(modEventBus);
     }
 
-    public static final RegistryObject<CreativeModeTab> EYES_TAB = TABS.register("endrem_tab",
+    public static final Supplier<CreativeModeTab> EYES_TAB = TABS.register("endrem_tab",
             () -> CreativeModeTab.builder()
                     .title(Component.translatable("itemGroup.endrem.endrem_tab"))
-                    .icon(() -> new ItemStack(ERItems.EXOTIC_EYE.get()))
+                    .icon(() -> new ItemStack(CommonItemRegistry.EXOTIC_EYE))
                     .displayItems((featureFlags, output) -> {
-                        output.accept(ERItems.BLACK_EYE.get());
-                        output.accept(ERItems.COLD_EYE.get());
-                        output.accept(ERItems.CORRUPTED_EYE.get());
-                        output.accept(ERItems.LOST_EYE.get());
-                        output.accept(ERItems.NETHER_EYE.get());
-                        output.accept(ERItems.OLD_EYE.get());
-                        output.accept(ERItems.ROGUE_EYE.get());
-                        output.accept(ERItems.CURSED_EYE.get());
-                        output.accept(ERItems.EVIL_EYE.get());
+                        output.accept(CommonItemRegistry.BLACK_EYE);
+                        output.accept(CommonItemRegistry.COLD_EYE);
+                        output.accept(CommonItemRegistry.CORRUPTED_EYE);
+                        output.accept(CommonItemRegistry.LOST_EYE);
+                        output.accept(CommonItemRegistry.NETHER_EYE);
+                        output.accept(CommonItemRegistry.OLD_EYE);
+                        output.accept(CommonItemRegistry.ROGUE_EYE);
+                        output.accept(CommonItemRegistry.CURSED_EYE);
+                        output.accept(CommonItemRegistry.EVIL_EYE);
 
-                        output.accept(ERItems.GUARDIAN_EYE.get());
-                        output.accept(ERItems.MAGICAL_EYE.get());
-                        output.accept(ERItems.WITHER_EYE.get());
+                        output.accept(CommonItemRegistry.GUARDIAN_EYE);
+                        output.accept(CommonItemRegistry.MAGICAL_EYE);
+                        output.accept(CommonItemRegistry.WITHER_EYE);
 
-                        output.accept(ERItems.WITCH_EYE.get());
-                        output.accept(ERItems.UNDEAD_EYE.get());
-                        output.accept(ERItems.EXOTIC_EYE.get());
+                        output.accept(CommonItemRegistry.WITCH_EYE);
+                        output.accept(CommonItemRegistry.UNDEAD_EYE);
+                        output.accept(CommonItemRegistry.EXOTIC_EYE);
 
-                        output.accept(ERItems.CRYPTIC_EYE.get());
+                        output.accept(CommonItemRegistry.CRYPTIC_EYE);
 
-                        output.accept(ERItems.WITCH_PUPIL.get());
-                        output.accept(ERItems.UNDEAD_SOUL.get());
-                        System.out.println("Items Registered");
+                        output.accept(CommonItemRegistry.WITCH_PUPIL);
+                        output.accept(CommonItemRegistry.UNDEAD_SOUL);
                     } )
                     .build()
     );

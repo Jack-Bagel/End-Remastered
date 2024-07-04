@@ -1,5 +1,7 @@
 package com.teamremastered.endrem.config;
 
+import net.neoforged.neoforge.common.ModConfigSpec;
+
 import java.util.ArrayList;
 
 public class ERConfigGenericEntry<T> {
@@ -8,7 +10,7 @@ public class ERConfigGenericEntry<T> {
     protected final String COMMENT;
     protected final T DEFAULT_VALUE;
 
-    protected ForgeConfigSpec.ConfigValue<T> CONFIG_VALUE;
+    protected ModConfigSpec.ConfigValue<T> CONFIG_VALUE;
 
     public ERConfigGenericEntry(String id, String comment, T default_value) {
         this.ID = id;
@@ -17,7 +19,7 @@ public class ERConfigGenericEntry<T> {
         erConfigGenericEntries.add(this);
     }
 
-    public void setup(ForgeConfigSpec.Builder builder) {
+    public void setup(ModConfigSpec.Builder builder) {
         this.CONFIG_VALUE = builder.comment(this.COMMENT).define(this.ID, this.DEFAULT_VALUE);
     }
 

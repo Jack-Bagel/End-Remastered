@@ -4,12 +4,20 @@ import com.electronwill.nightconfig.core.file.CommentedFileConfig;
 import com.electronwill.nightconfig.core.io.WritingMode;
 import com.teamremastered.endrem.Constants;
 import com.teamremastered.endrem.EndRemasteredForge;
+import net.neoforged.fml.ModContainer;
 import net.neoforged.fml.ModLoadingContext;
 import net.neoforged.fml.config.ModConfig;
+import net.neoforged.fml.loading.FMLPaths;
+import net.neoforged.neoforge.common.ModConfigSpec;
 
 public class ERConfig {
-    private static final ForgeConfigSpec.Builder CONFIG = new ForgeConfigSpec.Builder();
-    private static ForgeConfigSpec COMMON_CONFIG;
+    private static ModContainer container;
+    public ERConfig(ModContainer container) {
+        ERConfig.container = container;
+        ERConfig.container.registerConfig(ModConfig.Type.COMMON, COMMON_CONFIG);
+    }
+    private static final ModConfigSpec.Builder CONFIG = new ModConfigSpec.Builder();
+    public static ModConfigSpec COMMON_CONFIG;
 
     // ======   Vanilla Modifications   ======
 
@@ -51,8 +59,7 @@ public class ERConfig {
             true);
 
     static {
-        init();
-        ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, COMMON_CONFIG, EndRemasteredForge.CONFIG_FILE);
+       init();
     }
 
     private static void init() {
@@ -67,7 +74,7 @@ public class ERConfig {
         COMMON_CONFIG = CONFIG.build();
     }
 
-    public static void load() {
+    public void load() {
         final CommentedFileConfig configData = CommentedFileConfig.builder(FMLPaths.CONFIGDIR.get().resolve(EndRemasteredForge.CONFIG_FILE))
                 .sync()
                 .autosave()
