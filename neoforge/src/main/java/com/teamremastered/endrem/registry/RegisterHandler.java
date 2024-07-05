@@ -1,37 +1,44 @@
 package com.teamremastered.endrem.registry;
 
 import com.mojang.serialization.Codec;
+import com.mojang.serialization.MapCodec;
+import com.teamremastered.endrem.CommonClass;
 import com.teamremastered.endrem.Constants;
 import com.teamremastered.endrem.utils.LootInjector;
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.level.block.Block;
+import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.common.loot.IGlobalLootModifier;
-import net.neoforged.neoforge.registries.DeferredRegister;
+import net.neoforged.neoforge.registries.*;
 import net.neoforged.bus.api.IEventBus;
 
-import java.util.Collection;
-import java.util.function.Supplier;
-
-@SuppressWarnings("unused")
-@Mod.EventBusSubscriber(modid = Constants.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
+@EventBusSubscriber(modid = Constants.MOD_ID, bus = EventBusSubscriber.Bus.MOD)
 public class RegisterHandler {
-    public static final DeferredRegister<Codec<? extends IGlobalLootModifier>> GLMS = DeferredRegister.create(ForgeRegistries.Keys.GLOBAL_LOOT_MODIFIER_SERIALIZERS, Constants.MOD_ID);
-
-    public static void init() {
-        IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
-        ERBlocks.initRegister(modEventBus);
-        ERItems.initRegister(modEventBus);
-        ERTabs.initRegister(modEventBus);
+    public static void init(IEventBus modEventBus) {
         GLMS.register(modEventBus);
+        ERTabs.initRegister(modEventBus);
     }
 
-    private static final RegistryObject<Codec<LootInjector.LootInjectorModifier>> LOOT_INJECTION = GLMS.register("loot_injection", LootInjector.LootInjectorModifier.CODEC);
+    public static final DeferredRegister<MapCodec<? extends IGlobalLootModifier>> GLMS = DeferredRegister.create(NeoForgeRegistries.Keys.GLOBAL_LOOT_MODIFIER_SERIALIZERS, Constants.MOD_ID);
+    private static final DeferredHolder<MapCodec<? extends IGlobalLootModifier>, MapCodec<LootInjector.LootInjectorModifier>> DUNGEON_LOOT = GLMS.register("loot_injection", LootInjector.LootInjectorModifier.CODEC);
+    public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(BuiltInRegistries.BLOCK, Constants.MOD_ID);
+    public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(BuiltInRegistries.ITEM, Constants.MOD_ID);
 
-    private static <T extends IForgeRegistryEntry<T>> void register(Class clazz, IEventBus eventBus, Supplier<Collection<ERRegistryObject<T>>> registryObjectsSupplier) {
-        eventBus.addGenericListener(clazz, (RegistryEvent.Register<T> event) -> {
-            Collection<ERRegistryObject<T>> registryObjects = registryObjectsSupplier.get();
-            IForgeRegistry<T> registry = event.getRegistry();
-            for (ERRegistryObject<T> registryObject : registryObjects) {
-                registryObject.object().setRegistryName(ER.createLocation(registryObject.id()));
-                registry.register(registryObject.object());
+    //TODO: Abstract the registries and subscribe the event inside the init function
+    @SubscribeEvent
+    public static void register(RegisterEvent event) {
+        event.register(Registries.BLOCK, registry -> {
+            for (ERRegistryObject<Block> registryObject : CommonBlockRegistry.registerERBlocks()) {
+                registry.register(CommonClass.ModResourceLocation(registryObject.id()), registryObject.object());
+            }
+        });
+
+        event.register(Registries.ITEM, registry -> {
+            for (ERRegistryObject<Item> registryObject : CommonItemRegistry.registerERItems()) {
+                registry.register(CommonClass.ModResourceLocation(registryObject.id()), registryObject.object());
             }
         });
     }
