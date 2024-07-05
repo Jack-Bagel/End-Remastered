@@ -7,7 +7,7 @@
     "background": "endrem:textures/backgrounds/advancement_background.png",
     "icon": {
       "count": 1,
-      "id": "endrem:nether_eye"
+      "id": "endrem:ancient_portal_frame"
     },
     "title": {
       "translate": "advancements.main.root.title"
