@@ -1,0 +1,115 @@
+{
+  "item.endrem.old_eye": "오래된 눈",
+  "item.endrem.old_eye.description": "§7§o전설에 따르면 이 눈은 한때 거대한 모래벌레의 눈이었다고 합니다.",
+
+  "item.endrem.rogue_eye": "도적의 눈",
+  "item.endrem.rogue_eye.description": "§7§o이 눈은 우리 조상들에게 레드스톤에 대한 지식을 주었다고 전해집니다.",
+
+  "item.endrem.nether_eye": "네더의 눈",
+  "item.endrem.nether_eye.description": "§7§o에더와 네더의 전투에서 악마가 잃어버린 것입니다.",
+
+  "item.endrem.cold_eye": "차가운 눈",
+  "item.endrem.cold_eye.description": "§7§o아이올로거들이 갑자기 세계에서 사라지기 전에 남긴 마지막 아티팩트 중 하나입니다.",
+
+  "item.endrem.magical_eye": "마법의 눈",
+  "item.endrem.magical_eye.description": "§7§o이 눈이 없으면 소환사는 힘이 없습니다.",
+
+  "item.endrem.black_eye": "검은색 눈",
+  "item.endrem.black_eye.description": "§7§o해적들은 이곳에서 전설적인 검은색 진주를 발견했다고 합니다.",
+
+  "item.endrem.lost_eye": "잃어버린 눈",
+  "item.endrem.lost_eye.description": "§7§o그것은 시간의 처음으로 대장장이가 만들었다고합니다.",
+
+  "item.endrem.wither_eye": "위더 눈",
+  "item.endrem.wither_eye.description": "§7§o파괴를 목격했습니다. 물건이 사라지는 것을 목격했을 수도 있습니다.",
+
+  "item.endrem.guardian_eye": "가디언의 눈",
+  "item.endrem.guardian_eye.description": "§7§o많은 전사들이 바다 깊은 곳에서 익사하는 것을 목격했습니다.",
+
+  "item.endrem.cursed_eye": "저주받은 눈",
+  "item.endrem.cursed_eye.description": "§7§o강력하지만 파괴적인 아티팩트입니다. 피글린은 목숨을 걸고 지키겠다고 맹세했습니다.",
+
+  "item.endrem.exotic_eye": "이국적인 눈",
+  "item.endrem.exotic_eye.description": "§7§o이 눈을 따라간 사람들은 다시는 보이지 않았습니다. 소문에 따르면 위대한 도시 아틀란티스를 찾았거나 길을 잃었다고 합니다.",
+
+  "item.endrem.evil_eye": "악마의 눈",
+  "item.endrem.evil_eye.description": "§7§o불운으로부터 주인을 보호한다는 성스러운 부적입니다.",
+
+  "item.endrem.undead_eye": "언데드 눈",
+  "item.endrem.undead_eye.description": "§7§o죽어서도 살아 있는 사람들의 전생에 대한 기억이 있습니다.",
+
+  "item.endrem.cryptic_eye": "아리송한 눈",
+  "item.endrem.cryptic_eye.description": "§7§o§khttps://www.youtube.com/watch?v=dQw4w9WgXcQ",
+
+  "item.endrem.corrupted_eye": "부패한 눈",
+  "item.endrem.corrupted_eye.description": "§7§o고독 속에서 사라진 탐욕스러운 왕의 눈입니다. 전설에 따르면 주인에게 무한한 행운을 가져다 준다고 합니다.",
+
+  "item.endrem.witch_eye": "마녀의 눈",
+  "item.endrem.witch_eye.description": "§7§o이 눈동자는 시간이 지나면서 사라진 고대의 양조 제작법을 본 것으로 추정됩니다.",
+  "item.endrem.witch_pupil": "마녀의 눈동자",
+
+  "item.endrem.undead_soul": "언데드 영혼",
+
+  "block.endrem.ancient_portal_frame": "고대 차원문 틀",
+
+  "block.endrem.ender_eye.warning": "이 눈은 사용하고 싶지 않습니다.",
+  "block.endrem.custom_eye.place": "이 눈은 설치할 수 없습니다.",
+  "block.endrem.custom_eye.frame_has_eye": "이 틀에 이미 눈이 있습니다.",
+
+
+  "itemGroup.endrem.endrem_tab": "End Remastered",
+
+  "block.portal_open_sound": "차원문이 열림",
+  "block.portal_open_sound.sub": "차원문이 열림",
+
+  "advancements.main.root.title": "모험의 시작",
+  "advancements.main.root.description": "처음으로 눈을 얻으세요",
+
+  "advancements.main.old_eye.title": "행운을 찾는 자",
+  "advancements.main.old_eye.description": "처음으로 오래된 눈을 얻으세요",
+
+  "advancements.main.rogue_eye.title": "정글에 오신 것을 환영합니다",
+  "advancements.main.rogue_eye.description": "처음으로 도적의 눈을 얻으세요",
+
+  "advancements.main.nether_eye.title": "절망 속으로 응시",
+  "advancements.main.nether_eye.description": "처음으로 네더의 눈을 얻으세요",
+
+  "advancements.main.cold_eye.title": "멋진 모습",
+  "advancements.main.cold_eye.description": "처음으로 차가운 눈을 얻으세요",
+
+  "advancements.main.corrupted_eye.title": "에메랄드로 나를 덮어줘", "%%%%%%Comment%%%%%%": "황금 샤워가 더 잘 맞지만 어쨌든 ...",
+  "advancements.main.corrupted_eye.description": "처음으로 부패한 눈을 얻으세요",
+
+  "advancements.main.magical_eye.title": "몰락한 마법사",
+  "advancements.main.magical_eye.description": "처음으로 마법의 눈을 얻으세요",
+
+  "advancements.main.black_eye.title": "Arghh, 내 배는 어디에 있나?",
+  "advancements.main.black_eye.description": "처음으로 검은색 눈을 얻으세요",
+
+  "advancements.main.lost_eye.title": "지도가 필요하다고?",
+  "advancements.main.lost_eye.description": "처음으로 잃어버린 눈을 얻으세요",
+
+  "advancements.main.wither_eye.title": "원하든 원치 않든 시들기",
+  "advancements.main.wither_eye.description": "처음으로 위더 눈을 얻으세요",
+
+  "advancements.main.guardian_eye.title": "지금 사원은 누가 지키고 있지?",
+  "advancements.main.guardian_eye.description": "처음으로 가디언의 눈을 얻으세요",
+
+  "advancements.main.cursed_eye.title": "새로운 보호자 ...",
+  "advancements.main.cursed_eye.description": "처음으로 저주받은 눈을 얻으세요",
+
+  "advancements.main.witch_eye.title": "사탕을 줄래, 아니면 장난칠래?",
+  "advancements.main.witch_eye.description": "처음으로 마녀의 눈을 얻으세요",
+
+  "advancements.main.evil_eye.title": "진정한 축복",
+  "advancements.main.evil_eye.description": "처음으로 악마의 눈을 얻으세요",
+
+  "advancements.main.exotic_eye.title": "아틀란티스는 어디에?",
+  "advancements.main.exotic_eye.description": "처음으로 이국적인 눈을 얻으세요",
+
+  "advancements.main.undead_eye.title": "영혼의 거울",
+  "advancements.main.undead_eye.description": "처음으로 언데드 눈을 얻으세요",
+
+  "advancements.main.cryptic_eye.title": "인내는 지혜로 가는 길",
+  "advancements.main.cryptic_eye.description": "처음으로 아리송한 눈을 얻으세요"
+}
