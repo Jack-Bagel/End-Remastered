@@ -1,0 +1,11 @@
+{
+  "type": "endrem:loot_injection",
+  "conditions": [
+    {
+      "condition": "neoforge:loot_table_id",
+      "loot_table_id": "minecraft:chests/shipwreck_treasure"
+    }
+  ],
+  "loot_table_id": "endrem:minecraft/chests/shipwreck_treasure",
+  "allow_recursive_glms": true
+}

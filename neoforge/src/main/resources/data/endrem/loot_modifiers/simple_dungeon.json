@@ -1,0 +1,11 @@
+{
+  "type": "endrem:loot_injection",
+  "conditions": [
+    {
+      "condition": "neoforge:loot_table_id",
+      "loot_table_id": "minecraft:chests/simple_dungeon"
+    }
+  ],
+  "loot_table_id": "endrem:minecraft/chests/simple_dungeon",
+  "allow_recursive_glms": true
+}

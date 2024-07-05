@@ -1,0 +1,11 @@
+{
+  "type": "endrem:loot_injection",
+  "conditions": [
+    {
+      "condition": "neoforge:loot_table_id",
+      "loot_table_id": "minecraft:chests/buried_treasure"
+    }
+  ],
+  "loot_table_id": "endrem:minecraft/chests/buried_treasure",
+  "allow_recursive_glms": true
+}

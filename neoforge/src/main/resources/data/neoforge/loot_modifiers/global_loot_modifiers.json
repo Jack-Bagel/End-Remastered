@@ -1,0 +1,22 @@
+{
+  "entries": [
+    "endrem:abandoned_mineshaft",
+    "endrem:bastion_treasure",
+    "endrem:buried_treasure",
+    "endrem:desert_pyramid",
+    "endrem:igloo_chest",
+    "endrem:jungle_temple",
+    "endrem:nether_bridge",
+    "endrem:pillager_outpost",
+    "endrem:shipwreck_treasure",
+    "endrem:simple_dungeon",
+    "endrem:woodland_mansion",
+
+    "endrem:elder_guardian",
+    "endrem:evoker",
+    "endrem:skeleton_horse",
+    "endrem:witch",
+    "endrem:wither"
+  ],
+  "replace": false
+}

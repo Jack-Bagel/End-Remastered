@@ -17,6 +17,7 @@ import net.minecraft.world.level.storage.loot.predicates.LootItemCondition;
 import net.neoforged.neoforge.common.loot.IGlobalLootModifier;
 import net.neoforged.neoforge.common.loot.LootModifier;
 import net.neoforged.neoforge.registries.DeferredHolder;
+import org.jetbrains.annotations.NotNull;
 
 public class LootInjector {
 
@@ -38,6 +39,7 @@ public class LootInjector {
         }
 
         @Override
+        @NotNull
         protected ObjectArrayList<ItemStack> doApply(ObjectArrayList<ItemStack> generatedLoot, LootContext context) {
             LootParams.Builder builder = (new LootParams.Builder(context.getLevel()));
             LootTable loottable = context.getLevel().getServer().reloadableRegistries().getLootTable(ResourceKey.create(Registries.LOOT_TABLE, table));

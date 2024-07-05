@@ -1,0 +1,11 @@
+{
+  "type": "endrem:loot_injection",
+  "conditions": [
+    {
+      "condition": "neoforge:loot_table_id",
+      "loot_table_id": "minecraft:entities/witch"
+    }
+  ],
+  "loot_table_id": "endrem:minecraft/entities/witch",
+  "allow_recursive_glms": true
+}
