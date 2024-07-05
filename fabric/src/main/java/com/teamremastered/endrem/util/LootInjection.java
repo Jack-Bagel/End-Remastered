@@ -71,6 +71,7 @@ public class LootInjection {
     private static final ResourceKey<LootTable> UNDEAD_SOUL_LOOT_TABLE_KEY = ResourceKey.create(Registries.LOOT_TABLE, CommonClass.ModResourceLocation("minecraft/entities/skeleton_horse"));
 
     public static void initRegister() {
+        int counter = 0;
         LootTableEvents.MODIFY.register((key, tableBuilder, source) -> {
             /* Chests Loot */
             if (JUNGLE_TEMPLE_CHEST_LOOT_TABLE_ID.equals(key.location())) {
@@ -78,70 +79,70 @@ public class LootInjection {
                 .add(NestedLootTable.lootTableReference(ROGUE_EYE_LOOT_TABLE_KEY));
                 tableBuilder.withPool(poolBuilder);
             }
-            else if (OUTPOST_CHEST_LOOT_TABLE_ID.equals(key.registry())) {
+            else if (OUTPOST_CHEST_LOOT_TABLE_ID.equals(key.location())) {
                 LootPool.Builder poolBuilder = LootPool.lootPool()
                 .add(NestedLootTable.lootTableReference(CORRUPTED_EYE_LOOT_TABLE_KEY));
                 tableBuilder.withPool(poolBuilder);
             }
-            else if (BURIED_TREASURE_CHEST_LOOT_TABLE_ID.equals(key.registry())) {
+            else if (BURIED_TREASURE_CHEST_LOOT_TABLE_ID.equals(key.location())) {
                 LootPool.Builder poolBuilder = LootPool.lootPool()
                 .add(NestedLootTable.lootTableReference(BLACK_EYE_LOOT_TABLE_KEY));
                 tableBuilder.withPool(poolBuilder);
             }
-            else if (MINESHAFT_CHEST_LOOT_TABLE_ID.equals(key.registry())) {
+            else if (MINESHAFT_CHEST_LOOT_TABLE_ID.equals(key.location())) {
                 LootPool.Builder poolBuilder = LootPool.lootPool()
                 .add(NestedLootTable.lootTableReference(LOST_EYE_LOOT_TABLE_KEY));
                 tableBuilder.withPool(poolBuilder);
             }
-            else if (DESERT_PYRAMID_CHEST_LOOT_TABLE_ID.equals(key.registry())) {
+            else if (DESERT_PYRAMID_CHEST_LOOT_TABLE_ID.equals(key.location())) {
                 LootPool.Builder poolBuilder = LootPool.lootPool()
                 .add(NestedLootTable.lootTableReference(OLD_EYE_LOOT_TABLE_KEY));
                 tableBuilder.withPool(poolBuilder);
             }
-            else if (IGLOO_CHEST_LOOT_TABLE_ID.equals(key.registry())) {
+            else if (IGLOO_CHEST_LOOT_TABLE_ID.equals(key.location())) {
                 LootPool.Builder poolBuilder = LootPool.lootPool()
                 .add(NestedLootTable.lootTableReference(COLD_EYE_LOOT_TABLE_KEY));
                 tableBuilder.withPool(poolBuilder);
             }
-            else if (NETHER_BRIDGE_CHEST_LOOT_TABLE_ID.equals(key.registry())) {
+            else if (NETHER_BRIDGE_CHEST_LOOT_TABLE_ID.equals(key.location())) {
                 LootPool.Builder poolBuilder = LootPool.lootPool()
                 .add(NestedLootTable.lootTableReference(NETHER_EYE_LOOT_TABLE_KEY));
                 tableBuilder.withPool(poolBuilder);
             }
 
-            else if (BASTION_TREASURE_LOOT_TABLE_ID.equals(key.registry())) {
+            else if (BASTION_TREASURE_LOOT_TABLE_ID.equals(key.location())) {
                 LootPool.Builder poolBuilder = LootPool.lootPool()
                 .add(NestedLootTable.lootTableReference(CURSED_EYE_LOOT_TABLE_KEY));
                 tableBuilder.withPool(poolBuilder);
             }
-            else if (WOODLAND_MANSION_LOOT_TABLE_ID.equals(key.registry())) {
+            else if (WOODLAND_MANSION_LOOT_TABLE_ID.equals(key.location())) {
                 LootPool.Builder poolBuilder = LootPool.lootPool()
                 .add(NestedLootTable.lootTableReference(MAGICAL_EYE_WOODLAND_LOOT_TABLE_KEY));
                 tableBuilder.withPool(poolBuilder);
             }
 
             /* Entities Loot */
-            else if (EVOKER_LOOT_TABLE_ID.equals(key.registry())) {
+            else if (EVOKER_LOOT_TABLE_ID.equals(key.location())) {
                 LootPool.Builder poolBuilder = LootPool.lootPool()
                 .add(NestedLootTable.lootTableReference(MAGICAL_EYE_LOOT_TABLE_KEY));
                 tableBuilder.withPool(poolBuilder);
             }
-            else if (WITHER_LOOT_TABLE_ID.equals(key.registry())) {
+            else if (WITHER_LOOT_TABLE_ID.equals(key.location())) {
                 LootPool.Builder poolBuilder = LootPool.lootPool()
                 .add(NestedLootTable.lootTableReference(WITHER_EYE_LOOT_TABLE_KEY));
                 tableBuilder.withPool(poolBuilder);
             }
-            else if (ELDER_GUARDIAN_LOOT_TABLE_ID.equals(key.registry())) {
+            else if (ELDER_GUARDIAN_LOOT_TABLE_ID.equals(key.location())) {
                 LootPool.Builder poolBuilder = LootPool.lootPool()
                 .add(NestedLootTable.lootTableReference(GUARDIAN_EYE_LOOT_TABLE_KEY));
                 tableBuilder.withPool(poolBuilder);
             }
-            else if (WITCH_LOOT_TABLE_ID.equals(key.registry())) {
+            else if (WITCH_LOOT_TABLE_ID.equals(key.location())) {
                 LootPool.Builder poolBuilder = LootPool.lootPool()
                 .add(NestedLootTable.lootTableReference(WITCH_PUPIL_LOOT_TABLE_KEY));
                 tableBuilder.withPool(poolBuilder);
             }
-            else if (SKELETON_HORSE_LOOT_TABLE_ID.equals(key.registry())) {
+            else if (SKELETON_HORSE_LOOT_TABLE_ID.equals(key.location())) {
                 LootPool.Builder poolBuilder = LootPool.lootPool()
                 .add(NestedLootTable.lootTableReference(UNDEAD_SOUL_LOOT_TABLE_KEY));
                 tableBuilder.withPool(poolBuilder);
