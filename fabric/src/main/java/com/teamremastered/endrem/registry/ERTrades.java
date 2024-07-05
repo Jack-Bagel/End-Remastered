@@ -32,7 +32,7 @@ public class ERTrades {
             ItemCost secondItem = new ItemCost(Items.RABBIT_FOOT);
 
             if (!entity.level().isClientSide()) {
-                return new MerchantOffer(firstItem, Optional.of(secondItem), new ItemStack(CommonItemRegistry.EVIL_EYE), priceEmeralds, 12, 10, 0.2F);
+                return new MerchantOffer(firstItem, Optional.of(secondItem), new ItemStack(CommonItemRegistry.EVIL_EYE), 1, 1, 1);
             }
             return null;
         }
