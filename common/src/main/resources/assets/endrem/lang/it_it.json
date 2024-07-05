@@ -1,0 +1,115 @@
+{
+  "item.endrem.old_eye": "Occhio Antico",
+  "item.endrem.old_eye.description": "§7§oLe leggende dicono che quest'occhio una volta apparteneva a uno dei grandi Sandworms",
+
+  "item.endrem.rogue_eye": "Occhio Ribelle",
+  "item.endrem.rogue_eye.description": "§7§oSi ritiene che quest'occhio abbia dato ai nostri antenati la conoscenza della Redstone",
+
+  "item.endrem.nether_eye": "Occhio Infernale",
+  "item.endrem.nether_eye.description": "§7§oFu perso da un demone durante il combattimento tra l'Aether e il Nether",
+
+  "item.endrem.cold_eye": "Occhio Freddo",
+  "item.endrem.cold_eye.description": "§7§oUno degli ultimi artefatti lasciati dagli Iceologer prima che sparissero improvvisamente dal mondo",
+
+  "item.endrem.magical_eye": "Occhio Magico",
+  "item.endrem.magical_eye.description": "§7§oSenza quest'occhio, l'Evocatore non ha alcun potere",
+
+  "item.endrem.black_eye": "Occhio Nero",
+  "item.endrem.black_eye.description": "§7§oI pirati dicono che ha dato la vista alla leggendaria Perla Nera",
+
+  "item.endrem.lost_eye": "Occhio Perduto",
+  "item.endrem.lost_eye.description": "§7§oSi dice che sia stato forgiato dai primi fabbri",
+
+  "item.endrem.wither_eye": "Occhio di Wither",
+  "item.endrem.wither_eye.description": "§7§oHa assistito alla distruzione, forse ha anche visto le tue cose sparire",
+
+  "item.endrem.guardian_eye": "Occhio di guardiano",
+  "item.endrem.guardian_eye.description": "§7§oHa visto molti guerrieri annegare nelle profondità del mare",
+
+  "item.endrem.cursed_eye": "Occhio Corrotto",
+  "item.endrem.cursed_eye.description": "§7§oUn artefatto potente ma distruttivo; i Piglin giurarono di proteggerlo a costo della loro vita",
+
+  "item.endrem.exotic_eye": "Occhio Esotico",
+  "item.endrem.exotic_eye.description": "§7§oColoro che hanno seguito quest'occhio non sono stati visti mai più; le voci dicono che hanno trovato la grande città di Atlantide, altre che hanno perso la loro strada cercando",
+
+  "item.endrem.evil_eye": "Malocchio",
+  "item.endrem.evil_eye.description": "§7§oSi dice che questo talismano sacro protegga il suo proprietario dalla sfortuna",
+
+  "item.endrem.undead_eye": "Occhio non morto",
+  "item.endrem.undead_eye.description": "§7§oIl ricordo delle vite passate di coloro che vivono nella morte",
+
+  "item.endrem.cryptic_eye": "Occhio Criptico",
+  "item.endrem.cryptic_eye.description": "§7§o§khttps://www.youtube.com/watch?v=dQw4w9WgXcQ",
+
+  "item.endrem.corrupted_eye": "Occhio Danneggiato",
+  "item.endrem.corrupted_eye.description": "§7§oL'occhio di un re avido che sbiadì in solitudine; la leggenda dice che porterà fortuna infinita al suo proprietario",
+
+  "item.endrem.witch_eye": "Occhio di strega",
+  "item.endrem.witch_eye.description": "§7§oSi ritiene che questo allievo abbia visto antiche ricette magiche che si sono perse nel tempo",
+  "item.endrem.witch_pupil": "Pupilla di strega",
+
+  "item.endrem.undead_soul": "Anima non morta",
+
+  "block.endrem.ancient_portal_frame": "Telaio del portale dell'End Antico",
+
+  "block.endrem.ender_eye.warning": "Questo occhio non vuole essere usato",
+  "block.endrem.custom_eye.place": "Questo occhio non può essere piazzato",
+  "block.endrem.custom_eye.frame_has_eye": "Questo telaio ha già un occhio",
+
+
+  "itemGroup.endrem.endrem_tab": "End Remastered",
+
+  "block.portal_open_sound": "Apertura del Potale",
+  "block.portal_open_sound.sub": "Apertura del Portale",
+
+  "advancements.main.root.title": "L'inzio di un Avventura",
+  "advancements.main.root.description": "Ottieni il tuo primo occhio",
+
+  "advancements.main.old_eye.title": "Alla Ricerca della Fortuna",
+  "advancements.main.old_eye.description": "Ottieni il tuo primo Occhio Antico",
+
+  "advancements.main.rogue_eye.title": "Benvenuto nella Giungla",
+  "advancements.main.rogue_eye.description": "Ottieni il tuo primo Occhio Ribelle",
+
+  "advancements.main.nether_eye.title": "Fissare nella Disperazione",
+  "advancements.main.nether_eye.description": "Ottieni il tuo primo Occhio del Nether",
+
+  "advancements.main.cold_eye.title": "Un bell'Aspetto",
+  "advancements.main.cold_eye.description": "Ottieni il tuo primo Occhio Freddo",
+
+  "advancements.main.corrupted_eye.title": "Copritemi di Smeraldi", "%%%%%%Comment%%%%%%": "Golden Shower fits better but whatever...",
+  "advancements.main.corrupted_eye.description": "Ottieni il tuo primo Occhio Danneggiato",
+
+  "advancements.main.magical_eye.title": "Stregone Caduto",
+  "advancements.main.magical_eye.description": "Ottieni il tuo primo Occhio Magico",
+
+  "advancements.main.black_eye.title": "Arghh, Dov'è la Mia Nave?",
+  "advancements.main.black_eye.description": "Ottieni il tuo primo Occhio Nero",
+
+  "advancements.main.lost_eye.title": "Serve una Mappa?",
+  "advancements.main.lost_eye.description": "Ottieni il tuo primo Occhio Perduto",
+
+  "advancements.main.wither_eye.title": "Che Tu lo Voglia o No",
+  "advancements.main.wither_eye.description": "Ottieni il tuo primo Occhio di Wither",
+
+  "advancements.main.guardian_eye.title": "Chi fa la Guardia al Tempio Adesso?",
+  "advancements.main.guardian_eye.description": "Ottieni il tuo primo Occhio di guardiano",
+
+  "advancements.main.cursed_eye.title": "Un nuovo protettore...",
+  "advancements.main.cursed_eye.description": "Ottieni il tuo primo Occhio Corrotto",
+
+  "advancements.main.witch_eye.title": "Dolcetto o Scherzetto?",
+  "advancements.main.witch_eye.description": "Ottieni il tuo primo Occhio di strega",
+
+  "advancements.main.evil_eye.title": "Occhio Malocchio...",
+  "advancements.main.evil_eye.description": "Ottieni il tuo primo Malocchio",
+
+  "advancements.main.exotic_eye.title": "Dov'è Atlantide?",
+  "advancements.main.exotic_eye.description": "Ottieni il tuo primo Occhio Esotico",
+
+  "advancements.main.undead_eye.title": "Lo Specchio dell'Anima",
+  "advancements.main.undead_eye.description": "Ottieni il tuo primo Occhio non morto",
+
+  "advancements.main.cryptic_eye.title": "La Pazienza è la Strada per la Saggezza",
+  "advancements.main.cryptic_eye.description": "Ottieni il tuo primo Occhio Criptico"
+}
