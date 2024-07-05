@@ -21,7 +21,6 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 @Mixin(EnderEyeItem.class)
 @SuppressWarnings("unused")
 
-//TODO: Add a config option for the methods
 //TODO: make a callback
 public class EnderEyeItemMixin {
     @Inject(method = "useOn",
