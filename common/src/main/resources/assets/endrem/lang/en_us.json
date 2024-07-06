@@ -52,9 +52,9 @@
 
   "block.endrem.ancient_portal_frame": "Ancient Portal Frame",
 
-  "block.endrem.ender_eye.warning": "This eye doesn't want to be used",
-  "block.endrem.custom_eye.place": "This eye can't be placed",
-  "block.endrem.custom_eye.frame_has_eye": "This frame already has an eye",
+  "block.endrem.ender_eye.warning": "The eye doesn't want to be used",
+  "block.endrem.custom_eye.place": "The eye can't be placed",
+  "block.endrem.custom_eye.frame_has_eye": "The frame already has an eye",
 
 
   "itemGroup.endrem.endrem_tab": "End Remastered",
