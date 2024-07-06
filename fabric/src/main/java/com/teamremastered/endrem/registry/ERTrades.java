@@ -21,8 +21,8 @@ public class ERTrades {
 
     private static class EREyeTrade implements VillagerTrades.ItemListing {
 
-        int maxPrice = 50;
-        int minPrice = 30;
+        int maxPrice = 10;
+        int minPrice = 6;
 
         @Nullable
         @Override
@@ -32,7 +32,7 @@ public class ERTrades {
             ItemCost secondItem = new ItemCost(Items.RABBIT_FOOT);
 
             if (!entity.level().isClientSide()) {
-                return new MerchantOffer(firstItem, Optional.of(secondItem), new ItemStack(CommonItemRegistry.EVIL_EYE), 1, 1, 1);
+                return new MerchantOffer(firstItem, Optional.of(secondItem), new ItemStack(CommonItemRegistry.EVIL_EYE), 1, 1, 1F);
             }
             return null;
         }
