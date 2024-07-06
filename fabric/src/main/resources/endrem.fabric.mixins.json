@@ -5,14 +5,9 @@
   "refmap": "${mod_id}.refmap.json",
   "compatibilityLevel": "JAVA_21",
   "mixins": [],
-  "client": [
-  ],
-  "server": [
-    "EnderEyeItemMixin",
-    "accessor.PlayerEntityAccessorMixin"
-  ],
+  "client": [],
+  "server": [],
   "injectors": {
     "defaultRequire": 1
   }
 }
-  

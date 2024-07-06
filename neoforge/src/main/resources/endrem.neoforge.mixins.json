@@ -4,8 +4,7 @@
   "package": "com.teamremastered.endrem.mixin",
   "compatibilityLevel": "JAVA_21",
   "mixins": [],
-  "client": [
-  ],
+  "client": [],
   "server": [],
   "injectors": {
     "defaultRequire": 1

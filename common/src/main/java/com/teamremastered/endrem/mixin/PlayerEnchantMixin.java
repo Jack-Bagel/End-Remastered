@@ -12,16 +12,16 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import java.util.Random;
 
-@SuppressWarnings("unused")
 @Mixin(EnchantmentMenu.class)
 public class PlayerEnchantMixin {
 
     @Inject(method = "clickMenuButton", at = @At(value = "RETURN", ordinal = 2))
-    private void isEnchanting(final Player player, final int id, final CallbackInfoReturnable<Boolean> info) {
+    private void isEnchanting( Player player, int id, CallbackInfoReturnable<Boolean> info) {
         Random random = new Random();
         int maxValue = 120;
         int randomNumber = random.nextInt(maxValue);
-        if (Services.CONFIG_HELPER.isCrypticObtainable() && !player.level().isClientSide && player != null) {
+
+        if (Services.CONFIG_HELPER.isCrypticObtainable() && player != null && !player.level().isClientSide) {
             if (randomNumber == maxValue - 1) {
                 player.getInventory().add(new ItemStack(CommonItemRegistry.CRYPTIC_EYE));
             }
