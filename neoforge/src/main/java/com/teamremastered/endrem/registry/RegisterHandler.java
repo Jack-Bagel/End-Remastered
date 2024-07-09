@@ -1,6 +1,5 @@
 package com.teamremastered.endrem.registry;
 
-import com.mojang.serialization.Codec;
 import com.mojang.serialization.MapCodec;
 import com.teamremastered.endrem.CommonClass;
 import com.teamremastered.endrem.Constants;
@@ -23,13 +22,12 @@ public class RegisterHandler {
     }
 
     public static final DeferredRegister<MapCodec<? extends IGlobalLootModifier>> GLMS = DeferredRegister.create(NeoForgeRegistries.Keys.GLOBAL_LOOT_MODIFIER_SERIALIZERS, Constants.MOD_ID);
-    private static final DeferredHolder<MapCodec<? extends IGlobalLootModifier>, MapCodec<LootInjector.LootInjectorModifier>> DUNGEON_LOOT = GLMS.register("loot_injection", LootInjector.LootInjectorModifier.CODEC);
-    public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(BuiltInRegistries.BLOCK, Constants.MOD_ID);
-    public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(BuiltInRegistries.ITEM, Constants.MOD_ID);
+    private static final DeferredHolder<MapCodec<? extends IGlobalLootModifier>, MapCodec<LootInjector.LootInjectorModifier>> LOOT_INJECTION = GLMS.register("loot_injection", LootInjector.LootInjectorModifier.CODEC);
 
     //TODO: Abstract the registries and subscribe the event inside the init function
     @SubscribeEvent
-    public static void register(RegisterEvent event) {
+    public static void registerEndRemastered(RegisterEvent event) {
+
         event.register(Registries.BLOCK, registry -> {
             for (ERRegistryObject<Block> registryObject : CommonBlockRegistry.registerERBlocks()) {
                 registry.register(CommonClass.ModResourceLocation(registryObject.id()), registryObject.object());
@@ -37,9 +35,16 @@ public class RegisterHandler {
         });
 
         event.register(Registries.ITEM, registry -> {
+            /* Pre Register */
+            CommonItemRegistry.registerDataDrivenEyes();
+
+            /* Register */
             for (ERRegistryObject<Item> registryObject : CommonItemRegistry.registerERItems()) {
                 registry.register(CommonClass.ModResourceLocation(registryObject.id()), registryObject.object());
             }
+
+            /* Post Register */
+            CommonItemRegistry.initializeEyes();
         });
     }
 }

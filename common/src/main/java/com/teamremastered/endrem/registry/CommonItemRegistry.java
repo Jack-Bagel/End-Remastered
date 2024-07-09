@@ -1,6 +1,12 @@
 package com.teamremastered.endrem.registry;
 
+import com.teamremastered.endrem.CommonClass;
+import com.teamremastered.endrem.Constants;
 import com.teamremastered.endrem.items.EREnderEye;
+import com.teamremastered.endrem.platform.Services;
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 
@@ -10,27 +16,26 @@ import java.util.List;
 
 public class CommonItemRegistry {
     private static final List<ERRegistryObject<Item>> ITEMS = new ArrayList<>();
-    public static final Item BLACK_EYE = createItem(new EREnderEye(new Item.Properties()), "black_eye");
-    public static final Item COLD_EYE = createItem(new EREnderEye(new Item.Properties()), "cold_eye");
-    public static final Item CORRUPTED_EYE = createItem(new EREnderEye(new Item.Properties()), "corrupted_eye");
-    public static final Item LOST_EYE = createItem(new EREnderEye(new Item.Properties()), "lost_eye");
-    public static final Item NETHER_EYE = createItem(new EREnderEye(new Item.Properties()), "nether_eye");
-    public static final Item OLD_EYE = createItem(new EREnderEye(new Item.Properties()), "old_eye");
-    public static final Item ROGUE_EYE = createItem(new EREnderEye(new Item.Properties()), "rogue_eye");
-    public static final Item CURSED_EYE = createItem(new EREnderEye(new Item.Properties()), "cursed_eye");
-    public static final Item EVIL_EYE = createItem(new EREnderEye(new Item.Properties()), "evil_eye");
-    public static final Item CRYPTIC_EYE = createItem(new EREnderEye(new Item.Properties()), "cryptic_eye");
 
-    public static final Item GUARDIAN_EYE = createItem(new EREnderEye(new Item.Properties()), "guardian_eye");
-    public static final Item MAGICAL_EYE = createItem(new EREnderEye(new Item.Properties()), "magical_eye");
-    public static final Item WITHER_EYE = createItem(new EREnderEye(new Item.Properties()), "wither_eye");
+    public static  Item BLACK_EYE;
+    public static  Item COLD_EYE;
+    public static  Item CORRUPTED_EYE;
+    public static  Item LOST_EYE;
+    public static  Item NETHER_EYE;
+    public static  Item OLD_EYE;
+    public static  Item ROGUE_EYE;
+    public static  Item CURSED_EYE;
+    public static Item EVIL_EYE;
+    public static Item CRYPTIC_EYE;
+    public static  Item GUARDIAN_EYE;
+    public static  Item MAGICAL_EYE;
+    public static  Item WITHER_EYE;
+    public static  Item WITCH_EYE;
+    public static  Item UNDEAD_EYE;
+    public static  Item EXOTIC_EYE;
 
-    public static final Item WITCH_EYE = createItem(new EREnderEye(new Item.Properties()), "witch_eye");
-    public static final Item UNDEAD_EYE = createItem(new EREnderEye(new Item.Properties()), "undead_eye");
-    public static final Item EXOTIC_EYE = createItem(new EREnderEye(new Item.Properties()), "exotic_eye");
-
-    public static final Item WITCH_PUPIL = createItem(new EREnderEye(new Item.Properties()), "witch_pupil");
-    public static final Item UNDEAD_SOUL = createItem(new EREnderEye(new Item.Properties()), "undead_soul");
+    public static final Item WITCH_PUPIL = createItem(new Item(new Item.Properties()),"witch_pupil");
+    public static final Item UNDEAD_SOUL = createItem(new Item(new Item.Properties()),"undead_soul");
     public static final Item ANCIENT_PORTAL_FRAME = createItem(new BlockItem(CommonBlockRegistry.ANCIENT_PORTAL_FRAME, new Item.Properties()), "ancient_portal_frame");
 
     public static Item createItem(Item item, String id) {
@@ -38,7 +43,37 @@ public class CommonItemRegistry {
         return item;
     }
 
+    public static void registerDataDrivenEyes() {
+        for (String eye_id : Services.CONFIG_HELPER.eyesID()) {
+            Item item = new EREnderEye(new Item.Properties());
+            ITEMS.add(new ERRegistryObject<>(item, eye_id));
+        }
+    }
+
     public static Collection<ERRegistryObject<Item>> registerERItems() {
+        Constants.LOGGER.info("ELEMENTS INSIDE ITEMS");
+        for (ERRegistryObject<Item> item : ITEMS) {
+            Constants.LOGGER.info(item.id());
+        }
         return ITEMS;
+    }
+
+    public static void initializeEyes() {
+        BLACK_EYE = BuiltInRegistries.ITEM.get(CommonClass.ModResourceLocation("black_eye"));
+        COLD_EYE = BuiltInRegistries.ITEM.get(CommonClass.ModResourceLocation("cold_eye"));
+        CORRUPTED_EYE = BuiltInRegistries.ITEM.get(CommonClass.ModResourceLocation("corrupted_eye"));
+        LOST_EYE = BuiltInRegistries.ITEM.get(CommonClass.ModResourceLocation("lost_eye"));
+        NETHER_EYE = BuiltInRegistries.ITEM.get(CommonClass.ModResourceLocation("nether_eye"));
+        OLD_EYE = BuiltInRegistries.ITEM.get(CommonClass.ModResourceLocation("old_eye"));
+        ROGUE_EYE = BuiltInRegistries.ITEM.get(CommonClass.ModResourceLocation("rogue_eye"));
+        CURSED_EYE = BuiltInRegistries.ITEM.get(CommonClass.ModResourceLocation("cursed_eye"));
+        EVIL_EYE = BuiltInRegistries.ITEM.get(CommonClass.ModResourceLocation("evil_eye"));
+        CRYPTIC_EYE = BuiltInRegistries.ITEM.get(CommonClass.ModResourceLocation("cryptic_eye"));
+        GUARDIAN_EYE = BuiltInRegistries.ITEM.get(CommonClass.ModResourceLocation("guardian_eye"));
+        MAGICAL_EYE = BuiltInRegistries.ITEM.get(CommonClass.ModResourceLocation("magical_eye"));
+        WITHER_EYE = BuiltInRegistries.ITEM.get(CommonClass.ModResourceLocation("wither_eye"));
+        WITCH_EYE = BuiltInRegistries.ITEM.get(CommonClass.ModResourceLocation("witch_eye"));
+        UNDEAD_EYE = BuiltInRegistries.ITEM.get(CommonClass.ModResourceLocation("undead_eye"));
+        EXOTIC_EYE = BuiltInRegistries.ITEM.get(CommonClass.ModResourceLocation("exotic_eye"));
     }
 }

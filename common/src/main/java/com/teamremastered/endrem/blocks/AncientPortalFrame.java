@@ -4,10 +4,12 @@ import com.google.common.base.Predicates;
 import com.teamremastered.endrem.util.ERPortalPredicate;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.*;
+import net.minecraft.world.level.block.entity.FurnaceBlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.pattern.BlockInWorld;
@@ -21,7 +23,7 @@ import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.Nullable;
 
-public class AncientPortalFrame extends Block {
+public class AncientPortalFrame extends Block{
     public static final EnumProperty<ERFrameProperties> EYE = EnumProperty.create("eye", ERFrameProperties.class);
     public static final BooleanProperty HAS_EYE = BlockStateProperties.EYE;
     public static final DirectionProperty FACING = HorizontalDirectionalBlock.FACING;
@@ -85,7 +87,7 @@ public class AncientPortalFrame extends Block {
     // Verify if a given frame is already present in a portal (only works if the portal is built correctly)
     public static boolean IsFrameAbsent(Level levelIn, BlockState frameState, BlockPos pos) {
         BlockPattern.BlockPatternMatch blockpattern$patternhelper = getPortalShape(
-                frameState.getValue(AncientPortalFrame.EYE), false).find(levelIn, pos);
+                frameState.getValue(EYE), false).find(levelIn, pos);
 
         return blockpattern$patternhelper != null;
     }

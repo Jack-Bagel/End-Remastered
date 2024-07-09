@@ -12,7 +12,6 @@ public class RegisterHandler {
 
     public static void init() {
         /* Miscellaneous */
-        ERConfigHandler.load();
         ERTrades.registerVillagerTrades();
         ERTabs.initRegister();
         LootInjection.initRegister();
@@ -20,7 +19,6 @@ public class RegisterHandler {
         /* Blocks & Items */
         register(BuiltInRegistries.BLOCK, CommonBlockRegistry.registerERBlocks());
         register(BuiltInRegistries.ITEM, CommonItemRegistry.registerERItems());
-
     }
 
     public static <T> void register(Registry<T> registry, Collection<ERRegistryObject<T>> objects) {

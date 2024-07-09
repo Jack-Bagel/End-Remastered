@@ -5,10 +5,11 @@ import com.electronwill.nightconfig.core.io.WritingMode;
 import com.teamremastered.endrem.Constants;
 import com.teamremastered.endrem.EndRemasteredForge;
 import net.neoforged.fml.ModContainer;
-import net.neoforged.fml.ModLoadingContext;
 import net.neoforged.fml.config.ModConfig;
 import net.neoforged.fml.loading.FMLPaths;
 import net.neoforged.neoforge.common.ModConfigSpec;
+
+import java.util.ArrayList;
 
 public class ERConfig {
     private static ModContainer container;
@@ -18,6 +19,31 @@ public class ERConfig {
     }
     private static final ModConfigSpec.Builder CONFIG = new ModConfigSpec.Builder();
     public static ModConfigSpec COMMON_CONFIG;
+
+    // ======   End Remastered Eyes   ======
+    static ArrayList<String> eyesID = new ArrayList<>();
+    {
+        {
+            eyesID.add("black_eye");
+            eyesID.add("cold_eye");
+            eyesID.add("corrupted_eye");
+            eyesID.add("lost_eye");
+            eyesID.add("nether_eye");
+            eyesID.add("old_eye");
+            eyesID.add("rogue_eye");
+            eyesID.add("cursed_eye");
+            eyesID.add("evil_eye");
+            eyesID.add("cryptic_eye");
+            eyesID.add("guardian_eye");
+            eyesID.add("magical_eye");
+            eyesID.add("wither_eye");
+            eyesID.add("witch_eye");
+            eyesID.add("undead_eye");
+            eyesID.add("exotic_eye");
+
+        }
+    };
+
 
     // ======   Vanilla Modifications   ======
 
@@ -57,6 +83,12 @@ public class ERConfig {
             "is_evil_eye_obtainable",
             "Determines if it's possible to obtain the evil eye when trading with a Cleric",
             true);
+
+
+    public static ERConfigGenericEntry<ArrayList<String>> EYES_ID = new ERConfigGenericEntry<>(
+            "eyes_id",
+            "adds custom eyes",
+            eyesID);
 
     static {
        init();

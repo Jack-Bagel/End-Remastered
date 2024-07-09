@@ -2,9 +2,8 @@ package com.teamremastered.endrem.platform;
 
 import com.teamremastered.endrem.config.ERConfig;
 import com.teamremastered.endrem.platform.services.IConfigHelper;
-import com.teamremastered.endrem.platform.services.IPlatformHelper;
-import net.neoforged.fml.ModList;
-import net.neoforged.fml.loading.FMLLoader;
+
+import java.util.ArrayList;
 
 public class NeoForgeConfigHelper implements IConfigHelper {
 
@@ -41,5 +40,10 @@ public class NeoForgeConfigHelper implements IConfigHelper {
     @Override
     public boolean isEvilObtainable() {
         return  ERConfig.IS_EVIL_EYE_OBTAINABLE.getRaw();
+    }
+
+    @Override
+    public ArrayList<String> eyesID() {
+        return ERConfig.EYES_ID.getRaw();
     }
 }
