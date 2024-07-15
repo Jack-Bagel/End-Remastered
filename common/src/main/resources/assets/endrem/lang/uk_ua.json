@@ -52,9 +52,11 @@
 
   "block.endrem.ancient_portal_frame": "Стародавня рамка порталу",
 
+  "block.endrem.ender_eye.throw_warning": "Це око незнає куди йти",
   "block.endrem.ender_eye.warning": "Це око не хоче бути використаним",
   "block.endrem.custom_eye.place": "Це око неможливо розмістити",
   "block.endrem.custom_eye.frame_has_eye": "У цій рамці вже встановлено око",
+  "block.endrem.custom_eye.broken": "Цей портал не побудований правильно",
 
 
   "itemGroup.endrem.endrem_tab": "End Remastered",
