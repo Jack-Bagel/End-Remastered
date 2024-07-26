@@ -1,10 +1,11 @@
 package com.teamremastered.endrem;
 
+import com.teamremastered.endrem.config.ConfigOptions;
+import com.teamremastered.endrem.item.JsonEye;
 import com.teamremastered.endrem.platform.Services;
-import com.teamremastered.endrem.registry.CommonBlockRegistry;
-import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.item.Items;
+
+import java.io.IOException;
 
 // This class is part of the common project meaning it is shared between all supported loaders. Code written here can only
 // import and access the vanilla codebase, libraries used by vanilla, and optionally third party libraries that provide
@@ -17,8 +18,16 @@ public class CommonClass {
     }
 
     public static void init() {
-        Constants.LOGGER.info("Hello from Common init on {}! we are currently in a {} environment!", Services.PLATFORM.getPlatformName(), Services.PLATFORM.getEnvironmentName());
-        Constants.LOGGER.info("The ID for diamonds is {}", BuiltInRegistries.ITEM.getKey(Items.DIAMOND));
+        try {
+            ConfigOptions.create();
+            Constants.LOGGER.info("End Remastered config loaded with success");
+
+            JsonEye.create();
+            Constants.LOGGER.info("End Remastered eyes loaded with success");
+
+        } catch (IOException e) {
+            Constants.LOGGER.error("Something went wrong with the config");
+        }
 
         // It is common for all supported loaders to provide a similar feature that can not be used directly in the
         // common code. A popular way to get around this is using Java's built-in service loader feature to create

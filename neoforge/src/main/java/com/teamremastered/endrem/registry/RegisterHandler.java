@@ -3,13 +3,15 @@ package com.teamremastered.endrem.registry;
 import com.mojang.serialization.MapCodec;
 import com.teamremastered.endrem.CommonClass;
 import com.teamremastered.endrem.Constants;
+import com.teamremastered.endrem.client.AncientPortalRenderer;
+import com.teamremastered.endrem.client.EyeModel;
 import com.teamremastered.endrem.utils.LootInjector;
-import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
+import net.neoforged.neoforge.client.event.EntityRenderersEvent;
 import net.neoforged.neoforge.common.loot.IGlobalLootModifier;
 import net.neoforged.neoforge.registries.*;
 import net.neoforged.bus.api.IEventBus;
@@ -36,7 +38,7 @@ public class RegisterHandler {
 
         event.register(Registries.ITEM, registry -> {
             /* Pre Register */
-            CommonItemRegistry.registerDataDrivenEyes();
+            CommonItemRegistry.registerEyes();
 
             /* Register */
             for (ERRegistryObject<Item> registryObject : CommonItemRegistry.registerERItems()) {
@@ -46,5 +48,20 @@ public class RegisterHandler {
             /* Post Register */
             CommonItemRegistry.initializeEyes();
         });
+
+        event.register(Registries.BLOCK_ENTITY_TYPE, registry -> {
+                registry.register(CommonClass.ModResourceLocation("ancient_portal_frame_entity"),CommonBlockRegistry.ANCIENT_PORTAL_FRAME_ENTITY);
+        });
+    }
+
+
+    @SubscribeEvent
+    public static void registerBlockEntityRenderer(EntityRenderersEvent.RegisterRenderers event) {
+        event.registerBlockEntityRenderer(CommonBlockRegistry.ANCIENT_PORTAL_FRAME_ENTITY, AncientPortalRenderer::new);
+    }
+
+    @SubscribeEvent
+    public static void registerLayerDefinition(EntityRenderersEvent.RegisterLayerDefinitions event) {
+        event.registerLayerDefinition(CommonModelRegistry.EYE, EyeModel::createBodyLayer);
     }
 }

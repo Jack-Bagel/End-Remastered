@@ -1,5 +1,6 @@
 package com.teamremastered.endrem.mixin;
 
+import com.teamremastered.endrem.config.ConfigHandler;
 import com.teamremastered.endrem.platform.Services;
 import net.minecraft.world.level.levelgen.structure.structures.StrongholdPieces;
 import org.spongepowered.asm.mixin.Mixin;
@@ -13,6 +14,6 @@ public class StrongholdPiecesMixin {
 
         //Game checks if a random number between 0.0 and 1.0 is greater than our value "odd", if true, add an eye to the frame.
         float newValue = 1.1F; //Set impossible value to reach
-        return Services.CONFIG_HELPER.frameHasEye() ? originalValue : newValue;
+        return ConfigHandler.FRAME_HAS_RANDOM_EYE ? originalValue : newValue;
     }
 }

@@ -1,6 +1,7 @@
 package com.teamremastered.endrem.mixin;
 
 import com.teamremastered.endrem.Constants;
+import com.teamremastered.endrem.config.ConfigHandler;
 import com.teamremastered.endrem.platform.Services;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
@@ -24,7 +25,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 public class EnderEyeItemMixin {
     @Inject(method = "useOn", at = @At(value = "HEAD"), cancellable = true)
     private void DisableUsingEnderEyes(UseOnContext context, CallbackInfoReturnable<InteractionResult> cir) {
-        if (!Services.CONFIG_HELPER.useEnderEye()) {
+        if (!ConfigHandler.USE_EYE_OF_ENDER) {
             Level level = context.getLevel();
             BlockPos blockPos = context.getClickedPos();
             BlockState blockState = level.getBlockState(blockPos);
@@ -38,7 +39,7 @@ public class EnderEyeItemMixin {
 
     @Inject(method = "use", at = @At(value = "HEAD"), cancellable = true)
     private void DisableThrowingEnderEyes(Level level, Player player, InteractionHand interactionHand, CallbackInfoReturnable<InteractionResultHolder<ItemStack>> cir) {
-        if (!Services.CONFIG_HELPER.throwEnderEye()) {
+        if (!ConfigHandler.THROW_EYE_OF_ENDER) {
             ItemStack itemStack = player.getItemInHand(interactionHand);
             cir.setReturnValue(InteractionResultHolder.pass(itemStack));
             player.displayClientMessage(Component.translatable("block.endrem.ender_eye.warning"), true);

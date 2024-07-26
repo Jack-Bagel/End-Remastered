@@ -2,11 +2,9 @@ package com.teamremastered.endrem.registry;
 
 import com.teamremastered.endrem.CommonClass;
 import com.teamremastered.endrem.Constants;
-import com.teamremastered.endrem.items.EREnderEye;
-import com.teamremastered.endrem.platform.Services;
+import com.teamremastered.endrem.item.JsonEye;
+import com.teamremastered.endrem.item.EREnderEye;
 import net.minecraft.core.registries.BuiltInRegistries;
-import net.minecraft.core.registries.Registries;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 
@@ -43,10 +41,11 @@ public class CommonItemRegistry {
         return item;
     }
 
-    public static void registerDataDrivenEyes() {
-        for (String eye_id : Services.CONFIG_HELPER.eyesID()) {
-            Item item = new EREnderEye(new Item.Properties());
-            ITEMS.add(new ERRegistryObject<>(item, eye_id));
+    //TODO: Handle wrong eye ID
+    public static void registerEyes() {
+        for (JsonEye eye : JsonEye.getEyes()) {
+            Item item = new EREnderEye(new Item.Properties().rarity(eye.getRarity()));
+            ITEMS.add(new ERRegistryObject<>(item, eye.getID().getPath()));
         }
     }
 

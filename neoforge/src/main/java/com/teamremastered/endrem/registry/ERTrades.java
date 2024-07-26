@@ -1,7 +1,7 @@
 package com.teamremastered.endrem.registry;
 
 import com.teamremastered.endrem.Constants;
-import com.teamremastered.endrem.config.ERConfig;
+import com.teamremastered.endrem.config.ConfigHandler;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.npc.VillagerProfession;
@@ -23,7 +23,7 @@ public class ERTrades {
 
     @SubscribeEvent
     public static void onVillagerTradesEvent(VillagerTradesEvent event) {
-        if (ERConfig.IS_EVIL_EYE_OBTAINABLE.getRaw() && event.getType() == VillagerProfession.CLERIC) {
+        if (ConfigHandler.IS_EVIL_EYE_OBTAINABLE && event.getType() == VillagerProfession.CLERIC) {
             event.getTrades().get(5).add(new ERTrades.EREyeTrade());
         }
     }
