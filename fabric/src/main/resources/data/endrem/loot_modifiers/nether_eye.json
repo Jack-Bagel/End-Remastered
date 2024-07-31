@@ -1,0 +1,4 @@
+{
+  "loot_table_id": "minecraft:chests/nether_bridge",
+  "loot_to_inject_id": "endrem:minecraft/chests/nether_bridge"
+}

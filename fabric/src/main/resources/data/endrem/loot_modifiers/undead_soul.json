@@ -1,0 +1,4 @@
+{
+  "loot_table_id": "minecraft:entities/skeleton_horse",
+  "loot_to_inject_id": "endrem:minecraft/entities/skeleton_horse"
+}

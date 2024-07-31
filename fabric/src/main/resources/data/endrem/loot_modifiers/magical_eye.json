@@ -1,0 +1,4 @@
+{
+  "loot_table_id": "minecraft:entities/evoker",
+  "loot_to_inject_id": "endrem:minecraft/entities/evoker"
+}

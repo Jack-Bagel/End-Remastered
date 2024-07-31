@@ -17,6 +17,9 @@
     "entrypoints": {
         "main": [
             "com.teamremastered.endrem.EndRemasteredFabric"
+        ],
+        "client": [
+            "com.teamremastered.endrem.EndRemasteredFabricClient"
         ]
     },
     "mixins": [

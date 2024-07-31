@@ -1,5 +1,6 @@
 package com.teamremastered.endrem.registry;
 
+import com.teamremastered.endrem.config.ConfigHandler;
 import com.teamremastered.endrem.config.ERConfigHandler;
 import net.fabricmc.fabric.api.object.builder.v1.trade.TradeOfferHelper;
 import net.minecraft.util.RandomSource;
@@ -39,7 +40,7 @@ public class ERTrades {
     }
 
     public static void registerVillagerTrades() {
-        if (ERConfigHandler.IS_EVIL_EYE_OBTAINABLE) {
+        if (ConfigHandler.IS_EVIL_EYE_OBTAINABLE) {
             TradeOfferHelper.registerVillagerOffers(VillagerProfession.CLERIC, 5, factories -> {
                 factories.add(new EREyeTrade());
             });

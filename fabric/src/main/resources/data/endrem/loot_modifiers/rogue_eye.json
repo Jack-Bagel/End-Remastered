@@ -1,0 +1,4 @@
+{
+  "loot_table_id": "minecraft:chests/jungle_temple",
+  "loot_to_inject_id": "endrem:minecraft/chests/jungle_temple"
+}

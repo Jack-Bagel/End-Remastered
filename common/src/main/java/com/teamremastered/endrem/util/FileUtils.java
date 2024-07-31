@@ -3,6 +3,7 @@ package com.teamremastered.endrem.util;
 import java.io.File;
 import java.io.FilenameFilter;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class FileUtils {
 
@@ -21,6 +22,14 @@ public class FileUtils {
             }
         }
 
+        return result;
+    }
+
+    public static ArrayList<String> createStringArrayList(String... strings) {
+        ArrayList<String> result = new ArrayList<>();
+        for (String string : strings) {
+            result.add(string);
+        }
         return result;
     }
 }
