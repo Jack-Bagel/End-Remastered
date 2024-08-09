@@ -1,7 +1,6 @@
 package com.teamremastered.endrem.mixin;
 
 import com.teamremastered.endrem.config.ConfigHandler;
-import com.teamremastered.endrem.platform.Services;
 import net.minecraft.world.level.levelgen.structure.structures.StrongholdPieces;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.Constant;

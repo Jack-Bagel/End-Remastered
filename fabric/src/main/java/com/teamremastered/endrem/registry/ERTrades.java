@@ -1,14 +1,11 @@
 package com.teamremastered.endrem.registry;
 
 import com.teamremastered.endrem.config.ConfigHandler;
-import com.teamremastered.endrem.config.ERConfigHandler;
 import net.fabricmc.fabric.api.object.builder.v1.trade.TradeOfferHelper;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.monster.ZombieVillager;
 import net.minecraft.world.entity.npc.VillagerProfession;
 import net.minecraft.world.entity.npc.VillagerTrades;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.trading.ItemCost;
@@ -16,7 +13,6 @@ import net.minecraft.world.item.trading.MerchantOffer;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.Optional;
-import java.util.Random;
 
 public class ERTrades {
 
@@ -41,13 +37,9 @@ public class ERTrades {
 
     public static void registerVillagerTrades() {
         if (ConfigHandler.IS_EVIL_EYE_OBTAINABLE) {
-            TradeOfferHelper.registerVillagerOffers(VillagerProfession.CLERIC, 5, factories -> {
-                factories.add(new EREyeTrade());
-            });
+            TradeOfferHelper.registerVillagerOffers(VillagerProfession.CLERIC, 5, factories -> factories.add(new EREyeTrade()));
 
-            TradeOfferHelper.registerWanderingTraderOffers(0, factories -> {
-                factories.add(new EREyeTrade());
-            });
+            TradeOfferHelper.registerWanderingTraderOffers(0, factories -> factories.add(new EREyeTrade()));
         }
     }
 }

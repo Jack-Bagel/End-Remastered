@@ -3,13 +3,10 @@ package com.teamremastered.endrem.registry;
 import com.teamremastered.endrem.CommonClass;
 import com.teamremastered.endrem.client.AncientPortalRenderer;
 import com.teamremastered.endrem.client.EyeModel;
-import com.teamremastered.endrem.util.LootInjection;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityModelLayerRegistry;
-import net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry;
 import net.fabricmc.fabric.impl.client.rendering.BlockEntityRendererRegistryImpl;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
-import net.minecraft.core.registries.Registries;
 
 import java.util.Collection;
 

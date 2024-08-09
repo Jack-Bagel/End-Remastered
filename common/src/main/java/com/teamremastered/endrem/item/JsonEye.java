@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.Objects;
 
 public class JsonEye {
-    private static String configPath = Services.CONFIG_HELPER.configDirectoryPath() + "/EndRemastered/Eyes/";
+    private static String configPath = Services.CONFIG_HELPER.configDirectoryPath() + "/" + Services.CONFIG_HELPER.configFolderName() + "/Eyes" + "/";
     private static ArrayList<JsonEye> EYES_TO_REGISTER = new ArrayList<JsonEye>();
 
     private static final JsonEye[] END_REMASTERED_EYES =

@@ -2,9 +2,7 @@ package com.teamremastered.endrem.block;
 
 import com.teamremastered.endrem.CommonClass;
 import com.teamremastered.endrem.Constants;
-import com.teamremastered.endrem.item.EREnderEye;
 import com.teamremastered.endrem.registry.CommonBlockRegistry;
-import net.minecraft.client.renderer.texture.TextureAtlas;
 import net.minecraft.client.resources.model.Material;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.HolderLookup;
@@ -13,9 +11,7 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
-import net.minecraft.world.level.block.entity.EnchantingTableBlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 
 public class AncientPortalFrameEntity  extends BlockEntity {

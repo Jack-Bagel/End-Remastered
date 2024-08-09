@@ -1,7 +1,6 @@
 package com.teamremastered.endrem.mixin;
 
 import com.teamremastered.endrem.config.ConfigHandler;
-import com.teamremastered.endrem.platform.Services;
 import com.teamremastered.endrem.registry.CommonItemRegistry;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.EnchantmentMenu;

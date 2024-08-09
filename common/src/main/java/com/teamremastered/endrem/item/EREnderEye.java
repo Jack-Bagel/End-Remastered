@@ -4,7 +4,6 @@ import com.teamremastered.endrem.Constants;
 import com.teamremastered.endrem.block.AncientPortalFrame;
 import com.teamremastered.endrem.config.ConfigHandler;
 import com.teamremastered.endrem.mixin.accessor.EyeOfEnderEntityAccessorMixin;
-import com.teamremastered.endrem.platform.Services;
 import com.teamremastered.endrem.registry.CommonBlockRegistry;
 import net.minecraft.MethodsReturnNonnullByDefault;
 import net.minecraft.advancements.CriteriaTriggers;

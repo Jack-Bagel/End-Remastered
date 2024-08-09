@@ -1,8 +1,6 @@
 package com.teamremastered.endrem.mixin;
 
-import com.teamremastered.endrem.Constants;
 import com.teamremastered.endrem.config.ConfigHandler;
-import com.teamremastered.endrem.platform.Services;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.InteractionHand;

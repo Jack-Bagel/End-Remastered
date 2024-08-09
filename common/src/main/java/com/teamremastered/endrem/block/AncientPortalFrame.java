@@ -2,7 +2,6 @@ package com.teamremastered.endrem.block;
 
 import com.google.common.base.Predicate;
 import com.google.common.base.Predicates;
-import com.teamremastered.endrem.Constants;
 import com.teamremastered.endrem.item.EREnderEye;
 import com.teamremastered.endrem.registry.CommonBlockRegistry;
 import net.minecraft.core.BlockPos;

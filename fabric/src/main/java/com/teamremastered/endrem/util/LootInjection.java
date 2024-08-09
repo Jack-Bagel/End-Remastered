@@ -1,26 +1,14 @@
 package com.teamremastered.endrem.util;
 
 import com.teamremastered.endrem.CommonClass;
-import com.teamremastered.endrem.Constants;
 import com.teamremastered.endrem.item.JsonEye;
-import net.fabricmc.fabric.api.event.Event;
 import net.fabricmc.fabric.api.loot.v2.LootTableEvents;
-import net.fabricmc.fabric.api.resource.ResourceManagerHelper;
-import net.fabricmc.fabric.api.resource.SimpleSynchronousResourceReloadListener;
-import net.fabricmc.fabric.impl.resource.loader.ResourceManagerHelperImpl;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.server.packs.PackType;
-import net.minecraft.server.packs.resources.Resource;
-import net.minecraft.server.packs.resources.ResourceManager;
 import net.minecraft.world.level.storage.loot.LootPool;
 import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraft.world.level.storage.loot.entries.NestedLootTable;
-
-import java.io.*;
-import java.nio.file.Path;
-import java.util.ArrayList;
 
 public class LootInjection {
 

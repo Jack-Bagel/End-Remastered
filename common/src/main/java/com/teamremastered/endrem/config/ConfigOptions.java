@@ -9,7 +9,7 @@ import java.io.*;
 
 public class ConfigOptions {
     static Gson gson = new GsonBuilder().setPrettyPrinting().create();
-    private static String configPath = Services.CONFIG_HELPER.configDirectoryPath() + "/EndRemastered/";
+    private static String configPath = Services.CONFIG_HELPER.configDirectoryPath() + "/" + Services.CONFIG_HELPER.configFolderName() + "/";
     private static String configName = Constants.MOD_ID + ".json";
     private static ConfigOptions ENDREM_CONFIG;
     public boolean USE_EYE_OF_ENDER;

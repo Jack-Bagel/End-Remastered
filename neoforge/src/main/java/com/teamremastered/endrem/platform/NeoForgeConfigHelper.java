@@ -10,4 +10,9 @@ public class NeoForgeConfigHelper implements IConfigHelper {
         return FMLPaths.CONFIGDIR.get().toString();
     }
 
+    @Override
+    public String configFolderName() {
+        return "EndRemastered-NeoForge";
+    }
+
 }

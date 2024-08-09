@@ -2,7 +2,6 @@ package com.teamremastered.endrem.platform;
 
 import com.teamremastered.endrem.platform.services.IPlatformHelper;
 import net.fabricmc.loader.api.FabricLoader;
-import net.minecraft.resources.ResourceLocation;
 
 public class FabricPlatformHelper implements IPlatformHelper {
 

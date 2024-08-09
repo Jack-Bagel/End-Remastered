@@ -49,9 +49,7 @@ public class RegisterHandler {
             CommonItemRegistry.initializeEyes();
         });
 
-        event.register(Registries.BLOCK_ENTITY_TYPE, registry -> {
-                registry.register(CommonClass.ModResourceLocation("ancient_portal_frame_entity"),CommonBlockRegistry.ANCIENT_PORTAL_FRAME_ENTITY);
-        });
+        event.register(Registries.BLOCK_ENTITY_TYPE, registry -> registry.register(CommonClass.ModResourceLocation("ancient_portal_frame_entity"),CommonBlockRegistry.ANCIENT_PORTAL_FRAME_ENTITY));
     }
 
 
