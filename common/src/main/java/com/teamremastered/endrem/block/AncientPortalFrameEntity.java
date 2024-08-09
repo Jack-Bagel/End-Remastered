@@ -66,4 +66,8 @@ public class AncientPortalFrameEntity  extends BlockEntity {
     public Item getEyeItem() {
         return BuiltInRegistries.ITEM.get(getEyeID());
     }
+
+    public boolean isEmpty() {
+        return this.eye.equals("empty");
+    }
 }

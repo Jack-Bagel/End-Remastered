@@ -120,7 +120,7 @@ public class AncientPortalFrame extends Block implements EntityBlock {
                 BlockEntity blockEntity = levelIn.getBlockEntity(blockPos);
 
                 if (blockEntity instanceof AncientPortalFrameEntity ancientPortalFrameEntity) {
-                    if (!ancientPortalFrameEntity.getEye().equals("empty") && ancientPortalFrameEntity.getEyeItem().equals(itemUse.getItemInHand().getItem())) {
+                    if (!ancientPortalFrameEntity.isEmpty() && ancientPortalFrameEntity.getEyeItem().equals(itemUse.getItemInHand().getItem())) {
                             return false;
                     }
                 }
