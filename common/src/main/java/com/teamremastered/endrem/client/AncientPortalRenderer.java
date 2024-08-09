@@ -2,9 +2,8 @@ package com.teamremastered.endrem.client;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
-import com.teamremastered.endrem.CommonClass;
+import com.teamremastered.endrem.EndRemasteredCommon;
 import com.teamremastered.endrem.block.AncientPortalFrameEntity;
-import com.teamremastered.endrem.client.EyeModel;
 import com.teamremastered.endrem.registry.CommonModelRegistry;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
@@ -26,7 +25,7 @@ public class AncientPortalRenderer implements BlockEntityRenderer<AncientPortalF
         String eye = ancientPortalFrameEntity.getEye();
         if (!eye.equals("empty")) {
             poseStack.pushPose();
-            ancientPortalFrameEntity.eyeTexture = new Material(TextureAtlas.LOCATION_BLOCKS, CommonClass.ModResourceLocation("block/eyes/" + eye));
+            ancientPortalFrameEntity.eyeTexture = new Material(TextureAtlas.LOCATION_BLOCKS, EndRemasteredCommon.ModResourceLocation("block/eyes/" + eye));
             ancientPortalFrameEntity.setChanged();
             VertexConsumer vertexconsumer = ancientPortalFrameEntity.eyeTexture.buffer(multiBufferSource, RenderType::entitySolid);
             this.eyeModel.render(poseStack, vertexconsumer, combinedLight, combinedOverlay, -1);

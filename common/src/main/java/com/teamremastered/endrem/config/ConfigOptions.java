@@ -8,9 +8,9 @@ import com.teamremastered.endrem.platform.Services;
 import java.io.*;
 
 public class ConfigOptions {
-    static Gson gson = new GsonBuilder().setPrettyPrinting().create();
-    private static String configPath = Services.CONFIG_HELPER.configDirectoryPath() + "/" + Services.CONFIG_HELPER.configFolderName() + "/";
-    private static String configName = Constants.MOD_ID + ".json";
+    static final Gson gson = new GsonBuilder().setPrettyPrinting().create();
+    private final static String configPath = Services.CONFIG_HELPER.configDirectoryPath() + "/" + Services.CONFIG_HELPER.configFolderName() + "/";
+    private final static String configName = Constants.MOD_ID + ".json";
     private static ConfigOptions ENDREM_CONFIG;
     public boolean USE_EYE_OF_ENDER;
     public boolean THROW_EYE_OF_ENDER;
@@ -19,7 +19,7 @@ public class ConfigOptions {
     public boolean IS_CRYPTIC_EYE_OBTAINABLE;
     public boolean IS_EVIL_EYE_OBTAINABLE;
     public boolean CAN_REMOVE_EYE;
-    private ConfigOptions() throws FileNotFoundException {
+    private ConfigOptions() {
         this.USE_EYE_OF_ENDER = false;
         this.THROW_EYE_OF_ENDER = false;
         this.FRAME_HAS_RANDOM_EYE = false;

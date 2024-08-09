@@ -8,7 +8,7 @@ public class EndRemasteredFabric implements ModInitializer {
     @Override
     public void onInitialize() {
         LootInjection.register();
-        CommonClass.init();
+        EndRemasteredCommon.init();
         RegisterHandler.init();
     }
 }

@@ -1,6 +1,6 @@
 package com.teamremastered.endrem.registry;
 
-import com.teamremastered.endrem.CommonClass;
+import com.teamremastered.endrem.EndRemasteredCommon;
 import com.teamremastered.endrem.Constants;
 import com.teamremastered.endrem.item.JsonEye;
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -27,7 +27,7 @@ public class ERTabs {
                     .icon(() -> new ItemStack(CommonItemRegistry.EXOTIC_EYE))
                     .displayItems((featureFlags, output) -> {
                         for (JsonEye eye : JsonEye.getEyes()) {
-                            output.accept(BuiltInRegistries.ITEM.get(CommonClass.ModResourceLocation(eye.getID().getPath())));
+                            output.accept(BuiltInRegistries.ITEM.get(EndRemasteredCommon.ModResourceLocation(eye.getID().getPath())));
                         }
                         output.accept(CommonItemRegistry.WITCH_PUPIL);
                         output.accept(CommonItemRegistry.UNDEAD_SOUL);

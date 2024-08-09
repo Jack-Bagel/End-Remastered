@@ -1,6 +1,6 @@
 package com.teamremastered.endrem.block;
 
-import com.teamremastered.endrem.CommonClass;
+import com.teamremastered.endrem.EndRemasteredCommon;
 import com.teamremastered.endrem.Constants;
 import com.teamremastered.endrem.registry.CommonBlockRegistry;
 import net.minecraft.client.resources.model.Material;
@@ -60,7 +60,7 @@ public class AncientPortalFrameEntity  extends BlockEntity {
     }
 
     public ResourceLocation getEyeID() {
-        return CommonClass.ModResourceLocation(this.eye);
+        return EndRemasteredCommon.ModResourceLocation(this.eye);
     }
 
     public Item getEyeItem() {

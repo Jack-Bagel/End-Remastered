@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.Objects;
 
 public class JsonEye {
-    private static String configPath = Services.CONFIG_HELPER.configDirectoryPath() + "/" + Services.CONFIG_HELPER.configFolderName() + "/Eyes" + "/";
+    private static final String configPath = Services.CONFIG_HELPER.configDirectoryPath() + "/" + Services.CONFIG_HELPER.configFolderName() + "/Eyes" + "/";
     private static ArrayList<JsonEye> EYES_TO_REGISTER = new ArrayList<JsonEye>();
 
     private static final JsonEye[] END_REMASTERED_EYES =
@@ -48,7 +48,7 @@ public class JsonEye {
                     new JsonEye("witch_eye", Rarity.COMMON.getSerializedName()),
                     new JsonEye("undead_eye", Rarity.EPIC.getSerializedName()),
                     new JsonEye("exotic_eye", Rarity.RARE.getSerializedName())};
-    static Gson gson = new GsonBuilder().setPrettyPrinting().create();
+    static final Gson gson = new GsonBuilder().setPrettyPrinting().create();
     private String id;
     private String rarity;
     private String loot_to_inject_id;

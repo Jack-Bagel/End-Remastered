@@ -1,6 +1,6 @@
 package com.teamremastered.endrem.util;
 
-import com.teamremastered.endrem.CommonClass;
+import com.teamremastered.endrem.EndRemasteredCommon;
 import com.teamremastered.endrem.item.JsonEye;
 import net.fabricmc.fabric.api.loot.v2.LootTableEvents;
 import net.minecraft.core.registries.Registries;
@@ -28,13 +28,13 @@ public class LootInjection {
 
             // Hardcoded Injected Items
             if (ResourceLocation.withDefaultNamespace("entities/witch").equals(key.location())) {
-                ResourceKey<LootTable> resourceKey = ResourceKey.create(Registries.LOOT_TABLE, CommonClass.ModResourceLocation("minecraft/entities/witch"));
+                ResourceKey<LootTable> resourceKey = ResourceKey.create(Registries.LOOT_TABLE, EndRemasteredCommon.ModResourceLocation("minecraft/entities/witch"));
                 LootPool.Builder poolBuilder = LootPool.lootPool()
                         .add(NestedLootTable.lootTableReference(resourceKey));
                 tableBuilder.withPool(poolBuilder);
 
             } else if (ResourceLocation.withDefaultNamespace("entities/skeleton_horse").equals(key.location())) {
-                ResourceKey<LootTable> resourceKey = ResourceKey.create(Registries.LOOT_TABLE, CommonClass.ModResourceLocation("minecraft/entities/skeleton_horse"));
+                ResourceKey<LootTable> resourceKey = ResourceKey.create(Registries.LOOT_TABLE, EndRemasteredCommon.ModResourceLocation("minecraft/entities/skeleton_horse"));
                 LootPool.Builder poolBuilder = LootPool.lootPool()
                         .add(NestedLootTable.lootTableReference(resourceKey));
                 tableBuilder.withPool(poolBuilder);

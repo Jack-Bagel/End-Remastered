@@ -127,7 +127,7 @@ public class EREnderEye extends Item {
             return InteractionResultHolder.pass(itemstack);
         } else {
             playerIn.startUsingItem(handIn);
-            if (levelIn instanceof ServerLevel test) {
+            if (levelIn instanceof ServerLevel) {
                 BlockPos blockpos = ((ServerLevel) levelIn).findNearestMapStructure(StructureTags.EYE_OF_ENDER_LOCATED, playerIn.blockPosition(), 100, false);
                 if (blockpos != null) {
                     EyeOfEnder eyeofenderentity = new EyeOfEnder(levelIn, playerIn.getX(), playerIn.getY(0.5D), playerIn.getZ());

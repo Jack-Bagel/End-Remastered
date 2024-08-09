@@ -1,6 +1,6 @@
 package com.teamremastered.endrem.registry;
 
-import com.teamremastered.endrem.CommonClass;
+import com.teamremastered.endrem.EndRemasteredCommon;
 import com.teamremastered.endrem.Constants;
 import com.teamremastered.endrem.item.JsonEye;
 import com.teamremastered.endrem.item.EREnderEye;
@@ -58,21 +58,21 @@ public class CommonItemRegistry {
     }
 
     public static void initializeEyes() {
-        BLACK_EYE = BuiltInRegistries.ITEM.get(CommonClass.ModResourceLocation("black_eye"));
-        COLD_EYE = BuiltInRegistries.ITEM.get(CommonClass.ModResourceLocation("cold_eye"));
-        CORRUPTED_EYE = BuiltInRegistries.ITEM.get(CommonClass.ModResourceLocation("corrupted_eye"));
-        LOST_EYE = BuiltInRegistries.ITEM.get(CommonClass.ModResourceLocation("lost_eye"));
-        NETHER_EYE = BuiltInRegistries.ITEM.get(CommonClass.ModResourceLocation("nether_eye"));
-        OLD_EYE = BuiltInRegistries.ITEM.get(CommonClass.ModResourceLocation("old_eye"));
-        ROGUE_EYE = BuiltInRegistries.ITEM.get(CommonClass.ModResourceLocation("rogue_eye"));
-        CURSED_EYE = BuiltInRegistries.ITEM.get(CommonClass.ModResourceLocation("cursed_eye"));
-        EVIL_EYE = BuiltInRegistries.ITEM.get(CommonClass.ModResourceLocation("evil_eye"));
-        CRYPTIC_EYE = BuiltInRegistries.ITEM.get(CommonClass.ModResourceLocation("cryptic_eye"));
-        GUARDIAN_EYE = BuiltInRegistries.ITEM.get(CommonClass.ModResourceLocation("guardian_eye"));
-        MAGICAL_EYE = BuiltInRegistries.ITEM.get(CommonClass.ModResourceLocation("magical_eye"));
-        WITHER_EYE = BuiltInRegistries.ITEM.get(CommonClass.ModResourceLocation("wither_eye"));
-        WITCH_EYE = BuiltInRegistries.ITEM.get(CommonClass.ModResourceLocation("witch_eye"));
-        UNDEAD_EYE = BuiltInRegistries.ITEM.get(CommonClass.ModResourceLocation("undead_eye"));
-        EXOTIC_EYE = BuiltInRegistries.ITEM.get(CommonClass.ModResourceLocation("exotic_eye"));
+        BLACK_EYE = BuiltInRegistries.ITEM.get(EndRemasteredCommon.ModResourceLocation("black_eye"));
+        COLD_EYE = BuiltInRegistries.ITEM.get(EndRemasteredCommon.ModResourceLocation("cold_eye"));
+        CORRUPTED_EYE = BuiltInRegistries.ITEM.get(EndRemasteredCommon.ModResourceLocation("corrupted_eye"));
+        LOST_EYE = BuiltInRegistries.ITEM.get(EndRemasteredCommon.ModResourceLocation("lost_eye"));
+        NETHER_EYE = BuiltInRegistries.ITEM.get(EndRemasteredCommon.ModResourceLocation("nether_eye"));
+        OLD_EYE = BuiltInRegistries.ITEM.get(EndRemasteredCommon.ModResourceLocation("old_eye"));
+        ROGUE_EYE = BuiltInRegistries.ITEM.get(EndRemasteredCommon.ModResourceLocation("rogue_eye"));
+        CURSED_EYE = BuiltInRegistries.ITEM.get(EndRemasteredCommon.ModResourceLocation("cursed_eye"));
+        EVIL_EYE = BuiltInRegistries.ITEM.get(EndRemasteredCommon.ModResourceLocation("evil_eye"));
+        CRYPTIC_EYE = BuiltInRegistries.ITEM.get(EndRemasteredCommon.ModResourceLocation("cryptic_eye"));
+        GUARDIAN_EYE = BuiltInRegistries.ITEM.get(EndRemasteredCommon.ModResourceLocation("guardian_eye"));
+        MAGICAL_EYE = BuiltInRegistries.ITEM.get(EndRemasteredCommon.ModResourceLocation("magical_eye"));
+        WITHER_EYE = BuiltInRegistries.ITEM.get(EndRemasteredCommon.ModResourceLocation("wither_eye"));
+        WITCH_EYE = BuiltInRegistries.ITEM.get(EndRemasteredCommon.ModResourceLocation("witch_eye"));
+        UNDEAD_EYE = BuiltInRegistries.ITEM.get(EndRemasteredCommon.ModResourceLocation("undead_eye"));
+        EXOTIC_EYE = BuiltInRegistries.ITEM.get(EndRemasteredCommon.ModResourceLocation("exotic_eye"));
     }
 }

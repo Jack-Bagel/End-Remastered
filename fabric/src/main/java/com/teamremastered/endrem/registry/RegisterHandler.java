@@ -1,6 +1,6 @@
 package com.teamremastered.endrem.registry;
 
-import com.teamremastered.endrem.CommonClass;
+import com.teamremastered.endrem.EndRemasteredCommon;
 import com.teamremastered.endrem.client.AncientPortalRenderer;
 import com.teamremastered.endrem.client.EyeModel;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityModelLayerRegistry;
@@ -18,7 +18,7 @@ public class RegisterHandler {
         CommonItemRegistry.registerEyes();
         register(BuiltInRegistries.ITEM, CommonItemRegistry.registerERItems());
         CommonItemRegistry.initializeEyes();
-        Registry.register(BuiltInRegistries.BLOCK_ENTITY_TYPE, CommonClass.ModResourceLocation("ancient_portal_frame_entity"), CommonBlockRegistry.ANCIENT_PORTAL_FRAME_ENTITY);
+        Registry.register(BuiltInRegistries.BLOCK_ENTITY_TYPE, EndRemasteredCommon.ModResourceLocation("ancient_portal_frame_entity"), CommonBlockRegistry.ANCIENT_PORTAL_FRAME_ENTITY);
 
         /* Miscellaneous */
         ERTrades.registerVillagerTrades();
@@ -32,9 +32,7 @@ public class RegisterHandler {
 
     private static <T> void register(Registry<T> registry, Collection<ERRegistryObject<T>> objects) {
         for (ERRegistryObject<T> object : objects) {
-            Registry.register(registry, CommonClass.ModResourceLocation(object.id()), object.object());
+            Registry.register(registry, EndRemasteredCommon.ModResourceLocation(object.id()), object.object());
         }
     }
-
-    //TODO: Register AncientPortalBLockEntity, LayerDefinition and BlockEntity Renderer
 }

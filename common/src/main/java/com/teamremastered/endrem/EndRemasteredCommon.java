@@ -11,7 +11,7 @@ import java.io.IOException;
 // import and access the vanilla codebase, libraries used by vanilla, and optionally third party libraries that provide
 // common compatible binaries. This means common code can not directly use loader specific concepts such as Forge events
 // however it will be compatible with all supported mod loaders.
-public class CommonClass {
+public class EndRemasteredCommon {
 
     public static ResourceLocation ModResourceLocation(String id) {
         return ResourceLocation.fromNamespaceAndPath("endrem", id);
