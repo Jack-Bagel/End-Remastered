@@ -50,10 +50,6 @@ public class CommonItemRegistry {
     }
 
     public static Collection<ERRegistryObject<Item>> registerERItems() {
-        Constants.LOGGER.info("ELEMENTS INSIDE ITEMS");
-        for (ERRegistryObject<Item> item : ITEMS) {
-            Constants.LOGGER.info(item.id());
-        }
         return ITEMS;
     }
 

@@ -26,14 +26,12 @@ public class AncientPortalFrameEntity  extends BlockEntity {
     protected void saveAdditional(CompoundTag nbt, HolderLookup.Provider provider) {
         super.saveAdditional(nbt, provider);
         nbt.putString("eye_inside", this.eye);
-        Constants.LOGGER.info("EYE SAVED: " + this.eye);
     }
 
     @Override
     protected void loadAdditional(CompoundTag nbt, HolderLookup.Provider provider) {
         super.loadAdditional(nbt, provider);
         this.eye = nbt.getString("eye_inside");
-        Constants.LOGGER.info("EYE LOADED: " + this.eye);
     }
 
     // Sync With Client
