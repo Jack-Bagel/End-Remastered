@@ -1,0 +1,115 @@
+{
+  "item.endrem.old_eye": "Stare Oko",
+  "item.endrem.old_eye.description": "§7§oLegenda mówi, że to oko należało do jednego z wielkich Piaskowych Robaków",
+
+  "item.endrem.rogue_eye": "Oko Łotra",
+  "item.endrem.rogue_eye.description": "§7§oUważa się, że to oko dało naszym przodkom wiedzę o Redstone",
+
+  "item.endrem.nether_eye": "Netherowe Oko",
+  "item.endrem.nether_eye.description": "§7§oZgubione przez demona podczas bitwy między Etherem a Netherem",
+
+  "item.endrem.cold_eye": "Lodowe Oko",
+  "item.endrem.cold_eye.description": "§7§oJedno z ostatnich artefaktów pozostawionych przez Icelogerów przed ich nagłym zniknięciem ze świata",
+
+  "item.endrem.magical_eye": "Magiczne Oko",
+  "item.endrem.magical_eye.description": "§7§oBez tego oka Przywoływacz traci swoją moc",
+
+  "item.endrem.black_eye": "Czarne Oko",
+  "item.endrem.black_eye.description": "§7§oPiraci mówią, że dało wzrok legendarnej Czarnej Perle",
+
+  "item.endrem.lost_eye": "Zgubione Oko",
+  "item.endrem.lost_eye.description": "§7§oMówi się, że zostało wykute przez pierwszych kowali w historii",
+
+  "item.endrem.wither_eye": "Oko Uschnięcia",
+  "item.endrem.wither_eye.description": "§7§oByło świadkiem zniszczenia. Może także widziało, jak twoje rzeczy znikają",
+
+  "item.endrem.guardian_eye": "Oko Strażnika",
+  "item.endrem.guardian_eye.description": "§7§oWidziało wielu wojowników tonących w głębinach morza",
+
+  "item.endrem.cursed_eye": "Przeklęte Oko",
+  "item.endrem.cursed_eye.description": "§7§oPotężny, ale destrukcyjny artefakt; Pigliny przysięgły go chronić za cenę swojego życia",
+
+  "item.endrem.exotic_eye": "Egzotyczne Oko",
+  "item.endrem.exotic_eye.description": "§7§oCi, którzy podążali za tym okiem, nigdy więcej nie zostali widziani; plotki mówią, że znaleźli wielkie miasto Atlantydę lub zgubili się w drodze",
+
+  "item.endrem.evil_eye": "Złe Oko",
+  "item.endrem.evil_eye.description": "§7§oŚwięty talizman, który ma chronić swojego właściciela przed pechem",
+
+  "item.endrem.undead_eye": "Nieumarłe Oko",
+  "item.endrem.undead_eye.description": "§7§oPamiątka z przeszłych żyć tych, którzy żyją w śmierci",
+
+  "item.endrem.cryptic_eye": "Tajemnicze Oko",
+  "item.endrem.cryptic_eye.description": "§7§o§khttps://www.youtube.com/watch?v=dQw4w9WgXcQ",
+
+  "item.endrem.corrupted_eye": "Zepsute Oko",
+  "item.endrem.corrupted_eye.description": "§7§oOko chciwego króla, który popadł w samotność; legenda mówi, że przynosi nieskończone bogactwo swojemu właścicielowi",
+
+  "item.endrem.witch_eye": "Oko Czarownicy",
+  "item.endrem.witch_eye.description": "§7§oUważa się, że ta źrenica widziała starożytne przepisy warzenia, które zostały zgubione w czasie.",
+
+  "item.endrem.witch_pupil": "Źrenica Czarownicy",
+
+  "item.endrem.undead_soul": "Nieumarła Dusza",
+
+  "block.endrem.ancient_portal_frame": "Starożytna rama portalu",
+
+  "block.endrem.ender_eye.warning": "Oko nie chce być użyte",
+  "block.endrem.custom_eye.place": "Oka nie można umieścić",
+  "block.endrem.custom_eye.frame_has_eye": "Rama już zawiera oko",
+
+  "itemGroup.endrem.endrem_tab": "Koniec przebudowany",
+
+  "block.portal_open_sound": "Otwarcie portalu",
+  "block.portal_open_sound.sub": "Otwarcie portalu",
+
+  "advancements.main.root.title": "Początek przygody",
+  "advancements.main.root.description": "Zdobądź swoje pierwsze Oko",
+
+  "advancements.main.old_eye.title": "Poszukiwacz fortuny",
+  "advancements.main.old_eye.description": "Zdobądź swoje pierwsze Stare Oko",
+
+  "advancements.main.rogue_eye.title": "Witaj w dżungli",
+  "advancements.main.rogue_eye.description": "Zdobądź swoje pierwsze Oko Łotra",
+
+  "advancements.main.nether_eye.title": "Spójrz w rozpacz",
+  "advancements.main.nether_eye.description": "Zdobądź swoje pierwsze Netherowe Oko",
+
+  "advancements.main.cold_eye.title": "Zimny wzrok",
+  "advancements.main.cold_eye.description": "Zdobądź swoje pierwsze Lodowe Oko",
+
+  "advancements.main.corrupted_eye.title": "Pokryj mnie szmaragdami", "%%%%%%Comment%%%%%%": "Złoty deszcz pasowałby lepiej, ale mniejsza...",
+  "advancements.main.corrupted_eye.description": "Zdobądź swoje pierwsze Zepsute Oko",
+
+  "advancements.main.magical_eye.title": "Upadły czarodziej",
+  "advancements.main.magical_eye.description": "Zdobądź swoje pierwsze Magiczne Oko",
+
+  "advancements.main.black_eye.title": "Arghh, gdzie jest mój statek?",
+  "advancements.main.black_eye.description": "Zdobądź swoje pierwsze Czarne Oko",
+
+  "advancements.main.lost_eye.title": "Potrzebujesz mapy?",
+  "advancements.main.lost_eye.description": "Zdobądź swoje pierwsze Zgubione Oko",
+
+  "advancements.main.wither_eye.title": "Czy chcesz, czy nie",
+  "advancements.main.wither_eye.description": "Zdobądź swoje pierwsze Oko Uschnięcia",
+
+  "advancements.main.guardian_eye.title": "Kto teraz strzeże świątyni?",
+  "advancements.main.guardian_eye.description": "Zdobądź swoje pierwsze Oko Strażnika",
+
+  "advancements.main.cursed_eye.title": "Nowy obrońca...",
+  "advancements.main.cursed_eye.description": "Zdobądź swoje pierwsze Przeklęte Oko",
+
+  "advancements.main.witch_eye.title": "Cukierek albo psikus?",
+  "advancements.main.witch_eye.description": "Zdobądź swoje pierwsze Oko Czarownicy",
+
+  "advancements.main.evil_eye.title": "Prawdziwe błogosławieństwo",
+  "advancements.main.evil_eye.description": "Zdobądź swoje pierwsze Złe Oko",
+
+  "advancements.main.exotic_eye.title": "Gdzie Jest atlantyda?",
+  "advancements.main.exotic_eye.description": "Zdobądź swoje pierwsze Egzotyczne Oko",
+
+  "advancements.main.undead_eye.title": "Zwierciadło duszy",
+  "advancements.main.undead_eye.description": "Zdobądź swoje pierwsze Nieumarłe Oko",
+
+  "advancements.main.cryptic_eye.title": "Cierpliwość to droga do mądrości",
+  "advancements.main.cryptic_eye.description": "Zdobądź swoje pierwsze Tajemnicze Oko"
+}
