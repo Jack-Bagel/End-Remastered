@@ -6,10 +6,10 @@
   "item.endrem.rogue_eye.description": "§7§o据说它赋予了祖先红石智慧",
 
   "item.endrem.nether_eye": "下界之眼",
-  "item.endrem.nether_eye.description": "§7§o在下界与天界的战斗中，一个恶魔弄丢了它",
+  "item.endrem.nether_eye.description": "§7§o在下界与天境的战争中，一个恶魔弄丢了它",
 
   "item.endrem.cold_eye": "寒冰之眼",
-  "item.endrem.cold_eye.description": "§7§o它是冰术师灭绝之前留下的最终神器之一",
+  "item.endrem.cold_eye.description": "§7§o它是冰术师灭绝之前留下的最后几件古物之一",
 
   "item.endrem.magical_eye": "魔力之眼",
   "item.endrem.magical_eye.description": "§7§o若无此眼，唤魔者无异于蝼蚁",
@@ -21,7 +21,7 @@
   "item.endrem.lost_eye.description": "§7§o据悉它是由最早的铁匠锻造而成的",
 
   "item.endrem.wither_eye": "凋零之眼",
-  "item.endrem.wither_eye.description": "§7§o它见证了毁灭，也许还会见证你的事物消失",
+  "item.endrem.wither_eye.description": "§7§o它见证了毁灭，也许还会见证你的物品消失",
 
   "item.endrem.guardian_eye": "守卫者之眼",
   "item.endrem.guardian_eye.description": "§7§o它见证了许多战士沉沦于深渊",
@@ -29,20 +29,20 @@
   "item.endrem.cursed_eye": "腐化之眼",
   "item.endrem.cursed_eye.description": "§7§o逝于孤独的贪婪国王之眼。传说它会带来无尽的财富",
 
-  "item.endrem.exotic_eye": "异国之眼",
-  "item.endrem.exotic_eye.description": "§7§o那些追随这只眼睛的人再没有回来；传言说他们找到了伟大的亚特兰蒂斯城，或者迷失了",
+  "item.endrem.exotic_eye": "异域之眼",
+  "item.endrem.exotic_eye.description": "§7§o那些追随这只眼睛的人再没有回来。有传言说他们找到了亚特兰蒂斯，也有传言说他们在寻觅的途中迷失了方向。",
 
   "item.endrem.evil_eye": "邪恶之眼",
   "item.endrem.evil_eye.description": "§7§o据说是可以保护主人免遭厄运的圣符",
 
   "item.endrem.undead_eye": "亡灵之眼",
-  "item.endrem.undead_eye.description": "§7§o缅怀那些在死亡中生活的人的前世",
+  "item.endrem.undead_eye.description": "§7§o追忆不死者的生前岁月",
 
-  "item.endrem.cryptic_eye": "隐形之眼",
+  "item.endrem.cryptic_eye": "神秘之眼",
   "item.endrem.cryptic_eye.description": "§7§o§khttps://www.youtube.com/watch?v=dQw4w9WgXcQ",
 
   "item.endrem.corrupted_eye": "腐蚀之眼",
-  "item.endrem.corrupted_eye.description": "§7§o贪婪的国王的眼睛在孤独中消失；传说它会给主人带来无穷的财富",
+  "item.endrem.corrupted_eye.description": "§7§o逝于孤独的贪婪国王之眼。传说它会带来无尽的财富",
 
   "item.endrem.witch_eye": "女巫之眼",
   "item.endrem.witch_eye.description": "§7§o据说它看到了失传的古老酿造配方",
@@ -95,20 +95,20 @@
   "advancements.main.guardian_eye.description": "获得一颗守卫者之眼",
 
   "advancements.main.cursed_eye.title": "一个新的保护者...",
-  "advancements.main.cursed_eye.description": "获得你的第一个诅咒之眼",
+  "advancements.main.cursed_eye.description": "获得一颗诅咒之眼",
 
   "advancements.main.witch_eye.title": "不给糖就捣蛋？",
   "advancements.main.witch_eye.description": "获得一颗女巫之眼",
 
   "advancements.main.evil_eye.title": "真正的祝福",
-  "advancements.main.evil_eye.description": "获得你的第一只邪恶之眼",
+  "advancements.main.evil_eye.description": "获得一颗邪恶之眼",
 
   "advancements.main.exotic_eye.title": "亚特兰蒂斯在哪里？",
-  "advancements.main.exotic_eye.description": "获得你的第一只异国之眼",
+  "advancements.main.exotic_eye.description": "获得一颗异域之眼",
 
   "advancements.main.undead_eye.title": "灵魂之镜",
-  "advancements.main.undead_eye.description": "获得你的第一只不死之眼",
+  "advancements.main.undead_eye.description": "获得一颗不死之眼",
 
   "advancements.main.cryptic_eye.title": "耐心是通往智慧之路",
-  "advancements.main.cryptic_eye.description": "获得你的第一颗隐形之眼"
+  "advancements.main.cryptic_eye.description": "获得一颗神秘之眼"
 }
