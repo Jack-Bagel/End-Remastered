@@ -17,7 +17,7 @@
   "item.endrem.black_eye": "漆黑之眼",
   "item.endrem.black_eye.description": "§7§o海盗说它可以让人看到传说中的黑珍珠号",
 
-  "item.endrem.lost_eye": "迷离之眼",
+  "item.endrem.lost_eye": "迷失之眼",
   "item.endrem.lost_eye.description": "§7§o据悉它是由最早的铁匠锻造而成的",
 
   "item.endrem.wither_eye": "凋零之眼",
@@ -86,7 +86,7 @@
   "advancements.main.black_eye.description": "获得一颗漆黑之眼",
 
   "advancements.main.lost_eye.title": "需要地图吗？",
-  "advancements.main.lost_eye.description": "获得一颗迷离之眼",
+  "advancements.main.lost_eye.description": "获得一颗迷失之眼",
 
   "advancements.main.wither_eye.title": "万物凋零",
   "advancements.main.wither_eye.description": "获得一颗凋零之眼",
