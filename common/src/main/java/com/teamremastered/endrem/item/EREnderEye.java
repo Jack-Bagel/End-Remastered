@@ -20,7 +20,10 @@ import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.EyeOfEnder;
-import net.minecraft.world.item.*;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.component.TooltipDisplay;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.ClipContext;
@@ -32,9 +35,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.pattern.BlockPattern;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.phys.BlockHitResult;
-import org.jetbrains.annotations.Nullable;
 
-import java.util.List;
 import java.util.function.Consumer;
 
 @MethodsReturnNonnullByDefault
@@ -141,7 +142,7 @@ public class EREnderEye extends Item {
                 if (blockpos != null) {
                     EyeOfEnder eyeofenderentity = new EyeOfEnder(levelIn, playerIn.getX(), playerIn.getY(0.5D), playerIn.getZ());
                     eyeofenderentity.setItem(itemstack);
-                    eyeofenderentity.signalTo(blockpos);
+                    eyeofenderentity.signalTo(blockpos.getCenter());
                     ((EyeOfEnderEntityAccessor) eyeofenderentity).setSurviveAfterDeath(ConfigHandler.EYE_BREAK_PROBABILITY <= playerIn.getRandom().nextInt(100));
 
                     levelIn.addFreshEntity(eyeofenderentity);

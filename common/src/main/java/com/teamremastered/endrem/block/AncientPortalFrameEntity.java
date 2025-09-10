@@ -1,5 +1,6 @@
 package com.teamremastered.endrem.block;
 
+import com.teamremastered.endrem.Constants;
 import com.teamremastered.endrem.EndRemasteredCommon;
 import com.teamremastered.endrem.registry.CommonBlockRegistry;
 import net.minecraft.client.resources.model.Material;
@@ -9,9 +10,13 @@ import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.util.ProblemReporter;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.storage.TagValueOutput;
+import net.minecraft.world.level.storage.ValueInput;
+import net.minecraft.world.level.storage.ValueOutput;
 
 public class AncientPortalFrameEntity  extends BlockEntity {
     private String eye = "empty";
@@ -22,23 +27,25 @@ public class AncientPortalFrameEntity  extends BlockEntity {
     }
 
     @Override
-    protected void saveAdditional(CompoundTag nbt, HolderLookup.Provider provider) {
-        super.saveAdditional(nbt, provider);
-        nbt.putString("eye_inside", this.eye);
+    protected void saveAdditional(ValueOutput output) {
+        super.saveAdditional(output);
+        output.putString("eye_inside", this.eye);
     }
 
     @Override
-    protected void loadAdditional(CompoundTag nbt, HolderLookup.Provider provider) {
-        super.loadAdditional(nbt, provider);
-        this.eye = nbt.getString("eye_inside").orElse("");
+    protected void loadAdditional(ValueInput input) {
+        super.loadAdditional(input);
+        this.eye = input.getString("eye_inside").orElse("");
     }
 
     // Sync With Client
     @Override
     public CompoundTag getUpdateTag(HolderLookup.Provider registries) {
-        CompoundTag nbt = super.getUpdateTag(registries);
-        saveAdditional(nbt, registries);
-        return nbt;
+        try (ProblemReporter.ScopedCollector problemreporter = new ProblemReporter.ScopedCollector(this.problemPath(), Constants.LOGGER)) {
+            TagValueOutput valueOutput = TagValueOutput.createWithContext(problemreporter, registries);
+            saveAdditional(valueOutput);
+            return valueOutput.buildResult();
+        }
     }
 
     //TODO: Make isEmpty() func
