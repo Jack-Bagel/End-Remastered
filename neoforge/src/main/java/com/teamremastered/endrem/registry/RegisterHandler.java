@@ -15,7 +15,7 @@ import net.neoforged.neoforge.common.loot.IGlobalLootModifier;
 import net.neoforged.neoforge.registries.*;
 import net.neoforged.bus.api.IEventBus;
 
-@EventBusSubscriber(modid = Constants.MOD_ID, bus = EventBusSubscriber.Bus.MOD)
+@EventBusSubscriber(modid = Constants.MOD_ID)
 public class RegisterHandler {
     public static void init(IEventBus modEventBus) {
         GLMS.register(modEventBus);
