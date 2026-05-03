@@ -12,7 +12,7 @@ import net.minecraft.world.item.ItemStack;
 public class ERTabs {
 
     public static final ResourceKey<CreativeModeTab> ITEM_GROUP = ResourceKey.create(Registries.CREATIVE_MODE_TAB, EndRemasteredCommon.ModResourceLocation("endrem_tab"));
-    public static void initRegister() {
+    public static void init() {
     Registry.register(BuiltInRegistries.CREATIVE_MODE_TAB, ITEM_GROUP, FabricItemGroup.builder()
         .title(Component.translatable("itemGroup.endrem.endrem_tab"))
         .icon(() -> new ItemStack(CommonItemRegistry.COLD_EYE))

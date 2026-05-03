@@ -35,3 +35,29 @@ loom {
         }
     }
 }
+
+publishMods {
+    file = remapJar.archiveFile
+    changelog = ""
+    type = STABLE
+    modLoaders.add("fabric")
+    displayName = "${mod_name} R${project.properties["version"]} [Fabric]"
+
+    curseforge {
+        accessToken = providers.environmentVariable("CURSEFORGE_API_KEY")
+        projectId = "${curseforge_project_id}"
+        minecraftVersions.add(project.minecraft_version)
+
+        requires("fabric-api")
+        clientRequired = true
+        serverRequired = true
+    }
+
+    modrinth {
+        accessToken = providers.environmentVariable("MODRINTH_API_KEY")
+        projectId = "${modrinth_project_id}"
+        minecraftVersions.add(project.minecraft_version)
+
+        requires("fabric-api")
+    }
+}

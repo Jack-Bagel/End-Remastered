@@ -33,4 +33,27 @@ neoForge {
     }
 }
 
+publishMods {
+    file = tasks.jar.archiveFile
+    changelog = ""
+    type = STABLE
+    modLoaders.add("neoforge")
+    displayName = "${mod_name} R${project.properties["version"]} [Neoforge]"
+
+    curseforge {
+        accessToken = providers.environmentVariable("CURSEFORGE_API_KEY")
+        projectId = "${curseforge_project_id}"
+        minecraftVersions.add(project.minecraft_version)
+
+        clientRequired = true
+        serverRequired = true
+    }
+
+    modrinth {
+        accessToken = providers.environmentVariable("MODRINTH_API_KEY")
+        projectId = "${modrinth_project_id}"
+        minecraftVersions.add(project.minecraft_version)
+    }
+}
+
 sourceSets.main.resources { srcDir 'src/generated/resources' }

@@ -22,7 +22,8 @@ public class RegisterHandler {
 
         /* Miscellaneous */
         ERTrades.registerVillagerTrades();
-        ERTabs.initRegister();
+        ERTabs.init();
+        ERCommands.init();
     }
 
     public static void clientInit() {

@@ -16,7 +16,7 @@ import java.util.Collection;
 import java.util.List;
 
 public class CommonItemRegistry {
-    private static final List<ERRegistryObject<Item>> ITEMS = new ArrayList<>();
+    public static final List<ERRegistryObject<Item>> ITEMS = new ArrayList<>();
 
     public static Item BLACK_EYE;
     public static Item COLD_EYE;
