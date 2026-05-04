@@ -16,13 +16,12 @@ public class ERCommands {
     public static void onRegisterCommandsEvent(RegisterCommandsEvent event) {
         event.getDispatcher().register(
             LiteralArgumentBuilder.<CommandSourceStack>literal("endrem")
-                .then(Commands.literal("test")
+                    .requires(Commands.hasPermission(Commands.LEVEL_GAMEMASTERS))
+                    .then(Commands.literal("test")
                     .then(Commands.literal("portal")
-                            .requires(Commands.hasPermission(Commands.LEVEL_GAMEMASTERS))
                             .executes(ERTestCommands::testPortal)
                     )
                     .then(Commands.literal("loot_tables")
-                            .requires(Commands.hasPermission(Commands.LEVEL_GAMEMASTERS))
                             .executes(ERTestCommands::testLootTables)
                     )
                 )
