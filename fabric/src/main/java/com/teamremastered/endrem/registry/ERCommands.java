@@ -7,19 +7,16 @@ import net.minecraft.commands.Commands;
 public class ERCommands {
 
     public static void init() {
-
         CommandRegistrationCallback.EVENT.register((dispatcher, registryAccess, environment) -> {
-            dispatcher.register(Commands.literal("endrem_test")
-                    .requires(source -> source.hasPermission(2))
-                    .then(Commands.literal("portal")
-                        .executes(ERTestCommands::testPortal)));
-        });
+            dispatcher.register(Commands.literal("endrem")
+                .then(Commands.literal("test")
+                        .then(Commands.literal("portal")
+                            .requires(source -> source.hasPermission(Commands.LEVEL_GAMEMASTERS))
+                            .executes(ERTestCommands::testPortal))
+                        .then(Commands.literal("loot_tables")
+                                .requires(source -> source.hasPermission(Commands.LEVEL_GAMEMASTERS))
+                                .executes(ERTestCommands::testLootTables))));
 
-        CommandRegistrationCallback.EVENT.register((dispatcher, registryAccess, environment) -> {
-            dispatcher.register(Commands.literal("endrem_test")
-                    .requires(source -> source.hasPermission(2))
-                    .then(Commands.literal("loot_tables")
-                            .executes(ERTestCommands::testLootTables)));
         });
     }
 }
