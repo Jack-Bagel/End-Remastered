@@ -33,8 +33,8 @@ public class ERTrades {
         @Nullable
         @Override
         public MerchantOffer getOffer(Entity entity, RandomSource random) {
-            int maxPrice = 10;
-            int minPrice = 6;
+            int maxPrice = 16;
+            int minPrice = 12;
             int priceEmeralds = random.nextInt(maxPrice - minPrice) + minPrice;
             ItemCost firstItem = new ItemCost(Items.EMERALD, priceEmeralds);
             ItemCost secondItem = new ItemCost(Items.RABBIT_FOOT);

@@ -15,11 +15,11 @@ public class ERCommands {
                         .executes(ERTestCommands::testPortal)));
         });
 
-//        CommandRegistrationCallback.EVENT.register((dispatcher, registryAccess, environment) -> {
-//            dispatcher.register(Commands.literal("endrem_test")
-//                    .requires(source -> source.hasPermission(2))
-//                    .then(Commands.literal("loot_tables")
-//                            .executes(ERTestCommands::testLootTables)));
-//        });
+        CommandRegistrationCallback.EVENT.register((dispatcher, registryAccess, environment) -> {
+            dispatcher.register(Commands.literal("endrem_test")
+                    .requires(source -> source.hasPermission(2))
+                    .then(Commands.literal("loot_tables")
+                            .executes(ERTestCommands::testLootTables)));
+        });
     }
 }

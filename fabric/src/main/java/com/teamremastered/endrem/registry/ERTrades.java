@@ -19,8 +19,8 @@ public class ERTrades {
 
     private static class EREyeTrade implements VillagerTrades.ItemListing {
 
-        final int maxPrice = 10;
-        final int minPrice = 6;
+        final int maxPrice = 16;
+        final int minPrice = 12;
 
         @Nullable
         @Override

@@ -47,8 +47,8 @@ public class CommonItemRegistry {
     //TODO: Handle wrong eye ID
     public static void registerEyes() {
         for (JsonEye eye : JsonEye.getEyes()) {
-            Item item = new EREnderEye(new Item.Properties().rarity(eye.getRarity()).setId(ResourceKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath("endrem", eye.getID().getPath()))));
-            ITEMS.add(new ERRegistryObject<>(item, eye.getID().getPath()));
+            Item item = new EREnderEye(new Item.Properties().rarity(eye.getRarity()).setId(ResourceKey.create(Registries.ITEM, EndRemasteredCommon.ModResourceLocation(eye.getID()))));
+            ITEMS.add(new ERRegistryObject<>(item, eye.getID()));
         }
     }
 

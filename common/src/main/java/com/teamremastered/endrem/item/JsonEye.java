@@ -75,7 +75,7 @@ public class JsonEye {
             }
 
             for (JsonEye eye : END_REMASTERED_EYES) {
-                try (FileWriter fw = new FileWriter(configPath + eye.getID().getPath() + ".json")) {
+                try (FileWriter fw = new FileWriter(configPath + eye.getID() + ".json")) {
                     gson.toJson(eye, fw);
                 }
             }
@@ -95,8 +95,8 @@ public class JsonEye {
         return eyes;
     }
 
-    public ResourceLocation getID() {
-        return ResourceLocation.parse(this.id);
+    public String getID() {
+        return this.id;
     }
 
     public ArrayList<ResourceLocation> getLootTablesID() {

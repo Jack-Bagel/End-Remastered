@@ -24,13 +24,13 @@ public class VanillaLootInjector {
                         event.getServerResources().fullRegistries().getLootTable(resourceKey).addPool(injectTable.getPool("eye_pool"));
                     }
                     else if (targetTable == LootTable.EMPTY && injectTable == LootTable.EMPTY){
-                        Constants.LOGGER.warn("The target and injected loot tables provided by \"{}\" are invalid.", eye.getID().getPath());
+                        Constants.LOGGER.warn("The target and injected loot tables provided by \"{}\" are invalid.", eye.getID());
                     }
                     else if (targetTable == LootTable.EMPTY){
-                        Constants.LOGGER.warn("The target loot table provided by \"{}\" is invalid.", eye.getID().getPath());
+                        Constants.LOGGER.warn("The target loot table provided by \"{}\" is invalid.", eye.getID());
                     }
                     else if (injectTable == LootTable.EMPTY){
-                        Constants.LOGGER.warn("The injected loot table provided by \"{}\" is invalid.", eye.getID().getPath());
+                        Constants.LOGGER.warn("The injected loot table provided by \"{}\" is invalid.", eye.getID());
                     }
                 } catch (Exception e) {
                     Constants.LOGGER.error("Could not find the \"eye_pool\" inside the Loot Table located in: " + eye.getLootToInjectID().toString());
