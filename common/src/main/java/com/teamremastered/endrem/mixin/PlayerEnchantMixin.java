@@ -21,7 +21,7 @@ public class PlayerEnchantMixin {
         int maxValue = 120;
         int randomNumber = random.nextInt(maxValue);
 
-        if (ConfigHandler.IS_CRYPTIC_EYE_OBTAINABLE && player != null && !player.level().isClientSide) {
+        if (ConfigHandler.IS_CRYPTIC_EYE_OBTAINABLE && player != null && !player.level().isClientSide()) {
             if (randomNumber == maxValue - 1) {
                 player.getInventory().add(new ItemStack(CommonItemRegistry.CRYPTIC_EYE));
             }

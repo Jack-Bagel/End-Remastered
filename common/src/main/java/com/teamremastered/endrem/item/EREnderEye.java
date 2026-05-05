@@ -68,7 +68,7 @@ public class EREnderEye extends Item {
             return InteractionResult.PASS;
         }
 
-        if (level.isClientSide) {
+        if (level.isClientSide()) {
             return InteractionResult.SUCCESS;
         }
         else if (!frameHasEye) {

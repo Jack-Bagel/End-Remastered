@@ -69,7 +69,7 @@ public class ERTestCommands {
     public static int testLootTables(CommandContext<CommandSourceStack> context) {
         //TODO: Get the eyes with JsonEye.getEyes(), use getLootTablesID to get their loot table then iter 100 times on it and check
         //TODO: if the eye gen correctly and show the odds for each pool.
-        if (!context.getSource().getLevel().isClientSide) {
+        if (!context.getSource().getLevel().isClientSide()) {
             context.getSource().sendSuccess(() -> Component.literal("--Generate Eyes Loot Tables--\n"), false);
             for (JsonEye eye : JsonEye.getEyes()) {
                 Item eyeItem = BuiltInRegistries.ITEM.get(EndRemasteredCommon.ModResourceLocation(eye.getID())).get().value();

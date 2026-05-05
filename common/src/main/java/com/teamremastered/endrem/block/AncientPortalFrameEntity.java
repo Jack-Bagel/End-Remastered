@@ -20,7 +20,6 @@ import net.minecraft.world.level.storage.ValueOutput;
 
 public class AncientPortalFrameEntity  extends BlockEntity {
     private String eye = "empty";
-    public Material eyeTexture;
 
     public AncientPortalFrameEntity(BlockPos pos, BlockState state) {
         super(CommonBlockRegistry.ANCIENT_PORTAL_FRAME_ENTITY, pos, state);
@@ -47,8 +46,6 @@ public class AncientPortalFrameEntity  extends BlockEntity {
             return valueOutput.buildResult();
         }
     }
-
-    //TODO: Make isEmpty() func
 
     @Override
     public ClientboundBlockEntityDataPacket getUpdatePacket() {

@@ -113,7 +113,6 @@ public class AncientPortalFrame extends Block implements EntityBlock {
     }
 
     // Verify if a given frame is already present in a portal (only works if the portal is built correctly)
-    //TODO: Make it a provider class
     public static boolean isFrameAbsent(Level levelIn, UseOnContext itemUse, BlockPos pos) {
         BlockPattern.BlockPatternMatch blockpattern$patternhelper = getCompletedPortalShape(false).find(levelIn, pos);
 

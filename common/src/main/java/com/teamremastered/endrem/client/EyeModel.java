@@ -8,7 +8,7 @@ import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.client.model.geom.builders.*;
 import net.minecraft.client.renderer.RenderType;
 
-public class EyeModel extends Model {
+public class EyeModel extends Model<Void> {
     private final ModelPart eye;
     public EyeModel(ModelPart root) {
         super(root, RenderType::entitySolid);
@@ -23,8 +23,6 @@ public class EyeModel extends Model {
         MeshDefinition meshdefinition = new MeshDefinition();
         PartDefinition partdefinition = meshdefinition.getRoot();
         partdefinition.addOrReplaceChild("eye", CubeListBuilder.create().texOffs(0, 0).addBox(-16.0F, -3.0F, 8.0F, 8.0F, 3.0F, 8.0F, new CubeDeformation(0.0F)), PartPose.offset(12.0F, 16.0F, -12.0F));
-        //PartPose.offset(20.0F, 16.0F, -4.0F))
-        // 32 and 11 are the texture size
         return LayerDefinition.create(meshdefinition, 32, 32);
     }
 }
