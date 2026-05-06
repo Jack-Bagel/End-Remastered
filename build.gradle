@@ -6,3 +6,62 @@ plugins {
 
     id "me.modmuss50.mod-publish-plugin" version "1.1.0"
 }
+
+publishMods {
+    changelog = "- Port to 1.21.9 and 1.21.10"
+    type = STABLE
+    modLoaders.add("fabric")
+    displayName = "${mod_name} R${project.properties["version"]} [Fabric]"
+
+    // CurseForge options used by both Fabric and NeoForge
+    def cfOptions = curseforgeOptions {
+        accessToken = providers.environmentVariable("CURSEFORGE_API_KEY")
+        projectId = "${curseforge_project_id}"
+        minecraftVersionRange {
+            start = "${minecraft_version}"
+            end = "${minecraft_version_end}"
+        }
+        clientRequired = true
+        serverRequired = true
+    }
+
+    // Modrinth options used by both Fabric and NeoForge
+    def mrOptions = modrinthOptions {
+        accessToken = providers.environmentVariable("MODRINTH_API_KEY")
+        projectId = "${modrinth_project_id}"
+        minecraftVersionRange {
+            start = "${minecraft_version}"
+            end = "${minecraft_version_end}"
+        }
+    }
+
+    // Fabric CurseForge
+    curseforge("curseforgeFabric") {
+        from cfOptions
+        file project(":fabric")
+        modLoaders.add("fabric")
+        requires("fabric-api")
+    }
+
+    // NeoForge CurseForge
+    curseforge("curseforgeNeoForge") {
+        from cfOptions
+        file project(":neoforge")
+        modLoaders.add("neoforge")
+    }
+
+    // Fabric Modrinth
+    modrinth("modrinthFabric") {
+        from mrOptions
+        file project(":fabric")
+        modLoaders.add("fabric")
+        requires("fabric-api")
+    }
+
+    // NeoForge Modrinth
+    modrinth("modrinthNeoForge") {
+        from mrOptions
+        file project(":neoforge")
+        modLoaders.add("neoforge")
+    }
+}
