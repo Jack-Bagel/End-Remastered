@@ -4,13 +4,13 @@ import com.mojang.blaze3d.vertex.PoseStack;
 import com.teamremastered.endrem.EndRemasteredCommon;
 import com.teamremastered.endrem.block.AncientPortalFrameEntity;
 import com.teamremastered.endrem.registry.CommonModelRegistry;
-import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.Sheets;
 import net.minecraft.client.renderer.SubmitNodeCollector;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderer;
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
 import net.minecraft.client.renderer.blockentity.state.BlockEntityRenderState;
 import net.minecraft.client.renderer.feature.ModelFeatureRenderer;
+import net.minecraft.client.renderer.rendertype.RenderTypes;
 import net.minecraft.client.renderer.state.CameraRenderState;
 import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.client.resources.model.Material;
@@ -59,7 +59,7 @@ public class AncientPortalRenderer implements BlockEntityRenderer<AncientPortalF
         if (state.eye.equals("empty")) {
             return;
         }
-        Material eyeTexture = Sheets.BLOCKS_MAPPER.apply(EndRemasteredCommon.ModResourceLocation("eyes/" + state.eye));
+        Material eyeTexture = Sheets.BLOCKS_MAPPER.apply(EndRemasteredCommon.ModIdentifier("eyes/" + state.eye));
 
         poseStack.pushPose();
         poseStack.mulPose(new Matrix4f().translate(0.5f, 0.0f, 0.5f));
@@ -69,7 +69,7 @@ public class AncientPortalRenderer implements BlockEntityRenderer<AncientPortalF
                 this.eyeModel,
                 null,
                 poseStack,
-                eyeTexture.renderType(RenderType::entitySolid),
+                eyeTexture.renderType(RenderTypes::entitySolid),
                 state.lightCoords,
                 OverlayTexture.NO_OVERLAY,
                 -1,

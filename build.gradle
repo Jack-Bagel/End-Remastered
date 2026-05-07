@@ -8,7 +8,7 @@ plugins {
 }
 
 publishMods {
-    changelog = "- Port to 1.21.9 and 1.21.10"
+    changelog = "- Port to 1.21.11"
     type = STABLE
     modLoaders.add("fabric")
     displayName = "${mod_name} R${project.properties["version"]} [Fabric]"

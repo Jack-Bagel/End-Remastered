@@ -2,11 +2,12 @@ package com.teamremastered.endrem.registry;
 
 import com.teamremastered.endrem.config.ConfigHandler;
 import net.fabricmc.fabric.api.object.builder.v1.trade.TradeOfferHelper;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.npc.VillagerProfession;
-import net.minecraft.world.entity.npc.VillagerTrades;
+import net.minecraft.world.entity.npc.villager.VillagerProfession;
+import net.minecraft.world.entity.npc.villager.VillagerTrades;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.trading.ItemCost;
@@ -24,12 +25,12 @@ public class ERTrades {
 
         @Nullable
         @Override
-        public MerchantOffer getOffer(Entity entity, RandomSource randomSource) {
+        public MerchantOffer getOffer(ServerLevel level, Entity entity, RandomSource randomSource) {
             int priceEmeralds = randomSource.nextInt(maxPrice - minPrice) + minPrice;
             ItemCost firstItem = new ItemCost(Items.EMERALD, priceEmeralds);
             ItemCost secondItem = new ItemCost(Items.RABBIT_FOOT);
 
-            if (!entity.level().isClientSide()) {
+            if (!level.isClientSide()) {
                 return new MerchantOffer(firstItem, Optional.of(secondItem), new ItemStack(CommonItemRegistry.EVIL_EYE), 1, 1, 1F);
             }
             return null;
@@ -41,7 +42,7 @@ public class ERTrades {
             TradeOfferHelper.registerVillagerOffers(VillagerProfession.CLERIC, 5, factories -> factories.add(new EREyeTrade()));
 
             TradeOfferHelper.registerWanderingTraderOffers(factories ->
-                    factories.addOffersToPool(ResourceLocation.fromNamespaceAndPath("endrem", "idk"), new EREyeTrade()));
+                    factories.addOffersToPool(Identifier.fromNamespaceAndPath("endrem", "idk"), new EREyeTrade()));
         }
     }
 }

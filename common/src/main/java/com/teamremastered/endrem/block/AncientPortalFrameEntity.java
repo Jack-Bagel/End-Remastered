@@ -9,8 +9,7 @@ import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.util.ProblemReporter;
+import net.minecraft.resources.Identifier;import net.minecraft.util.ProblemReporter;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
@@ -60,8 +59,8 @@ public class AncientPortalFrameEntity  extends BlockEntity {
         return this.eye;
     }
 
-    public ResourceLocation getEyeID() {
-        return EndRemasteredCommon.ModResourceLocation(this.eye);
+    public Identifier getEyeID() {
+        return EndRemasteredCommon.ModIdentifier(this.eye);
     }
 
     public Item getEyeItem() {

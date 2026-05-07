@@ -5,7 +5,6 @@ import com.teamremastered.endrem.block.AncientPortalFrame;
 import com.teamremastered.endrem.config.ConfigHandler;
 import com.teamremastered.endrem.mixin.accessor.EyeOfEnderEntityAccessor;
 import com.teamremastered.endrem.registry.CommonBlockRegistry;
-import net.minecraft.MethodsReturnNonnullByDefault;
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
@@ -38,7 +37,6 @@ import net.minecraft.world.phys.BlockHitResult;
 
 import java.util.function.Consumer;
 
-@MethodsReturnNonnullByDefault
 public class EREnderEye extends Item {
     public EREnderEye(Properties properties) {
         super(properties);

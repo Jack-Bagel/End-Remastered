@@ -6,12 +6,12 @@ import net.minecraft.client.model.Model;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.client.model.geom.builders.*;
-import net.minecraft.client.renderer.RenderType;
+import net.minecraft.client.renderer.rendertype.RenderTypes;
 
 public class EyeModel extends Model<Void> {
     private final ModelPart eye;
     public EyeModel(ModelPart root) {
-        super(root, RenderType::entitySolid);
+        super(root, RenderTypes::entitySolid);
         eye = root.getChild("eye");
     }
 

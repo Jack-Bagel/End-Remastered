@@ -2,10 +2,11 @@ package com.teamremastered.endrem.registry;
 
 import com.teamremastered.endrem.Constants;
 import com.teamremastered.endrem.config.ConfigHandler;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.npc.VillagerProfession;
-import net.minecraft.world.entity.npc.VillagerTrades;
+import net.minecraft.world.entity.npc.villager.VillagerProfession;
+import net.minecraft.world.entity.npc.villager.VillagerTrades;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.trading.ItemCost;
@@ -32,7 +33,7 @@ public class ERTrades {
 
         @Nullable
         @Override
-        public MerchantOffer getOffer(Entity entity, RandomSource random) {
+        public MerchantOffer getOffer(ServerLevel serverLevel, Entity entity, RandomSource random) {
             int maxPrice = 16;
             int minPrice = 12;
             int priceEmeralds = random.nextInt(maxPrice - minPrice) + minPrice;
@@ -40,7 +41,7 @@ public class ERTrades {
             ItemCost secondItem = new ItemCost(Items.RABBIT_FOOT);
 
 
-            if (!entity.level().isClientSide()) {
+            if (!serverLevel.isClientSide()) {
                 return new MerchantOffer(firstItem, Optional.of(secondItem), new ItemStack(CommonItemRegistry.EVIL_EYE), 1, 1, 1F);
             }
             return null;

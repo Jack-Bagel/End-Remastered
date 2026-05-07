@@ -12,8 +12,7 @@ import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.item.Item;
+import net.minecraft.resources.Identifier;import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.EndPortalFrameBlock;
@@ -72,8 +71,8 @@ public class ERTestCommands {
         if (!context.getSource().getLevel().isClientSide()) {
             context.getSource().sendSuccess(() -> Component.literal("--Generate Eyes Loot Tables--\n"), false);
             for (JsonEye eye : JsonEye.getEyes()) {
-                Item eyeItem = BuiltInRegistries.ITEM.get(EndRemasteredCommon.ModResourceLocation(eye.getID())).get().value();
-                for (ResourceLocation lootTableID : eye.getLootTablesID()) {
+                Item eyeItem = BuiltInRegistries.ITEM.get(EndRemasteredCommon.ModIdentifier(eye.getID())).get().value();
+                for (Identifier lootTableID : eye.getLootTablesID()) {
                     ResourceKey<LootTable> lootTableKey = ResourceKey.create(Registries.LOOT_TABLE, lootTableID);
 
                     LootParams params = new LootParams.Builder(context.getSource().getLevel())

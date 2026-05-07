@@ -30,7 +30,7 @@ public class RegisterHandler {
 
         event.register(Registries.BLOCK, registry -> {
             for (ERRegistryObject<Block> registryObject : CommonBlockRegistry.registerERBlocks()) {
-                registry.register(EndRemasteredCommon.ModResourceLocation(registryObject.id()), registryObject.object());
+                registry.register(EndRemasteredCommon.ModIdentifier(registryObject.id()), registryObject.object());
             }
         });
 
@@ -40,14 +40,14 @@ public class RegisterHandler {
 
             /* Register */
             for (ERRegistryObject<Item> registryObject : CommonItemRegistry.registerERItems()) {
-                registry.register(EndRemasteredCommon.ModResourceLocation(registryObject.id()), registryObject.object());
+                registry.register(EndRemasteredCommon.ModIdentifier(registryObject.id()), registryObject.object());
             }
 
             /* Post Register */
             CommonItemRegistry.initializeEyes();
         });
 
-        event.register(Registries.BLOCK_ENTITY_TYPE, registry -> registry.register(EndRemasteredCommon.ModResourceLocation("ancient_portal_frame_entity"),CommonBlockRegistry.ANCIENT_PORTAL_FRAME_ENTITY));
+        event.register(Registries.BLOCK_ENTITY_TYPE, registry -> registry.register(EndRemasteredCommon.ModIdentifier("ancient_portal_frame_entity"),CommonBlockRegistry.ANCIENT_PORTAL_FRAME_ENTITY));
     }
 
 
