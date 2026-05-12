@@ -17,6 +17,7 @@ import net.minecraft.stats.Stats;
 import net.minecraft.tags.StructureTags;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
+import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.EyeOfEnder;
@@ -24,7 +25,6 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.TooltipFlag;
-import net.minecraft.world.item.component.TooltipDisplay;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.ClipContext;
 import net.minecraft.world.level.Level;
@@ -36,6 +36,7 @@ import net.minecraft.world.level.block.state.pattern.BlockPattern;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.phys.BlockHitResult;
 
+import java.util.List;
 import java.util.function.Consumer;
 
 @MethodsReturnNonnullByDefault
@@ -46,9 +47,9 @@ public class EREnderEye extends Item {
     public static String eyePlaced = "empty";
 
     @Override
-    public void appendHoverText(ItemStack itemStack, TooltipContext world, TooltipDisplay display, Consumer<Component> tooltip, TooltipFlag tooltipContext) {
+    public void appendHoverText(ItemStack itemStack, TooltipContext world, List<Component> tooltip, TooltipFlag tooltipContext) {
         String translationKey= String.format("item.%s.%s.description", Constants.MOD_ID, this.getId());
-        tooltip.accept(Component.translatable(translationKey));
+        tooltip.add(Component.translatable(translationKey));
     }
 
     //Fill the Ancient Portal Frame
@@ -120,9 +121,8 @@ public class EREnderEye extends Item {
     }
 
     @Override
-
     //Locate Structures
-    public InteractionResult use(Level levelIn, Player playerIn, InteractionHand handIn) {
+    public InteractionResultHolder<ItemStack> use(Level levelIn, Player playerIn, InteractionHand handIn) {
         ItemStack itemstack = playerIn.getItemInHand(handIn);
         BlockHitResult raytraceResult = getPlayerPOVHitResult(levelIn, playerIn, ClipContext.Fluid.NONE);
         boolean lookingAtFrame = false;
@@ -134,7 +134,7 @@ public class EREnderEye extends Item {
         }
 
         if (lookingAtFrame) {
-            return InteractionResult.PASS;
+            return InteractionResultHolder.pass(itemstack);
         } else {
             playerIn.startUsingItem(handIn);
             if (levelIn instanceof ServerLevel) {
@@ -142,7 +142,7 @@ public class EREnderEye extends Item {
                 if (blockpos != null) {
                     EyeOfEnder eyeofenderentity = new EyeOfEnder(levelIn, playerIn.getX(), playerIn.getY(0.5D), playerIn.getZ());
                     eyeofenderentity.setItem(itemstack);
-                    eyeofenderentity.signalTo(blockpos.getCenter());
+                    eyeofenderentity.signalTo(blockpos);
                     ((EyeOfEnderEntityAccessor) eyeofenderentity).setSurviveAfterDeath(ConfigHandler.EYE_BREAK_PROBABILITY <= playerIn.getRandom().nextInt(100));
 
                     levelIn.addFreshEntity(eyeofenderentity);
@@ -159,10 +159,10 @@ public class EREnderEye extends Item {
 
                     playerIn.awardStat(Stats.ITEM_USED.get(this));
                     playerIn.swing(handIn, true);
-                    return InteractionResult.SUCCESS;
+                    return InteractionResultHolder.success(itemstack);
                 }
             }
-            return InteractionResult.CONSUME;
+            return InteractionResultHolder.consume(itemstack);
         }
     }
 

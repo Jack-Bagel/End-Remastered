@@ -72,7 +72,7 @@ public class ERTestCommands {
         if (!context.getSource().getLevel().isClientSide()) {
             context.getSource().sendSuccess(() -> Component.literal("--Generate Eyes Loot Tables--\n"), false);
             for (JsonEye eye : JsonEye.getEyes()) {
-                Item eyeItem = BuiltInRegistries.ITEM.get(EndRemasteredCommon.ModResourceLocation(eye.getID())).get().value();
+                Item eyeItem = BuiltInRegistries.ITEM.get(EndRemasteredCommon.ModResourceLocation(eye.getID()));
                 for (ResourceLocation lootTableID : eye.getLootTablesID()) {
                     ResourceKey<LootTable> lootTableKey = ResourceKey.create(Registries.LOOT_TABLE, lootTableID);
 
@@ -96,7 +96,7 @@ public class ERTestCommands {
                             .append(Component.literal("Generated "))
                             .append(Component.literal(lootTableID.toString()).withStyle(ChatFormatting.YELLOW))
                             .append(Component.literal("\nFound "))
-                            .append(Component.literal(eyeItem.getName().getString()).withStyle(ChatFormatting.GREEN))
+                            .append(Component.literal(eyeItem.getName(new ItemStack(eyeItem)).getString()).withStyle(ChatFormatting.GREEN))
                             .append(Component.literal(" with weight of "))
                             .append(Component.literal(finalOdds + "%").withStyle(ChatFormatting.GREEN))
                             .append(Component.literal("\n"));

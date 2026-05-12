@@ -87,8 +87,7 @@ public class AncientPortalFrame extends Block implements EntityBlock {
                 .sound(SoundType.GLASS)
                 .lightLevel((p_152690_) -> 1)
                 .strength(-1.0F, 3600000.0F)
-                .noLootTable()
-                .setId(ResourceKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "ancient_portal_frame"))));
+                .noLootTable());
         this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.NORTH).setValue(HAS_EYE, Boolean.FALSE));
     }
 

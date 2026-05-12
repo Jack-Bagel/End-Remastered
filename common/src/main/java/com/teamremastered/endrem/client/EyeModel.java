@@ -8,15 +8,20 @@ import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.client.model.geom.builders.*;
 import net.minecraft.client.renderer.RenderType;
 
-public class EyeModel extends Model<Void> {
+public class EyeModel extends Model {
     private final ModelPart eye;
     public EyeModel(ModelPart root) {
-        super(root, RenderType::entitySolid);
+        super(RenderType::entitySolid);
         eye = root.getChild("eye");
     }
 
-    public void render(PoseStack poseStack, VertexConsumer vertexConsumer, int combinedLight, int combinedOverlay, int p_350753_) {
-        this.eye.render(poseStack, vertexConsumer, combinedLight, combinedOverlay, p_350753_);
+    @Override
+    public void renderToBuffer(PoseStack poseStack, VertexConsumer vertexConsumer, int combinedLight, int combinedOverlay, int color) {
+        this.render(poseStack, vertexConsumer, combinedLight, combinedOverlay, color);
+    }
+
+    public void render(PoseStack poseStack, VertexConsumer vertexConsumer, int combinedLight, int combinedOverlay, int color) {
+        this.eye.render(poseStack, vertexConsumer, combinedLight, combinedOverlay, color);
     }
 
     public static LayerDefinition createBodyLayer() {

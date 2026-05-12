@@ -10,13 +10,9 @@ import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.util.ProblemReporter;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.storage.TagValueOutput;
-import net.minecraft.world.level.storage.ValueInput;
-import net.minecraft.world.level.storage.ValueOutput;
 
 public class AncientPortalFrameEntity  extends BlockEntity {
     private String eye = "empty";
@@ -26,25 +22,25 @@ public class AncientPortalFrameEntity  extends BlockEntity {
     }
 
     @Override
-    protected void saveAdditional(ValueOutput output) {
-        super.saveAdditional(output);
-        output.putString("eye_inside", this.eye);
+    protected void saveAdditional(CompoundTag tag, HolderLookup.Provider registries) {
+        super.saveAdditional(tag, registries);
+        tag.putString("eye_inside", this.eye);
+        Constants.LOGGER.info("EYE SAVED: " + this.eye);
     }
 
     @Override
-    protected void loadAdditional(ValueInput input) {
-        super.loadAdditional(input);
-        this.eye = input.getString("eye_inside").orElse("");
+    protected void loadAdditional(CompoundTag tag, HolderLookup.Provider registries) {
+        super.loadAdditional(tag, registries);
+        this.eye = tag.getString("eye_inside");
+        Constants.LOGGER.info("EYE LOADED: " + this.eye);
     }
 
     // Sync With Client
     @Override
     public CompoundTag getUpdateTag(HolderLookup.Provider registries) {
-        try (ProblemReporter.ScopedCollector problemreporter = new ProblemReporter.ScopedCollector(this.problemPath(), Constants.LOGGER)) {
-            TagValueOutput valueOutput = TagValueOutput.createWithContext(problemreporter, registries);
-            saveAdditional(valueOutput);
-            return valueOutput.buildResult();
-        }
+        CompoundTag nbt = super.getUpdateTag(registries);
+        saveAdditional(nbt, registries);
+        return nbt;
     }
 
     @Override
@@ -65,7 +61,7 @@ public class AncientPortalFrameEntity  extends BlockEntity {
     }
 
     public Item getEyeItem() {
-        return BuiltInRegistries.ITEM.get(getEyeID()).get().value();
+        return BuiltInRegistries.ITEM.get(getEyeID());
     }
 
     public boolean isEmpty() {

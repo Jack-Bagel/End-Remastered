@@ -38,10 +38,13 @@ public class ERTrades {
 
     public static void registerVillagerTrades() {
         if (ConfigHandler.IS_EVIL_EYE_OBTAINABLE) {
-            TradeOfferHelper.registerVillagerOffers(VillagerProfession.CLERIC, 5, factories -> factories.add(new EREyeTrade()));
+            TradeOfferHelper.registerVillagerOffers(VillagerProfession.CLERIC, 5, factories -> {
+                factories.add(new EREyeTrade());
+            });
 
-            TradeOfferHelper.registerWanderingTraderOffers(factories ->
-                    factories.addOffersToPool(ResourceLocation.fromNamespaceAndPath("endrem", "idk"), new EREyeTrade()));
+            TradeOfferHelper.registerWanderingTraderOffers(0, factories -> {
+                factories.add(new EREyeTrade());
+            });
         }
     }
 }

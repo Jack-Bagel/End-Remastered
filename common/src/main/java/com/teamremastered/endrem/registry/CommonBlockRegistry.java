@@ -14,7 +14,7 @@ public class CommonBlockRegistry {
     private static final List<ERRegistryObject<Block>> BLOCKS = new ArrayList<>();
     public static final Block ANCIENT_PORTAL_FRAME = createBlock(new AncientPortalFrame(), "ancient_portal_frame");
     public static final BlockEntityType<AncientPortalFrameEntity> ANCIENT_PORTAL_FRAME_ENTITY =
-            new BlockEntityType<>(AncientPortalFrameEntity::new, Set.of(ANCIENT_PORTAL_FRAME));
+            BlockEntityType.Builder.of(AncientPortalFrameEntity::new, ANCIENT_PORTAL_FRAME).build(null);
 
     public static Block createBlock(Block block, String id) {
         BLOCKS.add(new ERRegistryObject<>(block, id));
@@ -25,4 +25,3 @@ public class CommonBlockRegistry {
         return BLOCKS;
     }
 }
-

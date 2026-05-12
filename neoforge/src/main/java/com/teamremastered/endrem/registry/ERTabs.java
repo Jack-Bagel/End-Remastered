@@ -27,7 +27,7 @@ public class ERTabs {
                     .icon(() -> new ItemStack(CommonItemRegistry.EXOTIC_EYE))
                     .displayItems((featureFlags, output) -> {
                         for (JsonEye eye : JsonEye.getEyes()) {
-                            output.accept(BuiltInRegistries.ITEM.get(EndRemasteredCommon.ModResourceLocation(eye.getID())).get().value());
+                            output.accept(BuiltInRegistries.ITEM.get(EndRemasteredCommon.ModResourceLocation(eye.getID())));
                         }
                         output.accept(CommonItemRegistry.WITCH_PUPIL);
                         output.accept(CommonItemRegistry.UNDEAD_SOUL);

@@ -16,7 +16,7 @@ public class ERCommands {
     public static void onRegisterCommandsEvent(RegisterCommandsEvent event) {
         event.getDispatcher().register(
             LiteralArgumentBuilder.<CommandSourceStack>literal("endrem")
-                    .requires(Commands.hasPermission(Commands.LEVEL_GAMEMASTERS))
+                    .requires(cs -> cs.hasPermission(Commands.LEVEL_GAMEMASTERS))
                     .then(Commands.literal("test")
                     .then(Commands.literal("portal")
                             .executes(ERTestCommands::testPortal)
