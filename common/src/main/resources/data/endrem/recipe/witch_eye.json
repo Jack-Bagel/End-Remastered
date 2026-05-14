@@ -1,12 +1,14 @@
 {
   "type": "minecraft:crafting_shapeless",
-  "category": "misc",
   "ingredients": [
-    "minecraft:ender_eye",
-    "endrem:witch_pupil"
+    {
+      "item": "minecraft:ender_eye"
+    },
+    {
+      "item": "endrem:witch_pupil"
+    }
   ],
   "result": {
-    "count": 1,
     "id": "endrem:witch_eye"
   }
 }
