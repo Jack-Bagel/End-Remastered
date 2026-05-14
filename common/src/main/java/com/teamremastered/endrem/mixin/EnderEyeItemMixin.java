@@ -5,6 +5,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
+import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.EnderEyeItem;
 import net.minecraft.world.item.ItemStack;
@@ -35,10 +36,10 @@ public class EnderEyeItemMixin {
     }
 
     @Inject(method = "use", at = @At(value = "HEAD"), cancellable = true)
-    private void DisableThrowingEnderEyes(Level level, Player player, InteractionHand interactionHand, CallbackInfoReturnable<InteractionResult> cir) {
+    private void DisableThrowingEnderEyes(Level level, Player player, InteractionHand interactionHand, CallbackInfoReturnable<InteractionResultHolder<ItemStack>> cir) {
         if (!ConfigHandler.THROW_EYE_OF_ENDER) {
             ItemStack itemStack = player.getItemInHand(interactionHand);
-            cir.setReturnValue(InteractionResult.PASS);
+            cir.setReturnValue(InteractionResultHolder.pass(itemStack));
             player.displayClientMessage(Component.translatable("block.endrem.ender_eye.warning"), true);
         }
     }

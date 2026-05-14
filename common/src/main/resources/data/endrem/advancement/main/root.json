@@ -4,7 +4,7 @@
     "show_toast": false,
     "announce_to_chat": true,
     "hidden": false,
-    "background": "endrem:gui/advancements/blackstone",
+    "background": "endrem:textures/gui/advancements/blackstone.png",
     "icon": {
       "count": 1,
       "id": "endrem:ancient_portal_frame"
