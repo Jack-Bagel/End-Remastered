@@ -1,18 +1,19 @@
 package com.teamremastered.endrem.registry;
 
 import com.mojang.brigadier.builder.LiteralArgumentBuilder;
-import com.teamremastered.endrem.Constants;
 import com.teamremastered.endrem.command.ERTestCommands;
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.commands.Commands;
-import net.neoforged.bus.api.SubscribeEvent;
-import net.neoforged.fml.common.EventBusSubscriber;
+import net.neoforged.bus.api.IEventBus;
+import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.event.RegisterCommandsEvent;
 
-@EventBusSubscriber(modid = Constants.MOD_ID)
 public class ERCommands {
 
-    @SubscribeEvent
+    public static void init(IEventBus modEventBus) {
+        NeoForge.EVENT_BUS.addListener(ERCommands::onRegisterCommandsEvent);
+    }
+
     public static void onRegisterCommandsEvent(RegisterCommandsEvent event) {
         event.getDispatcher().register(
             LiteralArgumentBuilder.<CommandSourceStack>literal("endrem")

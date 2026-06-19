@@ -10,18 +10,22 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.trading.ItemCost;
 import net.minecraft.world.item.trading.MerchantOffer;
+import net.neoforged.bus.api.IEventBus;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
+import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.event.village.VillagerTradesEvent;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.Optional;
 
 @SuppressWarnings("unused")
-@EventBusSubscriber(modid = Constants.MOD_ID)
 public class ERTrades {
 
-    @SubscribeEvent
+    public static void init(IEventBus modEventBus) {
+        NeoForge.EVENT_BUS.addListener(ERTrades::onVillagerTradesEvent);
+    }
+
     public static void onVillagerTradesEvent(VillagerTradesEvent event) {
         if (ConfigHandler.IS_EVIL_EYE_OBTAINABLE && event.getType() == VillagerProfession.CLERIC) {
             event.getTrades().get(5).add(new ERTrades.EREyeTrade());

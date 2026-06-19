@@ -42,6 +42,11 @@ repositories {
         name = 'BlameJared'
         url = 'https://maven.blamejared.com'
     }
+
+    maven { url = "https://maven.bawnorton.com/releases" }
+    // Mirror
+    maven { url = "https://maven.enjarai.dev/mirrors" }
+
 }
 
 // Declare capabilities on the outgoing configurations.
@@ -128,4 +133,5 @@ publishing {
             url System.getenv('local_maven_url')
         }
     }
+
 }

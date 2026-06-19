@@ -3,6 +3,13 @@ plugins {
     id 'net.neoforged.moddev'
 }
 
+dependencies {
+    compileOnly(annotationProcessor("com.github.bawnorton.mixinsquared:mixinsquared-common:0.3.7-beta.2"))
+//    implementation(jarJar("com.github.bawnorton.mixinsquared:mixinsquared-neoforge:0.3.7-beta.2")) {
+//        jarJar.ranged(it, "[0.3.7-beta.2,)")
+//    }
+}
+
 neoForge {
     version = neoforge_version
     // Automatically enable neoforge AccessTransformers if the file exists

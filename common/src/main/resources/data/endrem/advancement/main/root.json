@@ -7,7 +7,7 @@
     "background": "endrem:textures/gui/advancements/blackstone.png",
     "icon": {
       "count": 1,
-      "id": "endrem:ancient_portal_frame"
+      "id": "minecraft:end_portal_frame"
     },
     "title": {
       "translate": "advancements.main.root.title"

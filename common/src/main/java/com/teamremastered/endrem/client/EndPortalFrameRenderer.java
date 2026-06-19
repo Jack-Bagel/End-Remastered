@@ -3,7 +3,7 @@ package com.teamremastered.endrem.client;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.teamremastered.endrem.EndRemasteredCommon;
-import com.teamremastered.endrem.block.AncientPortalFrameEntity;
+import com.teamremastered.endrem.block.EndPortalFrameBlockEntity;
 import com.teamremastered.endrem.registry.CommonModelRegistry;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
@@ -15,10 +15,10 @@ import net.minecraft.core.Direction;
 import net.minecraft.world.level.block.HorizontalDirectionalBlock;
 import org.joml.Matrix4f;
 
-public class AncientPortalRenderer implements BlockEntityRenderer<AncientPortalFrameEntity> {
+public class EndPortalFrameRenderer implements BlockEntityRenderer<EndPortalFrameBlockEntity> {
     private final EyeModel eyeModel;
     public static Material EYE_TEXTURE;
-    public AncientPortalRenderer(BlockEntityRendererProvider.Context ctx) {
+    public EndPortalFrameRenderer(BlockEntityRendererProvider.Context ctx) {
         this.eyeModel = new EyeModel(ctx.bakeLayer(CommonModelRegistry.EYE));
     }
 
@@ -34,19 +34,19 @@ public class AncientPortalRenderer implements BlockEntityRenderer<AncientPortalF
     }
 
     @Override
-    public void render(AncientPortalFrameEntity ancientPortalFrameEntity, float partialTick, PoseStack poseStack, MultiBufferSource multiBufferSource, int combinedLight, int combinedOverlay) {
-        String eye = ancientPortalFrameEntity.getEye();
+    public void render(EndPortalFrameBlockEntity endPortalFrameBlockEntity, float partialTick, PoseStack poseStack, MultiBufferSource multiBufferSource, int combinedLight, int combinedOverlay) {
+        String eye = endPortalFrameBlockEntity.getEyeIdentificator().getPath();
 
         if (eye.equals("empty")) {
             return;
         }
-        Direction FACING = ancientPortalFrameEntity.getBlockState().getValue(HorizontalDirectionalBlock.FACING);
+        Direction FACING = endPortalFrameBlockEntity.getBlockState().getValue(HorizontalDirectionalBlock.FACING);
         poseStack.pushPose();
 
         poseStack.mulPose(new Matrix4f().translate(0.5f, 0.0f, 0.5f));
         poseStack.mulPose(new Matrix4f().rotateY(rotateEye(FACING)));
 
-        EYE_TEXTURE = new Material(TextureAtlas.LOCATION_BLOCKS, EndRemasteredCommon.ModResourceLocation("block/eyes/" + ancientPortalFrameEntity.getEye()));
+        EYE_TEXTURE = new Material(TextureAtlas.LOCATION_BLOCKS, EndRemasteredCommon.ModResourceLocation("block/eyes/" + eye));
         VertexConsumer vertexconsumer = EYE_TEXTURE.buffer(multiBufferSource, RenderType::entitySolid);
         this.eyeModel.render(poseStack, vertexconsumer, combinedLight, combinedOverlay, -1);
 

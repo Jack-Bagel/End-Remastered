@@ -37,7 +37,6 @@ public class CommonItemRegistry {
 
     public static final Item WITCH_PUPIL = createItem(new Item(new Item.Properties()),"witch_pupil");
     public static final Item UNDEAD_SOUL = createItem(new Item(new Item.Properties()),"undead_soul");
-    public static final Item ANCIENT_PORTAL_FRAME = createItem(new BlockItem(CommonBlockRegistry.ANCIENT_PORTAL_FRAME, new Item.Properties()), "ancient_portal_frame");
 
     public static Item createItem(Item item, String id) {
         ITEMS.add(new ERRegistryObject<>(item, id));

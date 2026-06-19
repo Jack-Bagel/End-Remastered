@@ -1,44 +1,49 @@
 package com.teamremastered.endrem.registry;
 
+import com.teamremastered.endrem.Constants;
 import com.teamremastered.endrem.EndRemasteredCommon;
+import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents;
 import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceKey;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.packs.resources.ResourceManager;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.ItemStack;
+
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
 public class ERTabs {
 
     public static final ResourceKey<CreativeModeTab> ITEM_GROUP = ResourceKey.create(Registries.CREATIVE_MODE_TAB, EndRemasteredCommon.ModResourceLocation("endrem_tab"));
+    private static Set<ItemStack> displayedItems = new HashSet<>();
+
     public static void init() {
-    Registry.register(BuiltInRegistries.CREATIVE_MODE_TAB, ITEM_GROUP, FabricItemGroup.builder()
-        .title(Component.translatable("itemGroup.endrem.endrem_tab"))
-        .icon(() -> new ItemStack(CommonItemRegistry.COLD_EYE))
-        .displayItems((enabledFeatures, entries) -> {
-            entries.accept(CommonItemRegistry.BLACK_EYE);
-            entries.accept(CommonItemRegistry.COLD_EYE);
-            entries.accept(CommonItemRegistry.CORRUPTED_EYE);
-            entries.accept(CommonItemRegistry.LOST_EYE);
-            entries.accept(CommonItemRegistry.NETHER_EYE);
-            entries.accept(CommonItemRegistry.OLD_EYE);
-            entries.accept(CommonItemRegistry.ROGUE_EYE);
-            entries.accept(CommonItemRegistry.CURSED_EYE);
-            entries.accept(CommonItemRegistry.EVIL_EYE);
 
-            entries.accept(CommonItemRegistry.GUARDIAN_EYE);
-            entries.accept(CommonItemRegistry.MAGICAL_EYE);
-            entries.accept(CommonItemRegistry.WITHER_EYE);
+        ServerLifecycleEvents.SERVER_STARTING.register((server) -> {
+            if (server != null) {
+                ResourceManager manager = server.getResourceManager();
+                List<ResourceLocation> files = new ArrayList<>();
+                manager.listResources("eyes", path -> path.getPath().endsWith(".json"))
+                                .forEach((location, resource) -> {
+                                    files.add(location);
+                                    String itemID = location.getPath().split("/")[1].split("\\.")[0];
+                                    displayedItems.add(new ItemStack(BuiltInRegistries.ITEM.get(EndRemasteredCommon.ModResourceLocation(itemID))));
+                                });
+            }
+        });
 
-            entries.accept(CommonItemRegistry.WITCH_EYE);
-            entries.accept(CommonItemRegistry.UNDEAD_EYE);
-            entries.accept(CommonItemRegistry.EXOTIC_EYE);
-
-            entries.accept(CommonItemRegistry.CRYPTIC_EYE);
-
-            entries.accept(CommonItemRegistry.WITCH_PUPIL);
-            entries.accept(CommonItemRegistry.UNDEAD_SOUL);
-        }).build());
+        Registry.register(BuiltInRegistries.CREATIVE_MODE_TAB, ITEM_GROUP, FabricItemGroup.builder()
+                .title(Component.translatable("itemGroup.endrem.endrem_tab"))
+                .icon(() -> new ItemStack(CommonItemRegistry.COLD_EYE))
+                .displayItems((enabledFeatures, entries) -> {
+                    entries.acceptAll(displayedItems);
+                }).build());
     }
 }
