@@ -9,7 +9,6 @@ import com.teamremastered.endrem.utils.VanillaLootInjector;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
-import net.neoforged.fml.loading.FMLEnvironment;
 import net.neoforged.neoforge.client.event.EntityRenderersEvent;
 import net.neoforged.neoforge.common.loot.IGlobalLootModifier;
 import net.neoforged.neoforge.registries.*;
@@ -23,22 +22,17 @@ public class RegisterHandler {
         ERCommands.init(modEventBus);
         VanillaLootInjector.init(modEventBus);
         modEventBus.addListener(RegisterHandler::registerEndRemastered);
+    }
 
-        // Server only
-        if (FMLEnvironment.dist.isDedicatedServer()) {
-        }
-
-        // Client only
-        if (FMLEnvironment.dist.isClient()) {
-            modEventBus.addListener(RegisterHandler::registerBlockEntityRenderer);
-            modEventBus.addListener(RegisterHandler::registerLayerDefinition);
-        }
+    public static void initClient(IEventBus modEventBus) {
+        modEventBus.addListener(RegisterHandler::registerBlockEntityRenderer);
+        modEventBus.addListener(RegisterHandler::registerLayerDefinition);
     }
 
     public static final DeferredRegister<MapCodec<? extends IGlobalLootModifier>> GLMS = DeferredRegister.create(NeoForgeRegistries.Keys.GLOBAL_LOOT_MODIFIER_SERIALIZERS, Constants.MOD_ID);
 
     //TODO: Abstract the registries and subscribe the event inside the init function
-    public static void registerEndRemastered(RegisterEvent event) {
+    private static void registerEndRemastered(RegisterEvent event) {
 
         event.register(Registries.BLOCK, registry -> {
             for (ERRegistryObject<Block> registryObject : CommonBlockRegistry.registerERBlocks()) {
@@ -63,11 +57,11 @@ public class RegisterHandler {
     }
 
 
-    public static void registerBlockEntityRenderer(EntityRenderersEvent.RegisterRenderers event) {
+    private static void registerBlockEntityRenderer(EntityRenderersEvent.RegisterRenderers event) {
         event.registerBlockEntityRenderer(CommonBlockRegistry.END_PORTAL_FRAME_BLOCK_ENTITY, EndPortalFrameRenderer::new);
     }
 
-    public static void registerLayerDefinition(EntityRenderersEvent.RegisterLayerDefinitions event) {
+    private static void registerLayerDefinition(EntityRenderersEvent.RegisterLayerDefinitions event) {
         event.registerLayerDefinition(CommonModelRegistry.EYE, EyeModel::createBodyLayer);
     }
 }

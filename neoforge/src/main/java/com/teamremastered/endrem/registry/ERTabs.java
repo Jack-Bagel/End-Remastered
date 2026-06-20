@@ -23,15 +23,26 @@ import java.util.function.Supplier;
 
 public class ERTabs {
     public static final DeferredRegister<CreativeModeTab> TABS = DeferredRegister.create(Registries.CREATIVE_MODE_TAB, Constants.MOD_ID);
-    private static Set<ItemStack> displayedItems = new HashSet<>();
+    private static MinecraftServer serverInstance = null;
 
     public static void init(IEventBus modEventBus) {
-        NeoForge.EVENT_BUS.addListener(ERTabs::populateEndremTab);
+        NeoForge.EVENT_BUS.addListener(ERTabs::getServerInstance);
         TABS.register(modEventBus);
     }
 
-    public static void populateEndremTab(ServerStartingEvent event) {
-        MinecraftServer server = event.getServer();
+    public static final Supplier<CreativeModeTab> EYES_TAB = TABS.register("endrem_tab",
+            () -> CreativeModeTab.builder()
+                    .title(Component.translatable("itemGroup.endrem.endrem_tab"))
+                    .icon(() -> new ItemStack(CommonItemRegistry.EXOTIC_EYE))
+                    .displayItems((featureFlags, entries) -> {
+                        if (serverInstance != null) {
+                            entries.acceptAll(populateEndremTab(serverInstance));
+                        }
+                    }).build());
+
+
+    private static Set<ItemStack> populateEndremTab(MinecraftServer server) {
+        Set<ItemStack> displayedItems = new HashSet<>();
         ResourceManager manager = server.getResourceManager();
         List<ResourceLocation> files = new ArrayList<>();
         manager.listResources("eyes", path -> path.getPath().endsWith(".json"))
@@ -40,13 +51,11 @@ public class ERTabs {
                     String itemID = location.getPath().split("/")[1].split("\\.")[0];
                     displayedItems.add(new ItemStack(BuiltInRegistries.ITEM.get(EndRemasteredCommon.ModResourceLocation(itemID))));
                 });
+
+        return displayedItems;
     }
 
-    public static final Supplier<CreativeModeTab> EYES_TAB = TABS.register("endrem_tab",
-            () -> CreativeModeTab.builder()
-                    .title(Component.translatable("itemGroup.endrem.endrem_tab"))
-                    .icon(() -> new ItemStack(CommonItemRegistry.EXOTIC_EYE))
-                    .displayItems((featureFlags, entries) -> {
-                        entries.acceptAll(displayedItems);
-                    }).build());
+    private static void getServerInstance(ServerStartingEvent event) {
+        serverInstance = event.getServer();
+    }
 }

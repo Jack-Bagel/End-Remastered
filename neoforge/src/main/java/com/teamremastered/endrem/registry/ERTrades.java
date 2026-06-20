@@ -26,7 +26,7 @@ public class ERTrades {
         NeoForge.EVENT_BUS.addListener(ERTrades::onVillagerTradesEvent);
     }
 
-    public static void onVillagerTradesEvent(VillagerTradesEvent event) {
+    private static void onVillagerTradesEvent(VillagerTradesEvent event) {
         if (ConfigHandler.IS_EVIL_EYE_OBTAINABLE && event.getType() == VillagerProfession.CLERIC) {
             event.getTrades().get(5).add(new ERTrades.EREyeTrade());
         }

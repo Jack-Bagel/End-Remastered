@@ -10,6 +10,7 @@ import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.packs.resources.ResourceManager;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.ItemStack;
@@ -22,28 +23,36 @@ import java.util.Set;
 public class ERTabs {
 
     public static final ResourceKey<CreativeModeTab> ITEM_GROUP = ResourceKey.create(Registries.CREATIVE_MODE_TAB, EndRemasteredCommon.ModResourceLocation("endrem_tab"));
-    private static Set<ItemStack> displayedItems = new HashSet<>();
+    private static MinecraftServer serverInstance = null;
+
 
     public static void init() {
 
         ServerLifecycleEvents.SERVER_STARTING.register((server) -> {
-            if (server != null) {
-                ResourceManager manager = server.getResourceManager();
-                List<ResourceLocation> files = new ArrayList<>();
-                manager.listResources("eyes", path -> path.getPath().endsWith(".json"))
-                                .forEach((location, resource) -> {
-                                    files.add(location);
-                                    String itemID = location.getPath().split("/")[1].split("\\.")[0];
-                                    displayedItems.add(new ItemStack(BuiltInRegistries.ITEM.get(EndRemasteredCommon.ModResourceLocation(itemID))));
-                                });
-            }
+            serverInstance = server;
         });
 
         Registry.register(BuiltInRegistries.CREATIVE_MODE_TAB, ITEM_GROUP, FabricItemGroup.builder()
                 .title(Component.translatable("itemGroup.endrem.endrem_tab"))
                 .icon(() -> new ItemStack(CommonItemRegistry.COLD_EYE))
                 .displayItems((enabledFeatures, entries) -> {
-                    entries.acceptAll(displayedItems);
+                    if (serverInstance != null) {
+                        entries.acceptAll(populateEndremTab(serverInstance));
+                    }
                 }).build());
+    }
+
+    private static Set<ItemStack> populateEndremTab(MinecraftServer server) {
+        Set<ItemStack> displayedItems = new HashSet<>();
+        ResourceManager manager = server.getResourceManager();
+        List<ResourceLocation> files = new ArrayList<>();
+        manager.listResources("eyes", path -> path.getPath().endsWith(".json"))
+                .forEach((location, resource) -> {
+                    files.add(location);
+                    String itemID = location.getPath().split("/")[1].split("\\.")[0];
+                    displayedItems.add(new ItemStack(BuiltInRegistries.ITEM.get(EndRemasteredCommon.ModResourceLocation(itemID))));
+                });
+
+        return displayedItems;
     }
 }

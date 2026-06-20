@@ -14,7 +14,7 @@ public class ERCommands {
         NeoForge.EVENT_BUS.addListener(ERCommands::onRegisterCommandsEvent);
     }
 
-    public static void onRegisterCommandsEvent(RegisterCommandsEvent event) {
+    private static void onRegisterCommandsEvent(RegisterCommandsEvent event) {
         event.getDispatcher().register(
             LiteralArgumentBuilder.<CommandSourceStack>literal("endrem")
                     .requires(cs -> cs.hasPermission(Commands.LEVEL_GAMEMASTERS))
