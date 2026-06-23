@@ -1,6 +1,6 @@
 {
   "model": {
     "type": "minecraft:model",
-    "model": "endrem:item/exotic_eye"
+    "model": "endrem:eye/dummy_eye"
   }
 }

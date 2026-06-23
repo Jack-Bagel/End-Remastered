@@ -23,6 +23,11 @@
     }
   },
   "result": {
-    "id": "endrem:undead_eye"
+    "id": "endrem:dummy_eye",
+    "components": {
+      "endrem:eye_modifier": {
+        "id": "endrem:undead_eye"
+      }
+    }
   }
 }

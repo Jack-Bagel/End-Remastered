@@ -1,11 +1,15 @@
 package com.teamremastered.endrem.mixin;
 
 import com.llamalad7.mixinextras.sugar.Local;
+import com.teamremastered.endrem.Constants;
 import com.teamremastered.endrem.block.EndPortalFrameBlockEntity;
 import com.teamremastered.endrem.config.ConfigHandler;
+import com.teamremastered.endrem.item.EREnderEye;
 import com.teamremastered.endrem.util.DetectPortalFrames;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.InteractionResultHolder;
@@ -59,7 +63,14 @@ public class EnderEyeItemMixin {
 
     @Inject(method = "useOn", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/level/Level;setBlock(Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;I)Z"))
     private void UpdatePortalFrameBlockEntity(UseOnContext itemUse, CallbackInfoReturnable<InteractionResult> cir) {
-        endPortalFrameBlockEntity.updateEye(itemUse.getItemInHand());
+        ItemStack stack = itemUse.getItemInHand();
+        ResourceLocation id = BuiltInRegistries.ITEM.getKey(stack.getItem());
+        if (stack.getItem() instanceof EREnderEye) {
+            endPortalFrameBlockEntity.updateEye(stack);
+
+        } else if (!ConfigHandler.USE_EYE_OF_ENDER && id.equals(ResourceLocation.withDefaultNamespace("ender_eye"))) {
+            endPortalFrameBlockEntity.updateEye(stack);
+        }
     }
 
     @Inject(method = "use", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/player/Player;startUsingItem(Lnet/minecraft/world/InteractionHand;)V", shift = At.Shift.BEFORE), cancellable = true)

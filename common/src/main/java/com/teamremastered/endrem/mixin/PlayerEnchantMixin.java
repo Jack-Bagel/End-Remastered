@@ -1,7 +1,10 @@
 package com.teamremastered.endrem.mixin;
 
+import com.teamremastered.endrem.component.EyeDataComponent;
 import com.teamremastered.endrem.config.ConfigHandler;
+import com.teamremastered.endrem.registry.CommonDataComponentRegistry;
 import com.teamremastered.endrem.registry.CommonItemRegistry;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.EnchantmentMenu;
 import net.minecraft.world.item.ItemStack;
@@ -23,7 +26,10 @@ public class PlayerEnchantMixin {
 
         if (ConfigHandler.IS_CRYPTIC_EYE_OBTAINABLE && player != null && !player.level().isClientSide()) {
             if (randomNumber == maxValue - 1) {
-                player.getInventory().add(new ItemStack(CommonItemRegistry.CRYPTIC_EYE));
+                ItemStack stack = new ItemStack(CommonItemRegistry.DUMMY_EYE);
+                stack.set(CommonDataComponentRegistry.DATA_EYE_COMPONENT,
+                        new EyeDataComponent(ResourceLocation.parse("endrem:cryptic_eye")));
+                player.getInventory().add(stack);
             }
         }
     }

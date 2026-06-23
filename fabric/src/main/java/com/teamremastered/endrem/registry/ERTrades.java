@@ -1,5 +1,6 @@
 package com.teamremastered.endrem.registry;
 
+import com.teamremastered.endrem.component.EyeDataComponent;
 import com.teamremastered.endrem.config.ConfigHandler;
 import net.fabricmc.fabric.api.object.builder.v1.trade.TradeOfferHelper;
 import net.minecraft.resources.ResourceLocation;
@@ -30,7 +31,12 @@ public class ERTrades {
             ItemCost secondItem = new ItemCost(Items.RABBIT_FOOT);
 
             if (!entity.level().isClientSide()) {
-                return new MerchantOffer(firstItem, Optional.of(secondItem), new ItemStack(CommonItemRegistry.EVIL_EYE), 1, 1, 1F);
+                ItemStack stack = new ItemStack(CommonItemRegistry.DUMMY_EYE);
+                EyeDataComponent existing = stack.get(CommonDataComponentRegistry.DATA_EYE_COMPONENT);
+                stack.set(CommonDataComponentRegistry.DATA_EYE_COMPONENT,
+                        new EyeDataComponent(ResourceLocation.parse("endrem:evil_eye")));
+
+                return new MerchantOffer(firstItem, Optional.of(secondItem), stack, 1, 1, 1F);
             }
             return null;
         }

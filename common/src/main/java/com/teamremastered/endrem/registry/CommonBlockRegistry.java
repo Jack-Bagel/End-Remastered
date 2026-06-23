@@ -15,11 +15,6 @@ public class CommonBlockRegistry {
     public static final BlockEntityType<EndPortalFrameBlockEntity> END_PORTAL_FRAME_BLOCK_ENTITY =
             BlockEntityType.Builder.of(EndPortalFrameBlockEntity::new, Blocks.END_PORTAL_FRAME).build(null);
 
-    public static Block createBlock(Block block, String id) {
-        BLOCKS.add(new ERRegistryObject<>(block, id));
-        return block;
-    }
-
     public static Collection<ERRegistryObject<Block>> registerERBlocks() {
         return BLOCKS;
     }

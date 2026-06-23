@@ -4,6 +4,7 @@
     "version": "${version}",
     "name": "${mod_name}",
     "description": "${description}",
+    "accessWidener": "endrem.accesswidener",
     "authors": [
         "${mod_author}"
     ],
@@ -12,7 +13,6 @@
         "sources": "https://github.com/FabricMC/fabric-example-mod"
     },
     "license": "${license}",
-    "icon": "assets/${mod_id}/${mod_id}.png",
     "environment": "*",
     "entrypoints": {
         "main": [

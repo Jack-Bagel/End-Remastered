@@ -29,6 +29,11 @@
     }
   },
   "result": {
-    "id": "endrem:exotic_eye"
+    "id": "endrem:dummy_eye",
+    "components": {
+      "endrem:eye_modifier": {
+        "id": "endrem:exotic_eye"
+      }
+    }
   }
 }

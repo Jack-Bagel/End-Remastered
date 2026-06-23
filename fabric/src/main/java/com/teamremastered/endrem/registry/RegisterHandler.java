@@ -15,9 +15,9 @@ public class RegisterHandler {
     public static void init() {
         /* Blocks & Items */
         register(BuiltInRegistries.BLOCK, CommonBlockRegistry.registerERBlocks());
+        register(BuiltInRegistries.DATA_COMPONENT_TYPE, CommonDataComponentRegistry.registerDataComponent());
         CommonItemRegistry.registerEyes();
         register(BuiltInRegistries.ITEM, CommonItemRegistry.registerERItems());
-        CommonItemRegistry.initializeEyes();
         Registry.register(BuiltInRegistries.BLOCK_ENTITY_TYPE, EndRemasteredCommon.ModResourceLocation("end_portal_frame_block_entity"), CommonBlockRegistry.END_PORTAL_FRAME_BLOCK_ENTITY);
 
         /* Miscellaneous */

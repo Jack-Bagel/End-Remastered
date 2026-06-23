@@ -1,7 +1,6 @@
 package com.teamremastered.endrem;
 
 import com.teamremastered.endrem.config.ConfigOptions;
-import com.teamremastered.endrem.item.JsonEye;
 import net.minecraft.resources.ResourceLocation;
 
 import java.io.IOException;
@@ -20,9 +19,6 @@ public class EndRemasteredCommon {
         try {
             ConfigOptions.create();
             Constants.LOGGER.info("End Remastered config loaded with success");
-
-            JsonEye.create();
-            Constants.LOGGER.info("End Remastered eyes loaded with success");
 
         } catch (IOException e) {
             Constants.LOGGER.error("Something went wrong with the config");

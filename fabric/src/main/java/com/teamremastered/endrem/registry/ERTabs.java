@@ -1,7 +1,7 @@
 package com.teamremastered.endrem.registry;
 
-import com.teamremastered.endrem.Constants;
 import com.teamremastered.endrem.EndRemasteredCommon;
+import com.teamremastered.endrem.component.EyeDataComponent;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents;
 import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup;
 import net.minecraft.core.Registry;
@@ -34,7 +34,7 @@ public class ERTabs {
 
         Registry.register(BuiltInRegistries.CREATIVE_MODE_TAB, ITEM_GROUP, FabricItemGroup.builder()
                 .title(Component.translatable("itemGroup.endrem.endrem_tab"))
-                .icon(() -> new ItemStack(CommonItemRegistry.COLD_EYE))
+                .icon(() -> new ItemStack(CommonItemRegistry.DUMMY_EYE))
                 .displayItems((enabledFeatures, entries) -> {
                     if (serverInstance != null) {
                         entries.acceptAll(populateEndremTab(serverInstance));
@@ -42,15 +42,18 @@ public class ERTabs {
                 }).build());
     }
 
-    private static Set<ItemStack> populateEndremTab(MinecraftServer server) {
-        Set<ItemStack> displayedItems = new HashSet<>();
+    private static List<ItemStack> populateEndremTab(MinecraftServer server) {
+        List<ItemStack> displayedItems = new ArrayList<>();
         ResourceManager manager = server.getResourceManager();
-        List<ResourceLocation> files = new ArrayList<>();
         manager.listResources("eyes", path -> path.getPath().endsWith(".json"))
                 .forEach((location, resource) -> {
-                    files.add(location);
                     String itemID = location.getPath().split("/")[1].split("\\.")[0];
-                    displayedItems.add(new ItemStack(BuiltInRegistries.ITEM.get(EndRemasteredCommon.ModResourceLocation(itemID))));
+                    ResourceLocation eyeId = ResourceLocation.fromNamespaceAndPath(location.getNamespace(), itemID);
+                    ItemStack stack = new ItemStack(BuiltInRegistries.ITEM.get(
+                            EndRemasteredCommon.ModResourceLocation("dummy_eye")));
+                    stack.set(CommonDataComponentRegistry.DATA_EYE_COMPONENT, new EyeDataComponent(eyeId));
+
+                    displayedItems.add(stack);
                 });
 
         return displayedItems;

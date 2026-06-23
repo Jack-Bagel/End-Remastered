@@ -9,6 +9,11 @@
     }
   ],
   "result": {
-    "id": "endrem:witch_eye"
+    "id": "endrem:dummy_eye",
+      "components": {
+      "endrem:eye_modifier": {
+        "id": "endrem:witch_eye"
+      }
+    }
   }
 }

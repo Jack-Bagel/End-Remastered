@@ -9,7 +9,7 @@
     "EnderEyeItemMixin",
     "PlayerEnchantMixin",
     "StrongholdPiecesMixin",
-    "accessor.EyeOfEnderEntityAccessor"
+    "accessor.EyeOfEnderEntityAccessor",
   ],
   "client": [],
   "server": [],

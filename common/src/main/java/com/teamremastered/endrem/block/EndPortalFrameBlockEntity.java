@@ -2,6 +2,7 @@ package com.teamremastered.endrem.block;
 
 import com.teamremastered.endrem.Constants;
 import com.teamremastered.endrem.registry.CommonBlockRegistry;
+import com.teamremastered.endrem.registry.CommonDataComponentRegistry;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -21,7 +22,7 @@ public class EndPortalFrameBlockEntity extends BlockEntity {
     }
 
     public void updateEye(ItemStack newEye) {
-        this.eye_id = BuiltInRegistries.ITEM.getKey(newEye.getItem());
+        this.eye_id = newEye.get(CommonDataComponentRegistry.DATA_EYE_COMPONENT).id();
         setChanged();
     }
 

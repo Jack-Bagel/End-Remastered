@@ -1,15 +1,11 @@
 package com.teamremastered.endrem.utils;
 
 import com.teamremastered.endrem.Constants;
-import com.teamremastered.endrem.item.JsonEye;
-import com.teamremastered.endrem.registry.ERCommands;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.storage.loot.LootTable;
 import net.neoforged.bus.api.IEventBus;
-import net.neoforged.bus.api.SubscribeEvent;
-import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.event.AddReloadListenerEvent;
 

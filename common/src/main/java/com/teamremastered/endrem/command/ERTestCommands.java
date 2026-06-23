@@ -2,7 +2,6 @@ package com.teamremastered.endrem.command;
 
 import com.mojang.brigadier.context.CommandContext;
 import com.teamremastered.endrem.EndRemasteredCommon;
-import com.teamremastered.endrem.item.JsonEye;
 import com.teamremastered.endrem.registry.CommonItemRegistry;
 import net.minecraft.ChatFormatting;
 import net.minecraft.commands.CommandSourceStack;
@@ -67,43 +66,41 @@ public class ERTestCommands {
     }
 
     public static int testLootTables(CommandContext<CommandSourceStack> context) {
-        //TODO: Get the eyes with JsonEye.getEyes(), use getLootTablesID to get their loot table then iter 100 times on it and check
-        //TODO: if the eye gen correctly and show the odds for each pool.
         if (!context.getSource().getLevel().isClientSide()) {
-            context.getSource().sendSuccess(() -> Component.literal("--Generate Eyes Loot Tables--\n"), false);
-            for (JsonEye eye : JsonEye.getEyes()) {
-                Item eyeItem = BuiltInRegistries.ITEM.get(EndRemasteredCommon.ModResourceLocation(eye.getID()));
-                for (ResourceLocation lootTableID : eye.getLootTablesID()) {
-                    ResourceKey<LootTable> lootTableKey = ResourceKey.create(Registries.LOOT_TABLE, lootTableID);
-
-                    LootParams params = new LootParams.Builder(context.getSource().getLevel())
-                            .withParameter(LootContextParams.ORIGIN, context.getSource().getPosition())
-                            .create(LootContextParamSets.COMMAND);
-                    LootTable lootTable = context.getSource().getLevel().getServer().reloadableRegistries().getLootTable(lootTableKey);
-
-                    int count = 0;
-                    final int total = 1000;
-                    for (int i = 0; i < total; i++) {
-                        List<ItemStack> items = lootTable.getRandomItems(params);
-                        if (items.toString().contains(eye.getID())) {
-                            count++;
-                        }
-                    }
-
-                    final float finalOdds = (float)count/(float)total;
-
-                    Component info = Component.empty()
-                            .append(Component.literal("Generated "))
-                            .append(Component.literal(lootTableID.toString()).withStyle(ChatFormatting.YELLOW))
-                            .append(Component.literal("\nFound "))
-                            .append(Component.literal(eyeItem.getName(new ItemStack(eyeItem)).getString()).withStyle(ChatFormatting.GREEN))
-                            .append(Component.literal(" with weight of "))
-                            .append(Component.literal(finalOdds + "%").withStyle(ChatFormatting.GREEN))
-                            .append(Component.literal("\n"));
-
-                    context.getSource().sendSuccess(() -> info, false);
-                }
-            }
+//            context.getSource().sendSuccess(() -> Component.literal("--Generate Eyes Loot Tables--\n"), false);
+//            for (JsonEye eye : JsonEye.getEyes()) {
+//                Item eyeItem = BuiltInRegistries.ITEM.get(EndRemasteredCommon.ModResourceLocation(eye.getID()));
+//                for (ResourceLocation lootTableID : eye.getLootTablesID()) {
+//                    ResourceKey<LootTable> lootTableKey = ResourceKey.create(Registries.LOOT_TABLE, lootTableID);
+//
+//                    LootParams params = new LootParams.Builder(context.getSource().getLevel())
+//                            .withParameter(LootContextParams.ORIGIN, context.getSource().getPosition())
+//                            .create(LootContextParamSets.COMMAND);
+//                    LootTable lootTable = context.getSource().getLevel().getServer().reloadableRegistries().getLootTable(lootTableKey);
+//
+//                    int count = 0;
+//                    final int total = 1000;
+//                    for (int i = 0; i < total; i++) {
+//                        List<ItemStack> items = lootTable.getRandomItems(params);
+//                        if (items.toString().contains(eye.getID())) {
+//                            count++;
+//                        }
+//                    }
+//
+//                    final float finalOdds = (float)count/(float)total;
+//
+//                    Component info = Component.empty()
+//                            .append(Component.literal("Generated "))
+//                            .append(Component.literal(lootTableID.toString()).withStyle(ChatFormatting.YELLOW))
+//                            .append(Component.literal("\nFound "))
+//                            .append(Component.literal(eyeItem.getName(new ItemStack(eyeItem)).getString()).withStyle(ChatFormatting.GREEN))
+//                            .append(Component.literal(" with weight of "))
+//                            .append(Component.literal(finalOdds + "%").withStyle(ChatFormatting.GREEN))
+//                            .append(Component.literal("\n"));
+//
+//                    context.getSource().sendSuccess(() -> info, false);
+//                }
+//            }
         }
 
         return 1;
