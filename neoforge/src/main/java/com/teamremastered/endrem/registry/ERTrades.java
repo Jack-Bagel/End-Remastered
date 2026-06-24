@@ -1,7 +1,9 @@
 package com.teamremastered.endrem.registry;
 
 import com.teamremastered.endrem.Constants;
+import com.teamremastered.endrem.component.EyeDataComponent;
 import com.teamremastered.endrem.config.ConfigHandler;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.npc.VillagerProfession;
@@ -27,7 +29,7 @@ public class ERTrades {
     }
 
     private static void onVillagerTradesEvent(VillagerTradesEvent event) {
-        if (ConfigHandler.IS_EVIL_EYE_OBTAINABLE && event.getType() == VillagerProfession.CLERIC) {
+        if (event.getType() == VillagerProfession.CLERIC) {
             event.getTrades().get(5).add(new ERTrades.EREyeTrade());
         }
     }
@@ -45,7 +47,10 @@ public class ERTrades {
 
 
             if (!entity.level().isClientSide()) {
-                return new MerchantOffer(firstItem, Optional.of(secondItem), new ItemStack(CommonItemRegistry.EVIL_EYE), 1, 1, 1F);
+                ItemStack stack = new ItemStack(CommonItemRegistry.DUMMY_EYE);
+                stack.set(CommonDataComponentRegistry.DATA_EYE_COMPONENT,
+                        new EyeDataComponent(ResourceLocation.parse("endrem:evil_eye")));
+                return new MerchantOffer(firstItem, Optional.of(secondItem), stack, 1, 1, 1F);
             }
             return null;
         }

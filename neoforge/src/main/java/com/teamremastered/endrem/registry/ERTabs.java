@@ -2,6 +2,7 @@ package com.teamremastered.endrem.registry;
 
 import com.teamremastered.endrem.EndRemasteredCommon;
 import com.teamremastered.endrem.Constants;
+import com.teamremastered.endrem.util.TabLoader;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
@@ -33,27 +34,12 @@ public class ERTabs {
     public static final Supplier<CreativeModeTab> EYES_TAB = TABS.register("endrem_tab",
             () -> CreativeModeTab.builder()
                     .title(Component.translatable("itemGroup.endrem.endrem_tab"))
-                    .icon(() -> new ItemStack(CommonItemRegistry.EXOTIC_EYE))
+                    .icon(() -> new ItemStack(CommonItemRegistry.DUMMY_EYE))
                     .displayItems((featureFlags, entries) -> {
                         if (serverInstance != null) {
-                            entries.acceptAll(populateEndremTab(serverInstance));
+                            entries.acceptAll(TabLoader.populateEndremTab(serverInstance));
                         }
                     }).build());
-
-
-    private static Set<ItemStack> populateEndremTab(MinecraftServer server) {
-        Set<ItemStack> displayedItems = new HashSet<>();
-        ResourceManager manager = server.getResourceManager();
-        List<ResourceLocation> files = new ArrayList<>();
-        manager.listResources("eyes", path -> path.getPath().endsWith(".json"))
-                .forEach((location, resource) -> {
-                    files.add(location);
-                    String itemID = location.getPath().split("/")[1].split("\\.")[0];
-                    displayedItems.add(new ItemStack(BuiltInRegistries.ITEM.get(EndRemasteredCommon.ModResourceLocation(itemID))));
-                });
-
-        return displayedItems;
-    }
 
     private static void getServerInstance(ServerStartingEvent event) {
         serverInstance = event.getServer();

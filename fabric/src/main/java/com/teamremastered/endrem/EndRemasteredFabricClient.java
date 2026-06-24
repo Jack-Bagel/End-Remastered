@@ -34,7 +34,6 @@ public class EndRemasteredFabricClient implements ClientModInitializer {
                 if (context.resourceId() != null &&
                         context.resourceId().getPath().startsWith("eye/")) {
                     eyeModelCache.put(context.resourceId(), model);
-                    System.out.println("Cached eye model: " + context.resourceId());
                 }
 
                 ModelResourceLocation inventoryMRL = ModelResourceLocation.inventory(ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "dummy_eye"));

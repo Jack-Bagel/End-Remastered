@@ -32,7 +32,6 @@ public class ERTrades {
 
             if (!entity.level().isClientSide()) {
                 ItemStack stack = new ItemStack(CommonItemRegistry.DUMMY_EYE);
-                EyeDataComponent existing = stack.get(CommonDataComponentRegistry.DATA_EYE_COMPONENT);
                 stack.set(CommonDataComponentRegistry.DATA_EYE_COMPONENT,
                         new EyeDataComponent(ResourceLocation.parse("endrem:evil_eye")));
 
@@ -43,7 +42,6 @@ public class ERTrades {
     }
 
     public static void registerVillagerTrades() {
-        if (ConfigHandler.IS_EVIL_EYE_OBTAINABLE) {
             TradeOfferHelper.registerVillagerOffers(VillagerProfession.CLERIC, 5, factories -> {
                 factories.add(new EREyeTrade());
             });
@@ -51,6 +49,5 @@ public class ERTrades {
             TradeOfferHelper.registerWanderingTraderOffers(0, factories -> {
                 factories.add(new EREyeTrade());
             });
-        }
     }
 }

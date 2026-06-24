@@ -2,7 +2,11 @@ package com.teamremastered.endrem.command;
 
 import com.mojang.brigadier.context.CommandContext;
 import com.teamremastered.endrem.EndRemasteredCommon;
+import com.teamremastered.endrem.component.EyeDataComponent;
+import com.teamremastered.endrem.item.SerializedEye;
+import com.teamremastered.endrem.registry.CommonDataComponentRegistry;
 import com.teamremastered.endrem.registry.CommonItemRegistry;
+import com.teamremastered.endrem.util.EyeDataManager;
 import net.minecraft.ChatFormatting;
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.core.BlockPos;
@@ -67,40 +71,46 @@ public class ERTestCommands {
 
     public static int testLootTables(CommandContext<CommandSourceStack> context) {
         if (!context.getSource().getLevel().isClientSide()) {
-//            context.getSource().sendSuccess(() -> Component.literal("--Generate Eyes Loot Tables--\n"), false);
-//            for (JsonEye eye : JsonEye.getEyes()) {
-//                Item eyeItem = BuiltInRegistries.ITEM.get(EndRemasteredCommon.ModResourceLocation(eye.getID()));
-//                for (ResourceLocation lootTableID : eye.getLootTablesID()) {
-//                    ResourceKey<LootTable> lootTableKey = ResourceKey.create(Registries.LOOT_TABLE, lootTableID);
-//
-//                    LootParams params = new LootParams.Builder(context.getSource().getLevel())
-//                            .withParameter(LootContextParams.ORIGIN, context.getSource().getPosition())
-//                            .create(LootContextParamSets.COMMAND);
-//                    LootTable lootTable = context.getSource().getLevel().getServer().reloadableRegistries().getLootTable(lootTableKey);
-//
-//                    int count = 0;
-//                    final int total = 1000;
-//                    for (int i = 0; i < total; i++) {
-//                        List<ItemStack> items = lootTable.getRandomItems(params);
-//                        if (items.toString().contains(eye.getID())) {
-//                            count++;
-//                        }
-//                    }
-//
-//                    final float finalOdds = (float)count/(float)total;
-//
-//                    Component info = Component.empty()
-//                            .append(Component.literal("Generated "))
-//                            .append(Component.literal(lootTableID.toString()).withStyle(ChatFormatting.YELLOW))
-//                            .append(Component.literal("\nFound "))
-//                            .append(Component.literal(eyeItem.getName(new ItemStack(eyeItem)).getString()).withStyle(ChatFormatting.GREEN))
-//                            .append(Component.literal(" with weight of "))
-//                            .append(Component.literal(finalOdds + "%").withStyle(ChatFormatting.GREEN))
-//                            .append(Component.literal("\n"));
-//
-//                    context.getSource().sendSuccess(() -> info, false);
-//                }
-//            }
+            EyeDataManager eyeDataManager = EyeDataManager.getInstance();
+            context.getSource().sendSuccess(() -> Component.literal("--Generate Eyes Loot Tables--\n"), false);
+            for (var entry : eyeDataManager.getLoadedEyes().entrySet()) {
+                ItemStack eyeStack = new ItemStack(CommonItemRegistry.DUMMY_EYE);
+                eyeStack.set(CommonDataComponentRegistry.DATA_EYE_COMPONENT, new EyeDataComponent(entry.getKey()));
+                for (ResourceLocation lootTableID : entry.getValue().lootTablesID()) {
+                    ResourceKey<LootTable> lootTableKey = ResourceKey.create(Registries.LOOT_TABLE, lootTableID);
+
+                    LootParams params = new LootParams.Builder(context.getSource().getLevel())
+                            .withParameter(LootContextParams.ORIGIN, context.getSource().getPosition())
+                            .create(LootContextParamSets.COMMAND);
+                    LootTable lootTable = context.getSource().getLevel().getServer().reloadableRegistries().getLootTable(lootTableKey);
+
+                    int count = 0;
+                    final int total = 1000;
+                    for (int i = 0; i < total; i++) {
+                        List<ItemStack> stacks = lootTable.getRandomItems(params);
+                        for (ItemStack stack: stacks) {
+                            EyeDataComponent eyeDataComponent = stack.getOrDefault(CommonDataComponentRegistry.DATA_EYE_COMPONENT,
+                                    new EyeDataComponent(ResourceLocation.withDefaultNamespace("empty")));
+                            if (eyeDataComponent.id().equals(entry.getKey())) {
+                                count++;
+                            }
+                        }
+                    }
+
+                    final float finalOdds = (float)count/(float)total;
+
+                    Component info = Component.empty()
+                            .append(Component.literal("Generated "))
+                            .append(Component.literal(lootTableID.toString()).withStyle(ChatFormatting.YELLOW))
+                            .append(Component.literal("\nFound "))
+                            .append(Component.literal(eyeStack.getDisplayName().getString()).withStyle(ChatFormatting.GREEN))
+                            .append(Component.literal(" with weight of "))
+                            .append(Component.literal(finalOdds + "%").withStyle(ChatFormatting.GREEN))
+                            .append(Component.literal("\n"));
+
+                    context.getSource().sendSuccess(() -> info, false);
+                }
+            }
         }
 
         return 1;

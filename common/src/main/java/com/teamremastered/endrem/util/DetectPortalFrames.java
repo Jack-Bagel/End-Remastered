@@ -2,8 +2,11 @@ package com.teamremastered.endrem.util;
 
 import com.google.common.base.Predicates;
 import com.teamremastered.endrem.block.EndPortalFrameBlockEntity;
+import com.teamremastered.endrem.component.EyeDataComponent;
+import com.teamremastered.endrem.registry.CommonDataComponentRegistry;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Blocks;
@@ -28,7 +31,9 @@ public class DetectPortalFrames {
                     BlockEntity blockEntity = levelIn.getBlockEntity(blockPos);
 
                     if (blockEntity instanceof EndPortalFrameBlockEntity endPortalFrameBlockEntity) {
-                        if (!endPortalFrameBlockEntity.isEmpty() && endPortalFrameBlockEntity.getEyeAsItem().equals(itemUse.getItemInHand().getItem())) {
+                        ItemStack usedEye = itemUse.getItemInHand();
+                        EyeDataComponent eyeComponent = usedEye.get(CommonDataComponentRegistry.DATA_EYE_COMPONENT);
+                        if (!endPortalFrameBlockEntity.isEmpty() && endPortalFrameBlockEntity.getEyeIdentificator().equals(eyeComponent.id())) {
                             return false;
                         }
                     }

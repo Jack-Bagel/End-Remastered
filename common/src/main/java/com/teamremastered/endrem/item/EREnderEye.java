@@ -5,13 +5,10 @@ import com.teamremastered.endrem.component.EyeDataComponent;
 import com.teamremastered.endrem.registry.CommonDataComponentRegistry;
 import net.minecraft.ChatFormatting;
 import net.minecraft.MethodsReturnNonnullByDefault;
-import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.util.CubicSpline;
 import net.minecraft.world.item.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @MethodsReturnNonnullByDefault
@@ -19,7 +16,7 @@ public class EREnderEye extends EnderEyeItem {
 
     public EREnderEye(Properties properties) {
         super(properties.component(CommonDataComponentRegistry.DATA_EYE_COMPONENT, new EyeDataComponent(
-                ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID,"black_eye"))));
+                ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID,"dummy_eye"))));
     }
 
     @Override
@@ -28,7 +25,7 @@ public class EREnderEye extends EnderEyeItem {
 
         String translationKey = String.format("item.%s.%s.description", dataComponent.id().getNamespace(), dataComponent.id().getPath());
         tooltip.add(Component.translatable(translationKey));
-        tooltip.add(Component.translatable("Id: %s", dataComponent.id()).withStyle(ChatFormatting.GOLD));
+        tooltip.add(Component.translatable("Id: %s", dataComponent.id().toString()).withStyle(ChatFormatting.GOLD));
     }
 
     @Override

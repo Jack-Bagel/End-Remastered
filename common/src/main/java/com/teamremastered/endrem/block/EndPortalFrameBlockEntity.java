@@ -57,11 +57,7 @@ public class EndPortalFrameBlockEntity extends BlockEntity {
         return this.eye_id;
     }
 
-    public Item getEyeAsItem() {
-        return BuiltInRegistries.ITEM.get(getEyeIdentificator());
-    }
-
     public boolean isEmpty() {
-        return this.eye_id.equals("empty");
+        return this.eye_id.getPath().equals("empty");
     }
 }
