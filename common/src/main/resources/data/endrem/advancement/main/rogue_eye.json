@@ -3,7 +3,12 @@
   "display": {
     "icon": {
       "count": 1,
-      "id": "endrem:rogue_eye"
+      "id": "endrem:dummy_eye",
+      "components": {
+        "endrem:eye_modifier": {
+          "id": "endrem:rogue_eye"
+        }
+      }
     },
     "title": {
       "translate": "advancements.main.rogue_eye.title"
@@ -23,8 +28,13 @@
         "items": [
           {
             "items": [
-              "endrem:rogue_eye"
-              ]
+              "endrem:dummy_eye"
+            ],
+            "components": {
+              "endrem:eye_modifier": {
+                "id": "endrem:rogue_eye"
+              }
+            }
           }
         ]
       }

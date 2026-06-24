@@ -16,14 +16,20 @@
       "translate": "advancements.main.root.description"
     }
   },
-
   "criteria": {
     "old_eye": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
-            "items": [ "endrem:old_eye" ]
+            "items": [
+              "endrem:dummy_eye"
+            ],
+            "components": {
+              "endrem:eye_modifier": {
+                "id": "endrem:old_eye"
+              }
+            }
           }
         ]
       }
@@ -33,7 +39,14 @@
       "conditions": {
         "items": [
           {
-            "items": [ "endrem:rogue_eye" ]
+            "items": [
+              "endrem:dummy_eye"
+            ],
+            "components": {
+              "endrem:eye_modifier": {
+                "id": "endrem:rogue_eye"
+              }
+            }
           }
         ]
       }
@@ -43,7 +56,14 @@
       "conditions": {
         "items": [
           {
-            "items": [ "endrem:nether_eye" ]
+            "items": [
+              "endrem:dummy_eye"
+            ],
+            "components": {
+              "endrem:eye_modifier": {
+                "id": "endrem:nether_eye"
+              }
+            }
           }
         ]
       }
@@ -53,7 +73,14 @@
       "conditions": {
         "items": [
           {
-            "items": [ "endrem:cold_eye" ]
+            "items": [
+              "endrem:dummy_eye"
+            ],
+            "components": {
+              "endrem:eye_modifier": {
+                "id": "endrem:cold_eye"
+              }
+            }
           }
         ]
       }
@@ -63,7 +90,14 @@
       "conditions": {
         "items": [
           {
-            "items": [ "endrem:corrupted_eye" ]
+            "items": [
+              "endrem:dummy_eye"
+            ],
+            "components": {
+              "endrem:eye_modifier": {
+                "id": "endrem:corrupted_eye"
+              }
+            }
           }
         ]
       }
@@ -73,7 +107,14 @@
       "conditions": {
         "items": [
           {
-            "items": [ "endrem:magical_eye" ]
+            "items": [
+              "endrem:dummy_eye"
+            ],
+            "components": {
+              "endrem:eye_modifier": {
+                "id": "endrem:magical_eye"
+              }
+            }
           }
         ]
       }
@@ -83,7 +124,14 @@
       "conditions": {
         "items": [
           {
-            "items": [ "endrem:black_eye" ]
+            "items": [
+              "endrem:dummy_eye"
+            ],
+            "components": {
+              "endrem:eye_modifier": {
+                "id": "endrem:black_eye"
+              }
+            }
           }
         ]
       }
@@ -93,7 +141,14 @@
       "conditions": {
         "items": [
           {
-            "items": [ "endrem:lost_eye" ]
+            "items": [
+              "endrem:dummy_eye"
+            ],
+            "components": {
+              "endrem:eye_modifier": {
+                "id": "endrem:lost_eye"
+              }
+            }
           }
         ]
       }
@@ -103,7 +158,14 @@
       "conditions": {
         "items": [
           {
-            "items": [ "endrem:wither_eye" ]
+            "items": [
+              "endrem:dummy_eye"
+            ],
+            "components": {
+              "endrem:eye_modifier": {
+                "id": "endrem:wither_eye"
+              }
+            }
           }
         ]
       }
@@ -113,7 +175,14 @@
       "conditions": {
         "items": [
           {
-            "items": [ "endrem:guardian_eye" ]
+            "items": [
+              "endrem:dummy_eye"
+            ],
+            "components": {
+              "endrem:eye_modifier": {
+                "id": "endrem:guardian_eye"
+              }
+            }
           }
         ]
       }
@@ -123,51 +192,82 @@
       "conditions": {
         "items": [
           {
-            "items": [ "endrem:witch_eye" ]
+            "items": [
+              "endrem:dummy_eye"
+            ],
+            "components": {
+              "endrem:eye_modifier": {
+                "id": "endrem:witch_eye"
+              }
+            }
           }
         ]
       }
     },
-
     "cursed_eye": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
-            "items": [ "endrem:cursed_eye" ]
+            "items": [
+              "endrem:dummy_eye"
+            ],
+            "components": {
+              "endrem:eye_modifier": {
+                "id": "endrem:cursed_eye"
+              }
+            }
           }
         ]
       }
     },
-
     "exotic_eye": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
-            "items": [ "endrem:exotic_eye" ]
+            "items": [
+              "endrem:dummy_eye"
+            ],
+            "components": {
+              "endrem:eye_modifier": {
+                "id": "endrem:exotic_eye"
+              }
+            }
           }
         ]
       }
     },
-
     "evil_eye": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
-            "items": [ "endrem:evil_eye" ]
+            "items": [
+              "endrem:dummy_eye"
+            ],
+            "components": {
+              "endrem:eye_modifier": {
+                "id": "endrem:evil_eye"
+              }
+            }
           }
         ]
       }
     },
-
     "undead_eye": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
-            "items": [ "endrem:undead_eye" ]
+            "items": [
+              "endrem:dummy_eye"
+            ],
+            "components": {
+              "endrem:eye_modifier": {
+                "id": "endrem:undead_eye"
+              }
+            }
           }
         ]
       }
@@ -177,7 +277,14 @@
       "conditions": {
         "items": [
           {
-            "items": [ "endrem:cryptic_eye" ]
+            "items": [
+              "endrem:dummy_eye"
+            ],
+            "components": {
+              "endrem:eye_modifier": {
+                "id": "endrem:cryptic_eye"
+              }
+            }
           }
         ]
       }
@@ -185,7 +292,22 @@
   },
   "requirements": [
     [
-      "old_eye", "rogue_eye", "nether_eye", "cryptic_eye", "cold_eye", "corrupted_eye", "magical_eye", "black_eye", "lost_eye", "wither_eye", "guardian_eye", "witch_eye", "cursed_eye", "exotic_eye", "evil_eye", "undead_eye"
+      "old_eye",
+      "rogue_eye",
+      "nether_eye",
+      "cryptic_eye",
+      "cold_eye",
+      "corrupted_eye",
+      "magical_eye",
+      "black_eye",
+      "lost_eye",
+      "wither_eye",
+      "guardian_eye",
+      "witch_eye",
+      "cursed_eye",
+      "exotic_eye",
+      "evil_eye",
+      "undead_eye"
     ]
   ]
 }

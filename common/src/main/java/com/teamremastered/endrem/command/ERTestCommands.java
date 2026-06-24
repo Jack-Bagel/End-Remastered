@@ -61,9 +61,12 @@ public class ERTestCommands {
             context.getSource().getLevel().setBlock(portalPos, endPortalFrameState, 2);
         }
 
-        CommonItemRegistry.ITEMS.stream()
-                .filter(item -> item.id().contains("eye"))
-                .forEach(eye -> context.getSource().getPlayer().addItem(new ItemStack(eye.object(), 2)));
+        EyeDataManager.getInstance().getLoadedEyes().forEach((id, eye) -> {
+            ItemStack stack = new ItemStack(CommonItemRegistry.DUMMY_EYE);
+            stack.set(CommonDataComponentRegistry.DATA_EYE_COMPONENT, new EyeDataComponent(id));
+            stack.setCount(2);
+            context.getSource().getPlayer().addItem(stack);
+        });
 
         context.getSource().sendSuccess(() -> Component.literal("Created Portal"), false);
         return 1;

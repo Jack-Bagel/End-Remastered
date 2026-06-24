@@ -3,7 +3,12 @@
   "display": {
     "icon": {
       "count": 1,
-      "id": "endrem:evil_eye"
+      "id": "endrem:dummy_eye",
+      "components": {
+        "endrem:eye_modifier": {
+          "id": "endrem:evil_eye"
+        }
+      }
     },
     "title": {
       "translate": "advancements.main.evil_eye.title"
@@ -23,8 +28,13 @@
         "items": [
           {
             "items": [
-              "endrem:evil_eye"
-            ]
+              "endrem:dummy_eye"
+            ],
+            "components": {
+              "endrem:eye_modifier": {
+                "id": "endrem:evil_eye"
+              }
+            }
           }
         ]
       }

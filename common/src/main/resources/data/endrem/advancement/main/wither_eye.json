@@ -3,7 +3,12 @@
   "display": {
     "icon": {
       "count": 1,
-      "id": "endrem:wither_eye"
+      "id": "endrem:dummy_eye",
+      "components": {
+        "endrem:eye_modifier": {
+          "id": "endrem:wither_eye"
+        }
+      }
     },
     "title": {
       "translate": "advancements.main.wither_eye.title"
@@ -23,8 +28,13 @@
         "items": [
           {
             "items": [
-              "endrem:wither_eye"
-              ]
+              "endrem:dummy_eye"
+            ],
+            "components": {
+              "endrem:eye_modifier": {
+                "id": "endrem:wither_eye"
+              }
+            }
           }
         ]
       }
