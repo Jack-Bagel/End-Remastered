@@ -1,7 +1,6 @@
 package com.teamremastered.endrem.mixin;
 
 import com.teamremastered.endrem.component.EyeDataComponent;
-import com.teamremastered.endrem.config.ConfigHandler;
 import com.teamremastered.endrem.registry.CommonDataComponentRegistry;
 import com.teamremastered.endrem.registry.CommonItemRegistry;
 import net.minecraft.resources.ResourceLocation;

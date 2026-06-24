@@ -5,6 +5,7 @@ import com.teamremastered.endrem.EndRemasteredCommon;
 import com.teamremastered.endrem.Constants;
 import com.teamremastered.endrem.client.EndPortalFrameRenderer;
 import com.teamremastered.endrem.client.EyeDynamicBakedModel;
+import com.teamremastered.endrem.client.EyeItemOverrides;
 import com.teamremastered.endrem.client.EyeModel;
 import com.teamremastered.endrem.util.EyeModelManager;
 import com.teamremastered.endrem.utils.VanillaLootInjector;
@@ -108,7 +109,7 @@ public class RegisterHandler {
         BakedModel original = event.getModels().get(inventoryMRL);
         if (original != null) {
             event.getModels().put(inventoryMRL,
-                    new EyeDynamicBakedModel(original, eyeModelCache::get));
+                    new EyeDynamicBakedModel(original, new EyeItemOverrides(original, eyeModelCache::get)));
         }
     }
 }

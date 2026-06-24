@@ -1,7 +1,6 @@
 package com.teamremastered.endrem.mixin;
 
 import com.llamalad7.mixinextras.sugar.Local;
-import com.teamremastered.endrem.Constants;
 import com.teamremastered.endrem.block.EndPortalFrameBlockEntity;
 import com.teamremastered.endrem.config.ConfigHandler;
 import com.teamremastered.endrem.item.EREnderEye;
@@ -23,6 +22,7 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.pattern.BlockPattern;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
@@ -30,9 +30,11 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 @Mixin(EnderEyeItem.class)
 public class EnderEyeItemMixin {
 
-    private final int GETFIELD = 180;
+    @Unique
+    private final int endrem$GETFIELD = 180;
 
-    private EndPortalFrameBlockEntity endPortalFrameBlockEntity;
+    @Unique
+    private EndPortalFrameBlockEntity endrem$endPortalFrameBlockEntity;
 
     @Inject(method = "useOn", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/level/Level;getBlockState(Lnet/minecraft/core/BlockPos;)Lnet/minecraft/world/level/block/state/BlockState;"), cancellable = true)
     private void DisableUsingEnderEyes(UseOnContext itemUse, CallbackInfoReturnable<InteractionResult> cir, @Local(ordinal = 0) BlockPos blockpos, @Local(ordinal = 0) Level level) {
@@ -45,10 +47,10 @@ public class EnderEyeItemMixin {
 
     @Inject(method = "useOn", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/level/Level;getBlockState(Lnet/minecraft/core/BlockPos;)Lnet/minecraft/world/level/block/state/BlockState;"))
     private void SetBlockEntity(UseOnContext itemUse, CallbackInfoReturnable<InteractionResult> cir, @Local(ordinal = 0) BlockPos blockpos,  @Local(ordinal = 0) Level level) {
-        endPortalFrameBlockEntity = (EndPortalFrameBlockEntity) level.getBlockEntity(blockpos);
+        endrem$endPortalFrameBlockEntity = (EndPortalFrameBlockEntity) level.getBlockEntity(blockpos);
     }
 
-    @Inject(method = "useOn", at = @At(value = "FIELD", target = "Lnet/minecraft/world/level/Level;isClientSide:Z", ordinal = 0, opcode = GETFIELD), cancellable = true)
+    @Inject(method = "useOn", at = @At(value = "FIELD", target = "Lnet/minecraft/world/level/Level;isClientSide:Z", ordinal = 0, opcode = endrem$GETFIELD), cancellable = true)
     private void PortalHasUniqueEye(UseOnContext itemUse, CallbackInfoReturnable<InteractionResult> cir, @Local(ordinal = 0) BlockPos blockpos,  @Local(ordinal = 0) Level level) {
         if (!DetectPortalFrames.isFrameAbsent(level, itemUse, blockpos)) {
             BlockPattern.BlockPatternMatch isPortalWellBuilt = DetectPortalFrames.getCompletedPortalShape().find(level, blockpos);
@@ -66,10 +68,10 @@ public class EnderEyeItemMixin {
         ItemStack stack = itemUse.getItemInHand();
         ResourceLocation id = BuiltInRegistries.ITEM.getKey(stack.getItem());
         if (stack.getItem() instanceof EREnderEye) {
-            endPortalFrameBlockEntity.updateEye(stack);
+            endrem$endPortalFrameBlockEntity.updateEye(stack);
 
         } else if (!ConfigHandler.USE_EYE_OF_ENDER && id.equals(ResourceLocation.withDefaultNamespace("ender_eye"))) {
-            endPortalFrameBlockEntity.updateEye(stack);
+            endrem$endPortalFrameBlockEntity.updateEye(stack);
         }
     }
 

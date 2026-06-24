@@ -2,7 +2,6 @@ package com.teamremastered.endrem.util;
 
 import com.teamremastered.endrem.Constants;
 import com.teamremastered.endrem.EndRemasteredCommon;
-import com.teamremastered.endrem.item.SerializedEye;
 import net.fabricmc.fabric.api.loot.v3.LootTableEvents;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
@@ -13,7 +12,7 @@ import net.minecraft.world.level.storage.loot.entries.NestedLootTable;
 
 public class LootInjection {
 
-    public static void register() {
+    public static void init() {
 
         LootTableEvents.MODIFY.register((key, tableBuilder, source, registries) -> {
             EyeDataManager eyeDataManager = EyeDataManager.getInstance();

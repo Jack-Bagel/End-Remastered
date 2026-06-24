@@ -1,7 +1,6 @@
 package com.teamremastered.endrem.registry;
 
 import com.teamremastered.endrem.component.EyeDataComponent;
-import com.teamremastered.endrem.config.ConfigHandler;
 import net.fabricmc.fabric.api.object.builder.v1.trade.TradeOfferHelper;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.RandomSource;

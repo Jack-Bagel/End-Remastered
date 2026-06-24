@@ -9,9 +9,9 @@ import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderer;
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
-import net.minecraft.client.renderer.texture.TextureAtlas;
 import net.minecraft.client.resources.model.Material;
 import net.minecraft.core.Direction;
+import net.minecraft.world.inventory.InventoryMenu;
 import net.minecraft.world.level.block.HorizontalDirectionalBlock;
 import org.joml.Matrix4f;
 
@@ -46,7 +46,7 @@ public class EndPortalFrameRenderer implements BlockEntityRenderer<EndPortalFram
         poseStack.mulPose(new Matrix4f().translate(0.5f, 0.0f, 0.5f));
         poseStack.mulPose(new Matrix4f().rotateY(rotateEye(FACING)));
 
-        EYE_TEXTURE = new Material(TextureAtlas.LOCATION_BLOCKS, EndRemasteredCommon.ModResourceLocation("block/eyes/" + eye));
+        EYE_TEXTURE = new Material(InventoryMenu.BLOCK_ATLAS, EndRemasteredCommon.ModResourceLocation("block/eyes/" + eye));
         VertexConsumer vertexconsumer = EYE_TEXTURE.buffer(multiBufferSource, RenderType::entitySolid);
         this.eyeModel.render(poseStack, vertexconsumer, combinedLight, combinedOverlay, -1);
 

@@ -1,9 +1,7 @@
 package com.teamremastered.endrem.command;
 
 import com.mojang.brigadier.context.CommandContext;
-import com.teamremastered.endrem.EndRemasteredCommon;
 import com.teamremastered.endrem.component.EyeDataComponent;
-import com.teamremastered.endrem.item.SerializedEye;
 import com.teamremastered.endrem.registry.CommonDataComponentRegistry;
 import com.teamremastered.endrem.registry.CommonItemRegistry;
 import com.teamremastered.endrem.util.EyeDataManager;
@@ -11,12 +9,10 @@ import net.minecraft.ChatFormatting;
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.EndPortalFrameBlock;

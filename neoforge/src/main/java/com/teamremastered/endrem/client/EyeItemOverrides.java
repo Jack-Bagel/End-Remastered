@@ -14,28 +14,15 @@ import org.jetbrains.annotations.Nullable;
 import java.util.function.Function;
 
 public class EyeItemOverrides extends ItemOverrides {
-    private final BakedModel originalModel;
-    private final Function<ResourceLocation, BakedModel> modelResolver;
+    private final EyeItemOverridesHelper helper;
 
-    EyeItemOverrides(BakedModel originalModel, Function<ResourceLocation, BakedModel> modelResolver) {
-        this.originalModel = originalModel;
-        this.modelResolver = modelResolver;
+    public EyeItemOverrides(BakedModel originalModel, Function<ResourceLocation, BakedModel> modelResolver) {
+        super();
+        helper = new EyeItemOverridesHelper(originalModel, modelResolver);
     }
 
     @Override
     public @Nullable BakedModel resolve(BakedModel model, ItemStack stack, @Nullable ClientLevel level, @Nullable LivingEntity entity, int seed) {
-        // Read your custom data component here
-        EyeDataComponent component = stack.get(CommonDataComponentRegistry.DATA_EYE_COMPONENT);
-
-        if (component != null) {
-            ResourceLocation rawId = component.id();
-            ResourceLocation targetId = ResourceLocation.fromNamespaceAndPath(rawId.getNamespace(),"eye/" + rawId.getPath());
-            BakedModel dynamicMesh = modelResolver.apply(targetId);
-            if (dynamicMesh != null) {
-                return dynamicMesh;
-            }
-            Constants.LOGGER.warn("The eye texture " + targetId + " was not found.");
-        }
-        return originalModel;
+        return helper.resolve(model, stack, level, entity, seed);
     }
 }

@@ -1,15 +1,12 @@
 package com.teamremastered.endrem.block;
 
-import com.teamremastered.endrem.Constants;
 import com.teamremastered.endrem.registry.CommonBlockRegistry;
 import com.teamremastered.endrem.registry.CommonDataComponentRegistry;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.HolderLookup;
-import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
@@ -30,14 +27,12 @@ public class EndPortalFrameBlockEntity extends BlockEntity {
     protected void saveAdditional(CompoundTag tag, HolderLookup.Provider registries) {
         super.saveAdditional(tag, registries);
         tag.putString("eye_inside", this.eye_id.toString());
-        Constants.LOGGER.info("EYE SAVED: " + this.eye_id.getPath());
     }
 
     @Override
     protected void loadAdditional(CompoundTag tag, HolderLookup.Provider registries) {
         super.loadAdditional(tag, registries);
         this.eye_id = ResourceLocation.parse(tag.getString("eye_inside"));
-        Constants.LOGGER.info("EYE LOADED: " + this.eye_id);
     }
 
     // Sync With Client

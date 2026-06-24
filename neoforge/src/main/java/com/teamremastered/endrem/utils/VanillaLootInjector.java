@@ -1,7 +1,6 @@
 package com.teamremastered.endrem.utils;
 
 import com.teamremastered.endrem.Constants;
-import com.teamremastered.endrem.item.SerializedEye;
 import com.teamremastered.endrem.util.EyeDataManager;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;

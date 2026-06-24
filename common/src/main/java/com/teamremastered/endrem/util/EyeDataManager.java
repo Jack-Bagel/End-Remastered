@@ -11,16 +11,14 @@ import net.minecraft.server.packs.resources.Resource;
 import net.minecraft.server.packs.resources.ResourceManager;
 
 import java.io.Reader;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 public class EyeDataManager {
     private static final EyeDataManager INSTANCE = new EyeDataManager();
     private final Map<ResourceLocation, SerializedEye> loadedEyes = new HashMap<>();
 
-    private EyeDataManager() {};
+    private EyeDataManager() {}
 
     public void loadEyes(ResourceManager manager) {
         final FileToIdConverter FILE_CONVERTER = FileToIdConverter.json("eyes");
