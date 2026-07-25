@@ -18,7 +18,7 @@ import java.util.Random;
 public class PlayerEnchantMixin {
 
     @Inject(method = "clickMenuButton", at = @At(value = "RETURN", ordinal = 2))
-    private void isEnchanting( Player player, int id, CallbackInfoReturnable<Boolean> info) {
+    private void isEnchanting(Player player, int id, CallbackInfoReturnable<Boolean> info) {
         Random random = new Random();
         int maxValue = 120;
         int randomNumber = random.nextInt(maxValue);
