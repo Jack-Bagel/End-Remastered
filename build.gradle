@@ -8,7 +8,7 @@ plugins {
 }
 
 publishMods {
-    changelog = ""
+    changelog = "- Fixed duplicate registry crash with newest neoforge version"
     type = STABLE
     modLoaders.add("fabric")
     displayName = "${mod_name} R${project.properties["version"]} [Fabric]"
@@ -36,12 +36,12 @@ publishMods {
     }
 
     // Fabric CurseForge
-    curseforge("curseforgeFabric") {
-        from cfOptions
-        file project(":fabric")
-        modLoaders.add("fabric")
-        requires("fabric-api")
-    }
+//    curseforge("curseforgeFabric") {
+//        from cfOptions
+//        file project(":fabric")
+//        modLoaders.add("fabric")
+//        requires("fabric-api")
+//    }
 
     // NeoForge CurseForge
     curseforge("curseforgeNeoForge") {
@@ -51,12 +51,12 @@ publishMods {
     }
 
     // Fabric Modrinth
-    modrinth("modrinthFabric") {
-        from mrOptions
-        file project(":fabric")
-        modLoaders.add("fabric")
-        requires("fabric-api")
-    }
+//    modrinth("modrinthFabric") {
+//        from mrOptions
+//        file project(":fabric")
+//        modLoaders.add("fabric")
+//        requires("fabric-api")
+//    }
 
     // NeoForge Modrinth
     modrinth("modrinthNeoForge") {
