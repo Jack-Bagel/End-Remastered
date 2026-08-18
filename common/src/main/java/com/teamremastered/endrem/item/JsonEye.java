@@ -4,7 +4,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.teamremastered.endrem.platform.Services;
 import com.teamremastered.endrem.util.FileUtils;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.world.item.Rarity;
 
 import java.io.*;
@@ -99,16 +99,16 @@ public class JsonEye {
         return this.id;
     }
 
-    public ArrayList<ResourceLocation> getLootTablesID() {
-        ArrayList<ResourceLocation> result = new ArrayList<>();
+    public ArrayList<Identifier> getLootTablesID() {
+        ArrayList<Identifier> result = new ArrayList<>();
         for (String resource : this.loot_tables_id) {
-            result.add(ResourceLocation.parse(resource));
+            result.add(Identifier.parse(resource));
         }
         return result;
     }
 
-    public ResourceLocation getLootToInjectID() {
-        return ResourceLocation.parse(this.loot_to_inject_id);
+    public Identifier getLootToInjectID() {
+        return Identifier.parse(this.loot_to_inject_id);
     }
 
     public Rarity getRarity() {

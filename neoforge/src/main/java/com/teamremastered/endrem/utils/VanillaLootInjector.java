@@ -4,7 +4,7 @@ import com.teamremastered.endrem.Constants;
 import com.teamremastered.endrem.item.JsonEye;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.world.level.storage.loot.LootTable;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
@@ -15,7 +15,7 @@ public class VanillaLootInjector {
     @SubscribeEvent
     public static void resourceReloadListener(AddServerReloadListenersEvent event) {
         for (JsonEye eye : JsonEye.getEyes()) {
-            for (ResourceLocation loot : eye.getLootTablesID()) {
+            for (Identifier loot : eye.getLootTablesID()) {
                 ResourceKey<LootTable> resourceKey = ResourceKey.create(Registries.LOOT_TABLE, loot);
                 LootTable injectTable = event.getServerResources().fullRegistries().getLootTable(ResourceKey.create(Registries.LOOT_TABLE, eye.getLootToInjectID()));
                 LootTable targetTable = event.getServerResources().fullRegistries().getLootTable(resourceKey);

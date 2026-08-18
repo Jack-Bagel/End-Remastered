@@ -2,7 +2,7 @@ package com.teamremastered.endrem;
 
 import com.teamremastered.endrem.config.ConfigOptions;
 import com.teamremastered.endrem.item.JsonEye;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 
 import java.io.IOException;
 
@@ -12,8 +12,8 @@ import java.io.IOException;
 // however it will be compatible with all supported mod loaders.
 public class EndRemasteredCommon {
 
-    public static ResourceLocation ModResourceLocation(String id) {
-        return ResourceLocation.fromNamespaceAndPath("endrem", id);
+    public static Identifier ModResourceLocation(String id) {
+        return Identifier.fromNamespaceAndPath("endrem", id);
     }
 
     public static void init() {

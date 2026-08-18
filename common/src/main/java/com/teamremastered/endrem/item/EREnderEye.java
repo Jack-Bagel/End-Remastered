@@ -5,8 +5,7 @@ import com.teamremastered.endrem.block.AncientPortalFrame;
 import com.teamremastered.endrem.config.ConfigHandler;
 import com.teamremastered.endrem.mixin.accessor.EyeOfEnderEntityAccessor;
 import com.teamremastered.endrem.registry.CommonBlockRegistry;
-import net.minecraft.MethodsReturnNonnullByDefault;
-import net.minecraft.advancements.CriteriaTriggers;
+import net.minecraft.advancements.triggers.CriteriaTriggers;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
@@ -35,10 +34,10 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.pattern.BlockPattern;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.world.phys.Vec3;
 
 import java.util.function.Consumer;
 
-@MethodsReturnNonnullByDefault
 public class EREnderEye extends Item {
     public EREnderEye(Properties properties) {
         super(properties);
@@ -100,10 +99,10 @@ public class EREnderEye extends Item {
             // Display different message based on if the portal is well-built or not
             BlockPattern.BlockPatternMatch isPortalWellBuilt = AncientPortalFrame.getCompletedPortalShape(false).find(level, blockpos);
             if (isPortalWellBuilt == null) {
-                itemUse.getPlayer().displayClientMessage(Component.translatable("block.endrem.custom_eye.portal_not_built_well"), true);
+                itemUse.getPlayer().sendOverlayMessage(Component.translatable("block.endrem.custom_eye.portal_not_built_well"));
             }
             else {
-                itemUse.getPlayer().displayClientMessage(Component.translatable("block.endrem.custom_eye.place"), true);
+                itemUse.getPlayer().sendOverlayMessage(Component.translatable("block.endrem.custom_eye.place"));
             }
             return InteractionResult.PASS;
         }
@@ -114,7 +113,7 @@ public class EREnderEye extends Item {
             return InteractionResult.SUCCESS;
         }
         else {
-            itemUse.getPlayer().displayClientMessage(Component.translatable("block.endrem.custom_eye.frame_has_eye"), true);
+            itemUse.getPlayer().sendOverlayMessage(Component.translatable("block.endrem.custom_eye.frame_has_eye"));
             return InteractionResult.PASS;
         }
     }
@@ -142,7 +141,7 @@ public class EREnderEye extends Item {
                 if (blockpos != null) {
                     EyeOfEnder eyeofenderentity = new EyeOfEnder(levelIn, playerIn.getX(), playerIn.getY(0.5D), playerIn.getZ());
                     eyeofenderentity.setItem(itemstack);
-                    eyeofenderentity.signalTo(blockpos.getCenter());
+                    eyeofenderentity.signalTo(Vec3.atLowerCornerOf(blockpos));
                     ((EyeOfEnderEntityAccessor) eyeofenderentity).setSurviveAfterDeath(ConfigHandler.EYE_BREAK_PROBABILITY <= playerIn.getRandom().nextInt(100));
 
                     levelIn.addFreshEntity(eyeofenderentity);

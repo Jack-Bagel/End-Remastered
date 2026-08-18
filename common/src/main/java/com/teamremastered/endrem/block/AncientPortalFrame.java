@@ -8,8 +8,8 @@ import com.teamremastered.endrem.registry.CommonBlockRegistry;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.registries.Registries;
+import net.minecraft.resources.Identifier;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.BlockGetter;
@@ -88,7 +88,7 @@ public class AncientPortalFrame extends Block implements EntityBlock {
                 .lightLevel((p_152690_) -> 1)
                 .strength(-1.0F, 3600000.0F)
                 .noLootTable()
-                .setId(ResourceKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "ancient_portal_frame"))));
+                .setId(ResourceKey.create(Registries.BLOCK, Identifier.fromNamespaceAndPath(Constants.MOD_ID, "ancient_portal_frame"))));
         this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.NORTH).setValue(HAS_EYE, Boolean.FALSE));
     }
 

@@ -1,7 +1,7 @@
 package com.teamremastered.endrem.registry;
 
 import com.teamremastered.endrem.EndRemasteredCommon;
-import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup;
+import net.fabricmc.fabric.api.creativetab.v1.FabricCreativeModeTab;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
@@ -13,7 +13,7 @@ public class ERTabs {
 
     public static final ResourceKey<CreativeModeTab> ITEM_GROUP = ResourceKey.create(Registries.CREATIVE_MODE_TAB, EndRemasteredCommon.ModResourceLocation("endrem_tab"));
     public static void init() {
-    Registry.register(BuiltInRegistries.CREATIVE_MODE_TAB, ITEM_GROUP, FabricItemGroup.builder()
+    Registry.register(BuiltInRegistries.CREATIVE_MODE_TAB, ITEM_GROUP, FabricCreativeModeTab.builder()
         .title(Component.translatable("itemGroup.endrem.endrem_tab"))
         .icon(() -> new ItemStack(CommonItemRegistry.COLD_EYE))
         .displayItems((enabledFeatures, entries) -> {

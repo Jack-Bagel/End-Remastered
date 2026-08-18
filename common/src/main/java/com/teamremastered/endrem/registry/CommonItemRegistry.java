@@ -7,7 +7,7 @@ import com.teamremastered.endrem.item.EREnderEye;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 
@@ -35,9 +35,9 @@ public class CommonItemRegistry {
     public static Item UNDEAD_EYE;
     public static Item EXOTIC_EYE;
 
-    public static final Item WITCH_PUPIL = createItem(new Item(new Item.Properties().setId(ResourceKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath("endrem", "witch_pupil")))),"witch_pupil");
-    public static final Item UNDEAD_SOUL = createItem(new Item(new Item.Properties().setId(ResourceKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath("endrem", "undead_soul" )))),"undead_soul");
-    public static final Item ANCIENT_PORTAL_FRAME = createItem(new BlockItem(CommonBlockRegistry.ANCIENT_PORTAL_FRAME, new Item.Properties().setId(ResourceKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "ancient_portal_frame")))), "ancient_portal_frame");
+    public static final Item WITCH_PUPIL = createItem(new Item(new Item.Properties().setId(ResourceKey.create(Registries.ITEM, Identifier.fromNamespaceAndPath("endrem", "witch_pupil")))),"witch_pupil");
+    public static final Item UNDEAD_SOUL = createItem(new Item(new Item.Properties().setId(ResourceKey.create(Registries.ITEM, Identifier.fromNamespaceAndPath("endrem", "undead_soul" )))),"undead_soul");
+    public static final Item ANCIENT_PORTAL_FRAME = createItem(new BlockItem(CommonBlockRegistry.ANCIENT_PORTAL_FRAME, new Item.Properties().setId(ResourceKey.create(Registries.ITEM, Identifier.fromNamespaceAndPath(Constants.MOD_ID, "ancient_portal_frame")))), "ancient_portal_frame");
 
     public static Item createItem(Item item, String id) {
         ITEMS.add(new ERRegistryObject<>(item, id));

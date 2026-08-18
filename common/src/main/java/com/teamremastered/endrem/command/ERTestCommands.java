@@ -12,7 +12,7 @@ import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.Blocks;
@@ -73,7 +73,7 @@ public class ERTestCommands {
             context.getSource().sendSuccess(() -> Component.literal("--Generate Eyes Loot Tables--\n"), false);
             for (JsonEye eye : JsonEye.getEyes()) {
                 Item eyeItem = BuiltInRegistries.ITEM.get(EndRemasteredCommon.ModResourceLocation(eye.getID())).get().value();
-                for (ResourceLocation lootTableID : eye.getLootTablesID()) {
+                for (Identifier lootTableID : eye.getLootTablesID()) {
                     ResourceKey<LootTable> lootTableKey = ResourceKey.create(Registries.LOOT_TABLE, lootTableID);
 
                     LootParams params = new LootParams.Builder(context.getSource().getLevel())
@@ -96,7 +96,7 @@ public class ERTestCommands {
                             .append(Component.literal("Generated "))
                             .append(Component.literal(lootTableID.toString()).withStyle(ChatFormatting.YELLOW))
                             .append(Component.literal("\nFound "))
-                            .append(Component.literal(eyeItem.getName().getString()).withStyle(ChatFormatting.GREEN))
+                            .append(Component.literal(eyeItem.getName(new ItemStack(eyeItem)).getString()).withStyle(ChatFormatting.GREEN))
                             .append(Component.literal(" with weight of "))
                             .append(Component.literal(finalOdds + "%").withStyle(ChatFormatting.GREEN))
                             .append(Component.literal("\n"));

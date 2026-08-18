@@ -29,7 +29,7 @@ public class EnderEyeItemMixin {
 
             if (blockState.is(Blocks.END_PORTAL_FRAME)) {
                 cir.setReturnValue(InteractionResult.PASS);
-                context.getPlayer().displayClientMessage(Component.translatable("block.endrem.ender_eye.warning"), true);
+                context.getPlayer().sendOverlayMessage(Component.translatable("block.endrem.ender_eye.warning"));
             }
         }
     }
@@ -39,7 +39,7 @@ public class EnderEyeItemMixin {
         if (!ConfigHandler.THROW_EYE_OF_ENDER) {
             ItemStack itemStack = player.getItemInHand(interactionHand);
             cir.setReturnValue(InteractionResult.PASS);
-            player.displayClientMessage(Component.translatable("block.endrem.ender_eye.warning"), true);
+            player.sendOverlayMessage(Component.translatable("block.endrem.ender_eye.warning"));
         }
     }
 }
