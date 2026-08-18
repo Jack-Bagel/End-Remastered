@@ -60,7 +60,7 @@ public class AncientPortalFrameEntity  extends BlockEntity {
     }
 
     public Identifier getEyeID() {
-        return EndRemasteredCommon.ModResourceLocation(this.eye);
+        return EndRemasteredCommon.ModIdentifier(this.eye);
     }
 
     public Item getEyeItem() {

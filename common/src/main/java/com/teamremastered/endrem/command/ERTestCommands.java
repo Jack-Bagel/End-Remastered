@@ -72,7 +72,7 @@ public class ERTestCommands {
         if (!context.getSource().getLevel().isClientSide()) {
             context.getSource().sendSuccess(() -> Component.literal("--Generate Eyes Loot Tables--\n"), false);
             for (JsonEye eye : JsonEye.getEyes()) {
-                Item eyeItem = BuiltInRegistries.ITEM.get(EndRemasteredCommon.ModResourceLocation(eye.getID())).get().value();
+                Item eyeItem = BuiltInRegistries.ITEM.get(EndRemasteredCommon.ModIdentifier(eye.getID())).get().value();
                 for (Identifier lootTableID : eye.getLootTablesID()) {
                     ResourceKey<LootTable> lootTableKey = ResourceKey.create(Registries.LOOT_TABLE, lootTableID);
 

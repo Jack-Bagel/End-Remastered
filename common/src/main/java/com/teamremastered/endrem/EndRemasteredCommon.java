@@ -12,7 +12,7 @@ import java.io.IOException;
 // however it will be compatible with all supported mod loaders.
 public class EndRemasteredCommon {
 
-    public static Identifier ModResourceLocation(String id) {
+    public static Identifier ModIdentifier(String id) {
         return Identifier.fromNamespaceAndPath("endrem", id);
     }
 

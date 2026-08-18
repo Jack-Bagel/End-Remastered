@@ -17,7 +17,6 @@ public class ConfigOptions {
     public boolean FRAME_HAS_RANDOM_EYE;
     public int EYE_BREAK_PROBABILITY;
     public boolean IS_CRYPTIC_EYE_OBTAINABLE;
-    public boolean IS_EVIL_EYE_OBTAINABLE;
     public boolean CAN_REMOVE_EYE;
     private ConfigOptions() {
         this.USE_EYE_OF_ENDER = false;
@@ -25,7 +24,6 @@ public class ConfigOptions {
         this.FRAME_HAS_RANDOM_EYE = false;
         this.EYE_BREAK_PROBABILITY = 10;
         this.IS_CRYPTIC_EYE_OBTAINABLE = true;
-        this.IS_EVIL_EYE_OBTAINABLE = true;
         this.CAN_REMOVE_EYE = true;
     }
 

@@ -56,27 +56,25 @@ public class AncientPortalRenderer implements BlockEntityRenderer<AncientPortalF
 
     @Override
     public void submit(AncientPortalState state, PoseStack poseStack, SubmitNodeCollector nodeCollector, CameraRenderState cameraRenderState) {
-        if (state.eye.equals("empty")) {
-            return;
+        if (!state.eye.equals("empty")) {
+            SpriteId EYE_SPRITE = Sheets.BLOCKS_MAPPER.apply(EndRemasteredCommon.ModIdentifier("eyes/" + state.eye));
+            poseStack.pushPose();
+            poseStack.mulPose(new Matrix4f().translate(0.5f, 0.0f, 0.5f));
+            poseStack.mulPose(new Matrix4f().rotateY(rotateEye(state.facing)));
+
+            nodeCollector.submitModel(
+                    this.eyeModel,
+                    null,
+                    poseStack,
+                    state.lightCoords,
+                    OverlayTexture.NO_OVERLAY,
+                    -1,
+                    EYE_SPRITE,
+                    this.sprites,
+                    0,
+                    state.breakProgress
+            );
+            poseStack.popPose();
         }
-        SpriteId eyeSprite = Sheets.BLOCKS_MAPPER.apply(EndRemasteredCommon.ModResourceLocation("eyes/" + state.eye));
-
-        poseStack.pushPose();
-        poseStack.mulPose(new Matrix4f().translate(0.5f, 0.0f, 0.5f));
-        poseStack.mulPose(new Matrix4f().rotateY(rotateEye(state.facing)));
-
-        nodeCollector.submitModel(
-                this.eyeModel,
-                null,
-                poseStack,
-                eyeSprite.renderType(RenderTypes::entitySolid),
-                state.lightCoords,
-                OverlayTexture.NO_OVERLAY,
-                -1,
-                this.sprites.get(eyeSprite),
-                0,
-                state.breakProgress
-        );
-        poseStack.popPose();
     }
 }

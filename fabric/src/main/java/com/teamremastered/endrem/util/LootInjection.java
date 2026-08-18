@@ -28,13 +28,13 @@ public class LootInjection {
 
             // Hardcoded Injected Items
             if (Identifier.withDefaultNamespace("entities/witch").equals(key.identifier())) {
-                ResourceKey<LootTable> resourceKey = ResourceKey.create(Registries.LOOT_TABLE, EndRemasteredCommon.ModResourceLocation("minecraft/entities/witch"));
+                ResourceKey<LootTable> resourceKey = ResourceKey.create(Registries.LOOT_TABLE, EndRemasteredCommon.ModIdentifier("minecraft/entities/witch"));
                 LootPool.Builder poolBuilder = LootPool.lootPool()
                         .add(NestedLootTable.lootTableReference(resourceKey));
                 tableBuilder.withPool(poolBuilder);
 
             } else if (Identifier.withDefaultNamespace("entities/skeleton_horse").equals(key.identifier())) {
-                ResourceKey<LootTable> resourceKey = ResourceKey.create(Registries.LOOT_TABLE, EndRemasteredCommon.ModResourceLocation("minecraft/entities/skeleton_horse"));
+                ResourceKey<LootTable> resourceKey = ResourceKey.create(Registries.LOOT_TABLE, EndRemasteredCommon.ModIdentifier("minecraft/entities/skeleton_horse"));
                 LootPool.Builder poolBuilder = LootPool.lootPool()
                         .add(NestedLootTable.lootTableReference(resourceKey));
                 tableBuilder.withPool(poolBuilder);

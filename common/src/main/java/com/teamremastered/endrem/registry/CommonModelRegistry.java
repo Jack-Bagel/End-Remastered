@@ -5,5 +5,5 @@ import net.minecraft.client.model.geom.ModelLayerLocation;
 
 public class CommonModelRegistry {
 
-    public static final ModelLayerLocation EYE = new ModelLayerLocation(EndRemasteredCommon.ModResourceLocation("eye"), "main");
+    public static final ModelLayerLocation EYE = new ModelLayerLocation(EndRemasteredCommon.ModIdentifier("eye"), "main");
 }

@@ -18,7 +18,7 @@ public class RegisterHandler {
         CommonItemRegistry.registerEyes();
         register(BuiltInRegistries.ITEM, CommonItemRegistry.registerERItems());
         CommonItemRegistry.initializeEyes();
-        Registry.register(BuiltInRegistries.BLOCK_ENTITY_TYPE, EndRemasteredCommon.ModResourceLocation("ancient_portal_frame_entity"), CommonBlockRegistry.ANCIENT_PORTAL_FRAME_ENTITY);
+        Registry.register(BuiltInRegistries.BLOCK_ENTITY_TYPE, EndRemasteredCommon.ModIdentifier("ancient_portal_frame_entity"), CommonBlockRegistry.ANCIENT_PORTAL_FRAME_ENTITY);
 
         /* Miscellaneous */
         ERTabs.init();
@@ -33,7 +33,7 @@ public class RegisterHandler {
 
     private static <T> void register(Registry<T> registry, Collection<ERRegistryObject<T>> objects) {
         for (ERRegistryObject<T> object : objects) {
-            Registry.register(registry, EndRemasteredCommon.ModResourceLocation(object.id()), object.object());
+            Registry.register(registry, EndRemasteredCommon.ModIdentifier(object.id()), object.object());
         }
     }
 }
