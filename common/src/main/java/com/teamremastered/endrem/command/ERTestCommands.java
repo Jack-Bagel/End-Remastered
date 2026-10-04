@@ -1,6 +1,7 @@
 package com.teamremastered.endrem.command;
 
 import com.mojang.brigadier.context.CommandContext;
+import com.mojang.datafixers.util.Pair;
 import com.teamremastered.endrem.EndRemasteredCommon;
 import com.teamremastered.endrem.item.JsonEye;
 import com.teamremastered.endrem.registry.CommonItemRegistry;
@@ -11,6 +12,7 @@ import net.minecraft.core.Direction;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.HoverEvent;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.Identifier;
 import net.minecraft.world.item.Item;
@@ -23,6 +25,7 @@ import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParams;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ERTestCommands {
@@ -67,45 +70,66 @@ public class ERTestCommands {
     }
 
     public static int testLootTables(CommandContext<CommandSourceStack> context) {
-        //TODO: Get the eyes with JsonEye.getEyes(), use getLootTablesID to get their loot table then iter 100 times on it and check
-        //TODO: if the eye gen correctly and show the odds for each pool.
         if (!context.getSource().getLevel().isClientSide()) {
             context.getSource().sendSuccess(() -> Component.literal("--Generate Eyes Loot Tables--\n"), false);
-            for (JsonEye eye : JsonEye.getEyes()) {
-                Item eyeItem = BuiltInRegistries.ITEM.get(EndRemasteredCommon.ModIdentifier(eye.getID())).get().value();
-                for (Identifier lootTableID : eye.getLootTablesID()) {
-                    ResourceKey<LootTable> lootTableKey = ResourceKey.create(Registries.LOOT_TABLE, lootTableID);
+            ArrayList<Pair<String, Identifier>> lootTablesIDs = makeLootTableIDs();
+            LootParams params = new LootParams.Builder(context.getSource().getLevel())
+                    .withParameter(LootContextParams.ORIGIN, context.getSource().getPosition())
+                    .create(LootContextParamSets.COMMAND);
 
-                    LootParams params = new LootParams.Builder(context.getSource().getLevel())
-                            .withParameter(LootContextParams.ORIGIN, context.getSource().getPosition())
-                            .create(LootContextParamSets.COMMAND);
+            for (Pair<String, Identifier> pairItemIDLootID : lootTablesIDs) {
+                    ResourceKey<LootTable> lootTableKey = ResourceKey.create(Registries.LOOT_TABLE, pairItemIDLootID.getSecond());
                     LootTable lootTable = context.getSource().getLevel().getServer().reloadableRegistries().getLootTable(lootTableKey);
+                    Item lootItem = BuiltInRegistries.ITEM.get(EndRemasteredCommon.ModIdentifier(pairItemIDLootID.getFirst())).get().value();
 
                     int count = 0;
                     final int total = 1000;
                     for (int i = 0; i < total; i++) {
                         List<ItemStack> items = lootTable.getRandomItems(params);
-                        if (items.toString().contains(eye.getID())) {
+                        if (items.toString().contains(pairItemIDLootID.getFirst())) {
                             count++;
                         }
                     }
 
                     final float finalOdds = (float)count/(float)total;
+                Component itemName = Component.literal(lootItem.getName(new ItemStack(lootItem)).getString())
+                        .withStyle(ChatFormatting.GREEN)
+                        .withStyle(style -> style.withHoverEvent(
+                                new HoverEvent.ShowText(
+                                        Component.literal("Loot table: ").withStyle(ChatFormatting.GRAY)
+                                                .append(Component.literal(pairItemIDLootID.getSecond().toString()).withStyle(ChatFormatting.AQUA))
+                                )));
 
                     Component info = Component.empty()
                             .append(Component.literal("Generated "))
-                            .append(Component.literal(lootTableID.toString()).withStyle(ChatFormatting.YELLOW))
+                            .append(Component.literal(pairItemIDLootID.getFirst()).withStyle(ChatFormatting.YELLOW))
                             .append(Component.literal("\nFound "))
-                            .append(Component.literal(eyeItem.getName(new ItemStack(eyeItem)).getString()).withStyle(ChatFormatting.GREEN))
+                            .append(itemName)
                             .append(Component.literal(" with weight of "))
                             .append(Component.literal(finalOdds + "%").withStyle(ChatFormatting.GREEN))
                             .append(Component.literal("\n"));
 
                     context.getSource().sendSuccess(() -> info, false);
-                }
             }
         }
 
         return 1;
+    }
+
+    private static ArrayList<Pair<String, Identifier>> makeLootTableIDs() {
+        ArrayList<Pair<String, Identifier>> namedIdentifiers = new ArrayList<>();
+
+        for (JsonEye eye : JsonEye.getEyes()) {
+            for (Identifier lootTableID : eye.getLootTablesID()) {
+                namedIdentifiers.add(new Pair<>(eye.getID(), lootTableID));
+            }
+        }
+        Identifier undeadSoulLootID = Identifier.withDefaultNamespace("entities/skeleton_horse");
+        Identifier pupilLootID = Identifier.withDefaultNamespace("entities/witch");
+
+        namedIdentifiers.add(new Pair<>("undead_soul", undeadSoulLootID));
+        namedIdentifiers.add(new Pair<>("witch_pupil", pupilLootID));
+
+        return namedIdentifiers;
     }
 }
