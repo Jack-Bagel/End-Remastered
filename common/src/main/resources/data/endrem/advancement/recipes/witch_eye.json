@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "endrem:witch_eye"
+        "recipes": "endrem:witch_eye"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

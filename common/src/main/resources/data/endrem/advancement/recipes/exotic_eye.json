@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "endrem:exotic_eye"
+        "recipes": "endrem:exotic_eye"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

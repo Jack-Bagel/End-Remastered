@@ -61,7 +61,7 @@ public class AncientPortalRenderer implements BlockEntityRenderer<AncientPortalF
             poseStack.mulPose(new Matrix4f().translate(0.5f, 0.0f, 0.5f));
             poseStack.mulPose(new Matrix4f().rotateY(rotateEye(state.facing)));
 
-            nodeCollector.submitModel(
+            nodeCollector.order(1).submitModel(
                     this.eyeModel,
                     null,
                     poseStack,
@@ -70,8 +70,7 @@ public class AncientPortalRenderer implements BlockEntityRenderer<AncientPortalF
                     -1,
                     EYE_SPRITE,
                     this.sprites,
-                    0,
-                    state.breakProgress
+                    0
             );
             poseStack.popPose();
         }

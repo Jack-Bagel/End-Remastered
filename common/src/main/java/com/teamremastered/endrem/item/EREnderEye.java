@@ -23,6 +23,7 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.TooltipFlag;
+import net.minecraft.world.item.component.SwingAnimation;
 import net.minecraft.world.item.component.TooltipDisplay;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.ClipContext;
@@ -157,7 +158,7 @@ public class EREnderEye extends Item {
                     }
 
                     playerIn.awardStat(Stats.ITEM_USED.get(this));
-                    playerIn.swing(handIn, true);
+                    playerIn.swing(handIn, SwingAnimation.DEFAULT,true);
                     return InteractionResult.SUCCESS;
                 }
             }
