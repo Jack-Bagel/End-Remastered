@@ -1,6 +1,5 @@
 package com.teamremastered.endrem.registry;
 
-import com.mojang.serialization.MapCodec;
 import com.teamremastered.endrem.EndRemasteredCommon;
 import com.teamremastered.endrem.Constants;
 import com.teamremastered.endrem.client.AncientPortalRenderer;
@@ -11,18 +10,14 @@ import net.minecraft.world.level.block.Block;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.client.event.EntityRenderersEvent;
-import net.neoforged.neoforge.common.loot.IGlobalLootModifier;
 import net.neoforged.neoforge.registries.*;
 import net.neoforged.bus.api.IEventBus;
 
 @EventBusSubscriber(modid = Constants.MOD_ID)
 public class RegisterHandler {
     public static void init(IEventBus modEventBus) {
-        GLMS.register(modEventBus);
         ERTabs.initRegister(modEventBus);
     }
-
-    public static final DeferredRegister<MapCodec<? extends IGlobalLootModifier>> GLMS = DeferredRegister.create(NeoForgeRegistries.Keys.GLOBAL_LOOT_MODIFIER_SERIALIZERS, Constants.MOD_ID);
 
     //TODO: Abstract the registries and subscribe the event inside the init function
     @SubscribeEvent
