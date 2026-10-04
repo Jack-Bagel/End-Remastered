@@ -21,11 +21,11 @@ public class EndRemasteredCommon {
             ConfigOptions.create();
             Constants.LOGGER.info("End Remastered config loaded with success");
 
-            JsonEye.create();
+            JsonEye.fixAndCreateEREyes();
             Constants.LOGGER.info("End Remastered eyes loaded with success");
 
         } catch (IOException e) {
-            Constants.LOGGER.error("Something went wrong with the config");
+            Constants.LOGGER.error("Something went wrong with End Remastered config");
         }
     }
 }

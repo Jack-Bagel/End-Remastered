@@ -2,14 +2,18 @@ package com.teamremastered.endrem.item;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.google.gson.JsonParseException;
+import com.teamremastered.endrem.Constants;
 import com.teamremastered.endrem.platform.Services;
 import com.teamremastered.endrem.util.FileUtils;
 import net.minecraft.resources.Identifier;
 import net.minecraft.world.item.Rarity;
 
 import java.io.*;
-import java.util.ArrayList;
-import java.util.Objects;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class JsonEye {
     private static final String configPath = Services.CONFIG_HELPER.configDirectoryPath() + "/" + Services.CONFIG_HELPER.configFolderName() + "/Eyes" + "/";
@@ -25,8 +29,6 @@ public class JsonEye {
                             "endrem:minecraft/chests/pillager_outpost", FileUtils.createStringArrayList("minecraft:chests/pillager_outpost")),
                     new JsonEye( "cursed_eye", Rarity.COMMON.getSerializedName(),
                             "endrem:minecraft/chests/bastion_treasure", FileUtils.createStringArrayList("minecraft:chests/bastion_treasure")),
-                    new JsonEye("guardian_eye", Rarity.RARE.getSerializedName(),
-                            "endrem:minecraft/entities/elder_guardian", FileUtils.createStringArrayList("minecraft:entities/elder_guardian")),
                     new JsonEye("lost_eye", Rarity.COMMON.getSerializedName(),
                             "endrem:minecraft/chests/abandoned_mineshaft", FileUtils.createStringArrayList("minecraft:chests/abandoned_mineshaft")),
                     new JsonEye("magical_eye", Rarity.RARE.getSerializedName(),
@@ -41,8 +43,6 @@ public class JsonEye {
                     new JsonEye("cryptic_eye", Rarity.EPIC.getSerializedName()),
                     new JsonEye("guardian_eye", Rarity.RARE.getSerializedName(),
                             "endrem:minecraft/entities/elder_guardian", FileUtils.createStringArrayList("minecraft:entities/elder_guardian")),
-                    new JsonEye("magical_eye", Rarity.RARE.getSerializedName(),
-                            "endrem:minecraft/entities/evoker", FileUtils.createStringArrayList("minecraft:entities/evoker")),
                     new JsonEye("wither_eye", Rarity.EPIC.getSerializedName(),
                             "endrem:minecraft/entities/wither", FileUtils.createStringArrayList("minecraft:entities/wither")),
                     new JsonEye("witch_eye", Rarity.COMMON.getSerializedName()),
@@ -65,35 +65,88 @@ public class JsonEye {
         this(id, rarity, "minecraft:empty", FileUtils.createStringArrayList());
     }
 
-    //TODO: Fix loot_tables_id only writing the first element of the array when created
-    public static void create() throws IOException {
+    public static void fixAndCreateEREyes() throws IOException {
         File configFolder = new File(configPath);
-        if (!configFolder.exists() || Objects.requireNonNull(configFolder.listFiles()).length == 0) {
 
-            if (!configFolder.exists()) {
-                configFolder.mkdirs();
-            }
+        if (!configFolder.exists()) {
+            configFolder.mkdirs();
+        }
 
-            for (JsonEye eye : END_REMASTERED_EYES) {
-                try (FileWriter fw = new FileWriter(configPath + eye.getID() + ".json")) {
-                    gson.toJson(eye, fw);
-                }
+        ArrayList<String> fileNames = FileUtils.getFilesFromDirectory(configPath, ".json");
+
+        Set<String> fileIds = fileNames.stream()
+                .map(name -> name.replaceFirst("\\.json$", ""))
+                .collect(Collectors.toSet());
+
+        List<JsonEye> missing = Arrays.stream(END_REMASTERED_EYES)
+                .filter(eye -> !fileIds.contains(eye.getID()))
+                .toList();
+
+        for (JsonEye eye : missing) {
+            Constants.LOGGER.atError().log("The " + eye.getID() + ".json is missing, original End Remastered eyes files cannot be removed or renamed");
+            Constants.LOGGER.atInfo().log("A new file will be generated");
+            try (FileWriter fw = new FileWriter(configPath + eye.getID() + ".json")) {
+                gson.toJson(eye, fw);
             }
         }
+
         EYES_TO_REGISTER = load();
     }
 
-    private static ArrayList<JsonEye> load() throws FileNotFoundException {
+    private static ArrayList<JsonEye> load() throws IOException {
         ArrayList<JsonEye> eyes = new ArrayList<>();
-        ArrayList<String> fileNames = FileUtils.getFilesFromDirectory(configPath, ".json");
-        for (String fileName : fileNames) {
-            BufferedReader bufferedReader = new BufferedReader(new FileReader(configPath + fileName));
-            JsonEye eye = gson.fromJson(bufferedReader, JsonEye.class);
-            eyes.add(eye);
-        }
 
+        for (String fileName : FileUtils.getFilesFromDirectory(configPath, ".json")) {
+            Path path = Path.of(configPath, fileName);
+            JsonEye eye = readEye(path);
+
+            if (isValid(eye)) {
+                eyes.add(eye);
+                continue;
+            }
+
+            Constants.LOGGER.atError().log("Something went wrong when parsing the config file: " + fileName);
+
+            JsonEye original = checkOriginalEREye(fileName);
+            if (original == null) {
+                Constants.LOGGER.atWarn().log("The eye will be skipped");
+                continue;
+            }
+
+            Constants.LOGGER.atInfo().log(fileName + " is an original End Remastered eye, it will be deleted and a new working file will be generated.");
+            try (Writer writer = Files.newBufferedWriter(path)) {
+                gson.toJson(original, writer);
+            }
+            eyes.add(original);
+        }
         return eyes;
     }
+
+    private static JsonEye readEye(Path path) {
+        try (Reader reader = Files.newBufferedReader(path)) {
+            return gson.fromJson(reader, JsonEye.class);
+        } catch (IOException | JsonParseException e) {
+            return null;
+        }
+    }
+
+    private static boolean isValid(JsonEye eye) {
+        return eye != null
+                && eye.id != null
+                && eye.rarity != null
+                && eye.loot_to_inject_id != null
+                && eye.loot_tables_id != null;
+    }
+
+    private static JsonEye checkOriginalEREye(String fileName){
+
+        JsonEye result = Arrays.stream(END_REMASTERED_EYES)
+                .filter(eye -> fileName.equals(eye.getID() + ".json"))
+                .toList().getFirst();
+
+        return result;
+    }
+
 
     public String getID() {
         return this.id;
