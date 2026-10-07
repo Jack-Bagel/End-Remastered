@@ -1,4 +1,5 @@
 {
+  "id": "endrem:old_eye",
   "rarity": "common",
   "pool_id": "endrem:minecraft/chests/desert_pyramid",
   "loot_tables_id": [

@@ -52,6 +52,9 @@
 
   "item.endrem.ancient_portal_frame": "Ancient Portal Frame",
 
+  "item.endrem.empty": "The eye is missing an ID component",
+
+
 
   "block.endrem.ender_eye.warning": "The eye doesn't want to be used",
   "block.endrem.custom_eye.place": "The eye has already been placed",

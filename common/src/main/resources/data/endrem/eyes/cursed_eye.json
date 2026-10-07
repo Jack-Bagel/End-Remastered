@@ -1,4 +1,5 @@
 {
+  "id": "endrem:cursed_eye",
   "rarity": "common",
   "pool_id": "endrem:minecraft/chests/bastion_treasure",
   "loot_tables_id": [

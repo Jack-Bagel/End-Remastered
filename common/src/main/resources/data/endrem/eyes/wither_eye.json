@@ -1,4 +1,5 @@
 {
+  "id": "endrem:wither_eye",
   "rarity": "epic",
   "pool_id": "endrem:minecraft/entities/wither",
   "loot_tables_id": [

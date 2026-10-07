@@ -1,4 +1,5 @@
 {
+  "id": "endrem:cold_eye",
   "rarity": "rare",
   "pool_id": "endrem:minecraft/chests/igloo_chest",
   "loot_tables_id": [

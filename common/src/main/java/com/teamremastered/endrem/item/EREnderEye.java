@@ -1,6 +1,7 @@
 package com.teamremastered.endrem.item;
 
 import com.teamremastered.endrem.Constants;
+import com.teamremastered.endrem.EndRemasteredCommon;
 import com.teamremastered.endrem.component.EyeDataComponent;
 import com.teamremastered.endrem.registry.CommonDataComponentRegistry;
 import net.minecraft.ChatFormatting;
@@ -30,7 +31,8 @@ public class EREnderEye extends EnderEyeItem {
 
     @Override
     public Component getName(ItemStack stack) {
-        EyeDataComponent dataComponent = stack.get(CommonDataComponentRegistry.DATA_EYE_COMPONENT);
+        EyeDataComponent dataComponent = stack.getOrDefault(CommonDataComponentRegistry.DATA_EYE_COMPONENT,
+                new EyeDataComponent(EndRemasteredCommon.ModResourceLocation("empty")));
         String translationKey = String.format("item.%s.%s", dataComponent.id().getNamespace(), dataComponent.id().getPath());
         return Component.translatable(translationKey);
     }

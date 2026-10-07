@@ -1,4 +1,5 @@
 {
+  "id": "endrem:lost_eye",
   "rarity": "common",
   "pool_id": "endrem:minecraft/chests/abandoned_mineshaft",
   "loot_tables_id": [

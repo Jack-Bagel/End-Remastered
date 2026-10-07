@@ -1,4 +1,5 @@
 {
+  "id": "endrem:corrupted_eye",
   "rarity": "common",
   "pool_id": "endrem:minecraft/chests/pillager_outpost",
   "loot_tables_id": [

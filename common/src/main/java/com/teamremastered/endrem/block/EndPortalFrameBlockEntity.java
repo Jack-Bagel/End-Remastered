@@ -32,7 +32,11 @@ public class EndPortalFrameBlockEntity extends BlockEntity {
     @Override
     protected void loadAdditional(CompoundTag tag, HolderLookup.Provider registries) {
         super.loadAdditional(tag, registries);
-        this.eye_id = ResourceLocation.parse(tag.getString("eye_inside"));
+        this.eye_id = ResourceLocation.tryParse(tag.getString("eye_inside"));
+
+        if (this.eye_id == null) {
+            this.eye_id = ResourceLocation.withDefaultNamespace("empty");
+        }
     }
 
     // Sync With Client

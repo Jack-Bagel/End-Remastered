@@ -10,11 +10,14 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.Set;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.function.Function;
 
 public class EyeItemOverridesHelper {
     private final BakedModel originalModel;
     private final Function<ResourceLocation, BakedModel> modelResolver;
+    private static final Set<ResourceLocation> MISSING_MODEL = ConcurrentHashMap.newKeySet();
 
     EyeItemOverridesHelper(BakedModel originalModel, Function<ResourceLocation, BakedModel> modelResolver) {
         this.originalModel = originalModel;
@@ -22,7 +25,7 @@ public class EyeItemOverridesHelper {
     }
 
     public @Nullable BakedModel resolve(BakedModel model, ItemStack stack, @Nullable ClientLevel level, @Nullable LivingEntity entity, int seed) {
-        // Read your custom data component here
+        // Read custom data component here
         EyeDataComponent component = stack.get(CommonDataComponentRegistry.DATA_EYE_COMPONENT);
 
         if (component != null) {
@@ -32,7 +35,11 @@ public class EyeItemOverridesHelper {
             if (dynamicMesh != null) {
                 return dynamicMesh;
             }
-            Constants.LOGGER.warn("The eye texture " + targetId + " was not found.");
+
+            // Will fire only once when a model is missing.
+            if (MISSING_MODEL.add(targetId)) {
+                Constants.LOGGER.error("The eye texture " + targetId + " was not found. Make sure it is added for the eye to render correctly");
+            }
         }
         return originalModel;
     }

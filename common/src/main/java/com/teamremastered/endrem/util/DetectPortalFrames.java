@@ -6,6 +6,7 @@ import com.teamremastered.endrem.component.EyeDataComponent;
 import com.teamremastered.endrem.registry.CommonDataComponentRegistry;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
@@ -19,7 +20,7 @@ import net.minecraft.world.level.block.state.predicate.BlockStatePredicate;
 
 public class DetectPortalFrames {
 
-    public static boolean isFrameAbsent(Level levelIn, UseOnContext itemUse, BlockPos pos) {
+    public static boolean isFrameAbsent(Level levelIn, ResourceLocation eyeComponentID, BlockPos pos) {
         BlockPattern.BlockPatternMatch blockpattern$patternhelper = getCompletedPortalShape().find(levelIn, pos);
 
         if (blockpattern$patternhelper != null) {
@@ -31,9 +32,8 @@ public class DetectPortalFrames {
                     BlockEntity blockEntity = levelIn.getBlockEntity(blockPos);
 
                     if (blockEntity instanceof EndPortalFrameBlockEntity endPortalFrameBlockEntity) {
-                        ItemStack usedEye = itemUse.getItemInHand();
-                        EyeDataComponent eyeComponent = usedEye.get(CommonDataComponentRegistry.DATA_EYE_COMPONENT);
-                        if (!endPortalFrameBlockEntity.isEmpty() && endPortalFrameBlockEntity.getEyeIdentificator().equals(eyeComponent.id())) {
+                        //TODO: Do we really need to check if it is empty ?
+                        if (!endPortalFrameBlockEntity.isEmpty() && endPortalFrameBlockEntity.getEyeIdentificator().equals(eyeComponentID)) {
                             return false;
                         }
                     }

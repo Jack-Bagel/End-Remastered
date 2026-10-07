@@ -1,4 +1,5 @@
 {
+  "id": "endrem:black_eye",
   "rarity": "common",
   "pool_id": "endrem:minecraft/chests/buried_treasure",
   "loot_tables_id": [

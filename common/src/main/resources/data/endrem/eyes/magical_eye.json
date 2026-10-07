@@ -1,4 +1,5 @@
 {
+  "id": "endrem:magical_eye",
   "rarity": "rare",
   "pool_id": "endrem:minecraft/entities/evoker",
   "loot_tables_id": [

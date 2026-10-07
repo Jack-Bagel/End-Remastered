@@ -1,4 +1,5 @@
 {
+  "id": "endrem:guardian_eye",
   "rarity": "rare",
   "pool_id": "endrem:minecraft/entities/elder_guardian",
   "loot_tables_id": [

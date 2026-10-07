@@ -1,4 +1,5 @@
 {
+  "id": "endrem:rogue_eye",
   "rarity": "rare",
   "pool_id": "endrem:minecraft/chests/jungle_temple",
   "loot_tables_id": [

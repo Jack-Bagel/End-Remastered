@@ -2,13 +2,17 @@ package com.teamremastered.endrem.mixin;
 
 import com.llamalad7.mixinextras.sugar.Local;
 import com.teamremastered.endrem.block.EndPortalFrameBlockEntity;
+import com.teamremastered.endrem.component.EyeDataComponent;
 import com.teamremastered.endrem.config.ConfigHandler;
 import com.teamremastered.endrem.item.EREnderEye;
+import com.teamremastered.endrem.registry.CommonDataComponentRegistry;
 import com.teamremastered.endrem.util.DetectPortalFrames;
+import com.teamremastered.endrem.util.EyeDataManager;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.InteractionResultHolder;
@@ -27,14 +31,13 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
+import java.util.Optional;
+
 @Mixin(EnderEyeItem.class)
 public class EnderEyeItemMixin {
 
     @Unique
     private final int endrem$GETFIELD = 180;
-
-    @Unique
-    private EndPortalFrameBlockEntity endrem$endPortalFrameBlockEntity;
 
     @Inject(method = "useOn", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/level/Level;getBlockState(Lnet/minecraft/core/BlockPos;)Lnet/minecraft/world/level/block/state/BlockState;"), cancellable = true)
     private void DisableUsingEnderEyes(UseOnContext itemUse, CallbackInfoReturnable<InteractionResult> cir, @Local(ordinal = 0) BlockPos blockpos, @Local(ordinal = 0) Level level) {
@@ -45,33 +48,54 @@ public class EnderEyeItemMixin {
         }
     }
 
-    @Inject(method = "useOn", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/level/Level;getBlockState(Lnet/minecraft/core/BlockPos;)Lnet/minecraft/world/level/block/state/BlockState;"))
-    private void SetBlockEntity(UseOnContext itemUse, CallbackInfoReturnable<InteractionResult> cir, @Local(ordinal = 0) BlockPos blockpos,  @Local(ordinal = 0) Level level) {
-        endrem$endPortalFrameBlockEntity = (EndPortalFrameBlockEntity) level.getBlockEntity(blockpos);
-    }
-
     @Inject(method = "useOn", at = @At(value = "FIELD", target = "Lnet/minecraft/world/level/Level;isClientSide:Z", ordinal = 0, opcode = endrem$GETFIELD), cancellable = true)
     private void PortalHasUniqueEye(UseOnContext itemUse, CallbackInfoReturnable<InteractionResult> cir, @Local(ordinal = 0) BlockPos blockpos,  @Local(ordinal = 0) Level level) {
-        if (!DetectPortalFrames.isFrameAbsent(level, itemUse, blockpos)) {
+        ItemStack usedEye = itemUse.getItemInHand();
+        Optional<EyeDataComponent> component = Optional.ofNullable(usedEye.get(CommonDataComponentRegistry.DATA_EYE_COMPONENT));
+        ResourceLocation componentID;
+
+        if (component.isPresent()) {
+            componentID = component.get().id();
+        }
+        else if (usedEye.getItem().equals(Items.ENDER_EYE)) {
+            componentID = BuiltInRegistries.ITEM.getKey(usedEye.getItem());
+        }
+        else {
+            return;
+        }
+
+        if (!DetectPortalFrames.isFrameAbsent(level, componentID, blockpos)) {
             BlockPattern.BlockPatternMatch isPortalWellBuilt = DetectPortalFrames.getCompletedPortalShape().find(level, blockpos);
+            Optional<Player> player = Optional.ofNullable(itemUse.getPlayer());
             if (isPortalWellBuilt == null) {
-                itemUse.getPlayer().displayClientMessage(Component.translatable("block.endrem.custom_eye.portal_not_built_well"), true);
+                player.ifPresent(p -> p.displayClientMessage(Component.translatable("block.endrem.custom_eye.portal_not_built_well"), true));
             } else {
-                itemUse.getPlayer().displayClientMessage(Component.translatable("block.endrem.custom_eye.place"), true);
+                player.ifPresent(p -> p.displayClientMessage(Component.translatable("block.endrem.custom_eye.place"), true));
             }
             cir.setReturnValue(InteractionResult.PASS);
         }
     }
 
     @Inject(method = "useOn", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/level/Level;setBlock(Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;I)Z"))
-    private void UpdatePortalFrameBlockEntity(UseOnContext itemUse, CallbackInfoReturnable<InteractionResult> cir) {
+    private void UpdatePortalFrameBlockEntity(UseOnContext itemUse, CallbackInfoReturnable<InteractionResult> cir, @Local(ordinal = 0) BlockPos pos, @Local(ordinal = 0) Level level)
+    {
+        if (!(level.getBlockEntity(pos) instanceof EndPortalFrameBlockEntity frame)) {
+            return;
+        }
+
         ItemStack stack = itemUse.getItemInHand();
         ResourceLocation id = BuiltInRegistries.ITEM.getKey(stack.getItem());
-        if (stack.getItem() instanceof EREnderEye) {
-            endrem$endPortalFrameBlockEntity.updateEye(stack);
 
-        } else if (!ConfigHandler.USE_EYE_OF_ENDER && id.equals(ResourceLocation.withDefaultNamespace("ender_eye"))) {
-            endrem$endPortalFrameBlockEntity.updateEye(stack);
+        if (stack.has(CommonDataComponentRegistry.DATA_EYE_COMPONENT)) {
+            frame.updateEye(stack);
+        }
+
+        else if (ConfigHandler.USE_EYE_OF_ENDER && id.equals(ResourceLocation.withDefaultNamespace("ender_eye"))) {
+            if(!stack.has(CommonDataComponentRegistry.DATA_EYE_COMPONENT)) {
+                stack.set(CommonDataComponentRegistry.DATA_EYE_COMPONENT, new EyeDataComponent(ResourceLocation.withDefaultNamespace("ender_eye")));
+            }
+
+            frame.updateEye(stack);
         }
     }
 

@@ -11,12 +11,12 @@ import net.minecraft.server.packs.resources.Resource;
 import net.minecraft.server.packs.resources.ResourceManager;
 
 import java.io.Reader;
-import java.util.HashMap;
+import java.util.ArrayList;
 import java.util.Map;
 
 public class EyeDataManager {
     private static final EyeDataManager INSTANCE = new EyeDataManager();
-    private final Map<ResourceLocation, SerializedEye> loadedEyes = new HashMap<>();
+    private final ArrayList<SerializedEye> loadedEyes = new ArrayList<>();
 
     private EyeDataManager() {}
 
@@ -28,16 +28,14 @@ public class EyeDataManager {
 
         for (Map.Entry<ResourceLocation, Resource> entry : resources.entrySet()) {
             ResourceLocation filePath = entry.getKey();
-            ResourceLocation fileID = FILE_CONVERTER.fileToId(filePath);
 
             try (Reader reader = entry.getValue().openAsReader()) {
-                // Read the file into a generic JsonElement
                 JsonElement json = JsonParser.parseReader(reader);
 
-                // Use the Codec to validate and deserialize the JSON into your Record
+                // Use the Codec to validate and deserialize the JSON
                 SerializedEye.CODEC.parse(JsonOps.INSTANCE, json)
-                        .resultOrPartial(error -> Constants.LOGGER.error("Failed to parse eye file " + fileID + ": " + error))
-                        .ifPresent(serializedEye -> this.loadedEyes.put(fileID, serializedEye));
+                        .resultOrPartial(error -> Constants.LOGGER.error("Failed to parse eye file at" + filePath + ": " + error))
+                        .ifPresent(this.loadedEyes::add);
 
             } catch (Exception e) {
                 Constants.LOGGER.error("Error reading eye file " + filePath + ": " + e.getMessage());
@@ -45,7 +43,7 @@ public class EyeDataManager {
         }
     }
 
-    public Map<ResourceLocation, SerializedEye> getLoadedEyes() {
+    public ArrayList<SerializedEye> getLoadedEyes() {
         return this.loadedEyes;
     }
 
