@@ -16,22 +16,14 @@ import net.minecraft.world.item.ItemStack;
 public class ERTabs {
 
     public static final ResourceKey<CreativeModeTab> ITEM_GROUP = ResourceKey.create(Registries.CREATIVE_MODE_TAB, EndRemasteredCommon.ModResourceLocation("endrem_tab"));
-    private static MinecraftServer serverInstance = null;
-
 
     public static void init() {
-
-        ServerLifecycleEvents.SERVER_STARTING.register((server) -> {
-            serverInstance = server;
-        });
 
         Registry.register(BuiltInRegistries.CREATIVE_MODE_TAB, ITEM_GROUP, FabricItemGroup.builder()
                 .title(Component.translatable("itemGroup.endrem.endrem_tab"))
                 .icon(() -> new ItemStack(CommonItemRegistry.DUMMY_EYE))
                 .displayItems((enabledFeatures, entries) -> {
-                    if (serverInstance != null) {
-                        entries.acceptAll(TabLoader.populateEndremTab(serverInstance));
-                    }
+                        entries.acceptAll(TabLoader.populateEndremTab());
                 }).build());
     }
 }

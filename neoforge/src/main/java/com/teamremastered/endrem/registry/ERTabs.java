@@ -16,10 +16,8 @@ import java.util.function.Supplier;
 
 public class ERTabs {
     public static final DeferredRegister<CreativeModeTab> TABS = DeferredRegister.create(Registries.CREATIVE_MODE_TAB, Constants.MOD_ID);
-    private static MinecraftServer serverInstance = null;
 
     public static void init(IEventBus modEventBus) {
-        NeoForge.EVENT_BUS.addListener(ERTabs::getServerInstance);
         TABS.register(modEventBus);
     }
 
@@ -28,12 +26,6 @@ public class ERTabs {
                     .title(Component.translatable("itemGroup.endrem.endrem_tab"))
                     .icon(() -> new ItemStack(CommonItemRegistry.DUMMY_EYE))
                     .displayItems((featureFlags, entries) -> {
-                        if (serverInstance != null) {
-                            entries.acceptAll(TabLoader.populateEndremTab(serverInstance));
-                        }
+                            entries.acceptAll(TabLoader.populateEndremTab());
                     }).build());
-
-    private static void getServerInstance(ServerStartingEvent event) {
-        serverInstance = event.getServer();
-    }
 }
