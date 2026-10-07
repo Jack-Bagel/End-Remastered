@@ -23,7 +23,7 @@ public class ERCommands {
                             .executes(ERTestCommands::testPortal)
                     )
                     .then(Commands.literal("loot_tables")
-                            .executes(ERTestCommands::testLootTables)
+                            .executes(ERTestCommands::testEyesLootTables)
                     )
                 )
         );

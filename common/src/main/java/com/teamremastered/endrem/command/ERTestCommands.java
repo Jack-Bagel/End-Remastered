@@ -1,7 +1,10 @@
 package com.teamremastered.endrem.command;
 
 import com.mojang.brigadier.context.CommandContext;
+import com.mojang.datafixers.util.Pair;
+import com.teamremastered.endrem.EndRemasteredCommon;
 import com.teamremastered.endrem.component.EyeDataComponent;
+import com.teamremastered.endrem.item.SerializedEye;
 import com.teamremastered.endrem.registry.CommonDataComponentRegistry;
 import com.teamremastered.endrem.registry.CommonItemRegistry;
 import com.teamremastered.endrem.util.EyeDataManager;
@@ -9,10 +12,14 @@ import net.minecraft.ChatFormatting;
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.HoverEvent;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.EndPortalFrameBlock;
@@ -22,14 +29,15 @@ import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParams;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 public class ERTestCommands {
 
     public static int testPortal(CommandContext<CommandSourceStack> context) {
-        BlockPos playerPos = context.getSource().getPlayer().getOnPos();
-        BlockPos portalPos = playerPos.offset(2, 1, 0);
-
+        Optional<ServerPlayer> player = Optional.ofNullable(context.getSource().getPlayer());
+        BlockPos portalPos = player.orElseThrow().getOnPos().offset(2, 1, 0);
         BlockState endPortalFrameState = Blocks.END_PORTAL_FRAME.defaultBlockState().setValue(EndPortalFrameBlock.FACING,  Direction.SOUTH);
         for (int i = 0; i < 3; i++) {
             portalPos = portalPos.offset(1, 0, 0);
@@ -57,9 +65,10 @@ public class ERTestCommands {
             context.getSource().getLevel().setBlock(portalPos, endPortalFrameState, 2);
         }
 
-        EyeDataManager.getInstance().getLoadedEyes().forEach((id, eye) -> {
+        // Give all the eyes to the player
+        EyeDataManager.getInstance().getLoadedEyes().forEach(eye -> {
             ItemStack stack = new ItemStack(CommonItemRegistry.DUMMY_EYE);
-            stack.set(CommonDataComponentRegistry.DATA_EYE_COMPONENT, new EyeDataComponent(id));
+            stack.set(CommonDataComponentRegistry.DATA_EYE_COMPONENT, new EyeDataComponent(eye.id()));
             stack.setCount(2);
             context.getSource().getPlayer().addItem(stack);
         });
@@ -68,50 +77,104 @@ public class ERTestCommands {
         return 1;
     }
 
-    public static int testLootTables(CommandContext<CommandSourceStack> context) {
+    public static int testEyesLootTables(CommandContext<CommandSourceStack> context) {
         if (!context.getSource().getLevel().isClientSide()) {
-            EyeDataManager eyeDataManager = EyeDataManager.getInstance();
-            context.getSource().sendSuccess(() -> Component.literal("--Generate Eyes Loot Tables--\n"), false);
-            for (var entry : eyeDataManager.getLoadedEyes().entrySet()) {
-                ItemStack eyeStack = new ItemStack(CommonItemRegistry.DUMMY_EYE);
-                eyeStack.set(CommonDataComponentRegistry.DATA_EYE_COMPONENT, new EyeDataComponent(entry.getKey()));
-                for (ResourceLocation lootTableID : entry.getValue().lootTablesID()) {
-                    ResourceKey<LootTable> lootTableKey = ResourceKey.create(Registries.LOOT_TABLE, lootTableID);
+            ArrayList<Pair<ResourceLocation, ResourceKey<LootTable>>> lootTablesIDs = makeLootTableIDs();
+            LootParams params = new LootParams.Builder(context.getSource().getLevel())
+                    .withParameter(LootContextParams.ORIGIN, context.getSource().getPosition())
+                    .create(LootContextParamSets.COMMAND);
 
-                    LootParams params = new LootParams.Builder(context.getSource().getLevel())
-                            .withParameter(LootContextParams.ORIGIN, context.getSource().getPosition())
-                            .create(LootContextParamSets.COMMAND);
-                    LootTable lootTable = context.getSource().getLevel().getServer().reloadableRegistries().getLootTable(lootTableKey);
+                for (var pairKeyId : lootTablesIDs) {
+                    LootTable lootTable = context.getSource().getLevel().getServer().reloadableRegistries().getLootTable(pairKeyId.getSecond());
 
                     int count = 0;
                     final int total = 1000;
                     for (int i = 0; i < total; i++) {
-                        List<ItemStack> stacks = lootTable.getRandomItems(params);
-                        for (ItemStack stack: stacks) {
-                            EyeDataComponent eyeDataComponent = stack.getOrDefault(CommonDataComponentRegistry.DATA_EYE_COMPONENT,
+                        List<ItemStack> generatedLoot = lootTable.getRandomItems(params);
+
+                       boolean isEyeFoundInLootTable = generatedLoot.stream().anyMatch(generatedStack -> {
+                            EyeDataComponent generatedStackComponent = generatedStack.getOrDefault(CommonDataComponentRegistry.DATA_EYE_COMPONENT,
                                     new EyeDataComponent(ResourceLocation.withDefaultNamespace("empty")));
-                            if (eyeDataComponent.id().equals(entry.getKey())) {
-                                count++;
+
+                            if (generatedStackComponent.id().equals(ResourceLocation.withDefaultNamespace("empty"))) {
+                                return false;
                             }
+
+                            return pairKeyId.getFirst().equals(generatedStackComponent.id());
+                        });
+
+                       if (isEyeFoundInLootTable) {
+                           count++;
+                       }
+
+                        // Check if our item ID matches the generated stack. Since pairKeyId saves the component id of the eyes we dont have to filter out dummy_eye.
+                        boolean isItemFoundInLootTable = generatedLoot.stream().anyMatch(itemStack -> {
+                                      return BuiltInRegistries.ITEM.getKey(itemStack.getItem()).equals(pairKeyId.getFirst());
+                       });
+
+                        if (isItemFoundInLootTable) {
+                            count++;
                         }
                     }
 
                     final float finalOdds = (float)count/(float)total;
+                    Component itemName = getItemName(pairKeyId.getFirst())
+                            .copy()
+                            .withStyle(ChatFormatting.GREEN)
+                            .withStyle(style -> style.withHoverEvent(
+                                    new HoverEvent(HoverEvent.Action.SHOW_TEXT,
+                                            Component.literal("ID: ").withStyle(ChatFormatting.GRAY)
+                                                    .append(Component.literal(pairKeyId.getFirst().toString()).withStyle(ChatFormatting.AQUA)
+                                                    .append(Component.literal("\nLoot table: ").withStyle(ChatFormatting.GRAY)
+                                                    .append(Component.literal(pairKeyId.getSecond().location().toString()).withStyle(ChatFormatting.AQUA)))
+                                    ))));
 
                     Component info = Component.empty()
-                            .append(Component.literal("Generated "))
-                            .append(Component.literal(lootTableID.toString()).withStyle(ChatFormatting.YELLOW))
-                            .append(Component.literal("\nFound "))
-                            .append(Component.literal(eyeStack.getDisplayName().getString()).withStyle(ChatFormatting.GREEN))
+                            .append(Component.literal("Found "))
+                            .append(itemName)
                             .append(Component.literal(" with weight of "))
-                            .append(Component.literal(finalOdds + "%").withStyle(ChatFormatting.GREEN))
-                            .append(Component.literal("\n"));
-
+                            .append(Component.literal(finalOdds*100 + "%").withStyle(ChatFormatting.GREEN));
                     context.getSource().sendSuccess(() -> info, false);
                 }
             }
-        }
 
         return 1;
     }
+
+    private static ArrayList<Pair<ResourceLocation, ResourceKey<LootTable>>> makeLootTableIDs() {
+        ArrayList<Pair<ResourceLocation, ResourceKey<LootTable>>> namedIdentifiers = new ArrayList<>();
+
+        for (SerializedEye eye : EyeDataManager.getInstance().getLoadedEyes()) {
+            ItemStack eyeStack = new ItemStack(CommonItemRegistry.DUMMY_EYE);
+            eyeStack.set(CommonDataComponentRegistry.DATA_EYE_COMPONENT, new EyeDataComponent(eye.id()));
+
+            for (ResourceLocation lootTableID : eye.lootTablesID()) {
+                ResourceKey<LootTable> lootTableKey = ResourceKey.create(Registries.LOOT_TABLE, lootTableID);
+                namedIdentifiers.add(new Pair<>(eye.id(), lootTableKey));
+            }
+        }
+
+        ResourceLocation undeadSoulLootID = ResourceLocation.withDefaultNamespace("entities/skeleton_horse");
+        ResourceLocation pupilLootID = ResourceLocation.withDefaultNamespace("entities/witch");
+        ResourceKey<LootTable> undeadLootTableKey = ResourceKey.create(Registries.LOOT_TABLE, undeadSoulLootID);
+        ResourceKey<LootTable> pupilLootTableKey = ResourceKey.create(Registries.LOOT_TABLE, pupilLootID);
+
+        namedIdentifiers.add(new Pair<>(EndRemasteredCommon.ModResourceLocation("undead_soul"), undeadLootTableKey));
+        namedIdentifiers.add(new Pair<>(EndRemasteredCommon.ModResourceLocation("witch_pupil"), pupilLootTableKey));
+
+        return namedIdentifiers;
+    }
+
+    private static Component getItemName(ResourceLocation id) {
+        // Normal item: use its registry name
+        Optional<Item> item = BuiltInRegistries.ITEM.getOptional(id);
+        if (item.isPresent()) {
+            return item.get().getDescription();
+        }
+
+        // Not a registry item -> treat as dummy eye component id
+        String key = String.format("item.%s.%s", id.getNamespace(), id.getPath().replace('/', '.'));
+        return Component.translatableWithFallback(key, id.toString());
+    }
+
 }
