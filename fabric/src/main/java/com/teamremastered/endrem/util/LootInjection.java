@@ -17,17 +17,18 @@ public class LootInjection {
         LootTableEvents.MODIFY.register((key, tableBuilder, source, registries) -> {
             EyeDataManager eyeDataManager = EyeDataManager.getInstance();
             // Injected Eyes
-            for (var entry : eyeDataManager.getLoadedEyes().entrySet()) {
-                for (ResourceLocation table : entry.getValue().lootTablesID()) {
+            for (var entry : eyeDataManager.getLoadedEyes()) {
+                for (ResourceLocation table : entry.lootTablesID()) {
                     if (table.equals(key.location())) {
-                        LootPool.Builder poolBuilder = LootPool.lootPool().add(NestedLootTable.lootTableReference(ResourceKey.create(Registries.LOOT_TABLE, entry.getValue().poolID())));
+                        LootPool.Builder poolBuilder = LootPool.lootPool().add(NestedLootTable.lootTableReference(ResourceKey.create(Registries.LOOT_TABLE, entry.poolID())));
 
-                        if (entry.getValue().poolID().equals(ResourceLocation.withDefaultNamespace("empty"))) {
-                            return;
+                        if (entry.poolID().equals(ResourceLocation.withDefaultNamespace("empty"))) {
+                            Constants.LOGGER.warn("\"{}\" has no pool to use", entry.poolID());
+                            continue;
                         }
-                        else if (entry.getValue().lootTablesID().isEmpty()) {
-                            Constants.LOGGER.warn("\"{}\" has no loot table to inject into", entry.getValue().poolID());
-                            return;
+                        else if (entry.lootTablesID().isEmpty()) {
+                            Constants.LOGGER.warn("\"{}\" has no loot table to inject into", entry.poolID());
+                            continue;
                         }
 
                         tableBuilder.withPool(poolBuilder);

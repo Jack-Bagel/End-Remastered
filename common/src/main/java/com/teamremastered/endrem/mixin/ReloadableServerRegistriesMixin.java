@@ -16,7 +16,7 @@ import java.util.concurrent.Executor;
 @Mixin(ReloadableServerRegistries.class)
 public class ReloadableServerRegistriesMixin {
 
-    @Inject(method = "reload", at = @At(value = "RETURN"))
+    @Inject(method = "reload", at = @At(value = "HEAD"))
     private static void loadDataEye(LayeredRegistryAccess<RegistryLayer> registries, ResourceManager resourceManager, Executor backgroundExecutor, CallbackInfoReturnable<CompletableFuture<LayeredRegistryAccess<RegistryLayer>>> cir) {
         EyeDataManager.getInstance().loadEyes(resourceManager);
     }
