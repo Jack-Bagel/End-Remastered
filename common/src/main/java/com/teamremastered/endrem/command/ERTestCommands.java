@@ -4,14 +4,16 @@ import com.mojang.brigadier.context.CommandContext;
 import com.mojang.datafixers.util.Pair;
 import com.teamremastered.endrem.EndRemasteredCommon;
 import com.teamremastered.endrem.component.EyeDataComponent;
-import com.teamremastered.endrem.item.SerializedEye;
+import com.teamremastered.endrem.item.EyeData;
 import com.teamremastered.endrem.registry.CommonDataComponentRegistry;
 import com.teamremastered.endrem.registry.CommonItemRegistry;
+import com.teamremastered.endrem.registry.CommonRegistryKey;
 import com.teamremastered.endrem.util.EyeDataManager;
 import net.minecraft.ChatFormatting;
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
@@ -36,6 +38,7 @@ import java.util.Optional;
 public class ERTestCommands {
 
     public static int testPortal(CommandContext<CommandSourceStack> context) {
+        Optional<HolderLookup.RegistryLookup<EyeData>> registryLookup = context.getSource().getServer().registryAccess().lookup(CommonRegistryKey.EYE_DATA);
         Optional<ServerPlayer> player = Optional.ofNullable(context.getSource().getPlayer());
         BlockPos portalPos = player.orElseThrow().getOnPos().offset(2, 1, 0);
         BlockState endPortalFrameState = Blocks.END_PORTAL_FRAME.defaultBlockState().setValue(EndPortalFrameBlock.FACING,  Direction.SOUTH);
@@ -66,7 +69,7 @@ public class ERTestCommands {
         }
 
         // Give all the eyes to the player
-        EyeDataManager.getInstance().getLoadedEyes().forEach(eye -> {
+        EyeDataManager.getDynamicEyes(registryLookup).forEach(eye -> {
             ItemStack stack = new ItemStack(CommonItemRegistry.DUMMY_EYE);
             stack.set(CommonDataComponentRegistry.DATA_EYE_COMPONENT, new EyeDataComponent(eye.id()));
             stack.setCount(2);
@@ -78,8 +81,9 @@ public class ERTestCommands {
     }
 
     public static int testEyesLootTables(CommandContext<CommandSourceStack> context) {
+        Optional<HolderLookup.RegistryLookup<EyeData>> registryLookup = context.getSource().getServer().registryAccess().lookup(CommonRegistryKey.EYE_DATA);
         if (!context.getSource().getLevel().isClientSide()) {
-            ArrayList<Pair<ResourceLocation, ResourceKey<LootTable>>> lootTablesIDs = makeLootTableIDs();
+            ArrayList<Pair<ResourceLocation, ResourceKey<LootTable>>> lootTablesIDs = makeLootTableIDs(registryLookup);
             LootParams params = new LootParams.Builder(context.getSource().getLevel())
                     .withParameter(LootContextParams.ORIGIN, context.getSource().getPosition())
                     .create(LootContextParamSets.COMMAND);
@@ -118,6 +122,7 @@ public class ERTestCommands {
                     }
 
                     final float finalOdds = (float)count/(float)total;
+                    String fmtFinalOdds = String.format("%.2f", finalOdds) + "%";
                     Component itemName = getItemName(pairKeyId.getFirst())
                             .copy()
                             .withStyle(ChatFormatting.GREEN)
@@ -133,7 +138,7 @@ public class ERTestCommands {
                             .append(Component.literal("Found "))
                             .append(itemName)
                             .append(Component.literal(" with weight of "))
-                            .append(Component.literal(finalOdds*100 + "%").withStyle(ChatFormatting.GREEN));
+                            .append(Component.literal(fmtFinalOdds).withStyle(ChatFormatting.GREEN));
                     context.getSource().sendSuccess(() -> info, false);
                 }
             }
@@ -141,10 +146,10 @@ public class ERTestCommands {
         return 1;
     }
 
-    private static ArrayList<Pair<ResourceLocation, ResourceKey<LootTable>>> makeLootTableIDs() {
+    private static ArrayList<Pair<ResourceLocation, ResourceKey<LootTable>>> makeLootTableIDs(Optional<HolderLookup.RegistryLookup<EyeData>> registryLookup) {
         ArrayList<Pair<ResourceLocation, ResourceKey<LootTable>>> namedIdentifiers = new ArrayList<>();
 
-        for (SerializedEye eye : EyeDataManager.getInstance().getLoadedEyes()) {
+        for (EyeData eye : EyeDataManager.getDynamicEyes(registryLookup)) {
             ItemStack eyeStack = new ItemStack(CommonItemRegistry.DUMMY_EYE);
             eyeStack.set(CommonDataComponentRegistry.DATA_EYE_COMPONENT, new EyeDataComponent(eye.id()));
 

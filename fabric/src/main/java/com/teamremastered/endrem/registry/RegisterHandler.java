@@ -1,6 +1,8 @@
 package com.teamremastered.endrem.registry;
 
 import com.teamremastered.endrem.EndRemasteredCommon;
+import com.teamremastered.endrem.item.EyeData;
+import net.fabricmc.fabric.api.event.registry.DynamicRegistries;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
 
@@ -8,13 +10,15 @@ import java.util.Collection;
 
 public class RegisterHandler {
 
+
+
     public static void init() {
         /* Blocks & Items */
         register(BuiltInRegistries.BLOCK, CommonBlockRegistry.registerERBlocks());
         register(BuiltInRegistries.DATA_COMPONENT_TYPE, CommonDataComponentRegistry.registerDataComponent());
-        CommonItemRegistry.registerEyes();
         register(BuiltInRegistries.ITEM, CommonItemRegistry.registerERItems());
         Registry.register(BuiltInRegistries.BLOCK_ENTITY_TYPE, EndRemasteredCommon.ModResourceLocation("end_portal_frame_block_entity"), CommonBlockRegistry.END_PORTAL_FRAME_BLOCK_ENTITY);
+        DynamicRegistries.registerSynced(CommonRegistryKey.EYE_DATA, EyeData.CODEC);
 
         /* Miscellaneous */
         ERTrades.registerVillagerTrades();

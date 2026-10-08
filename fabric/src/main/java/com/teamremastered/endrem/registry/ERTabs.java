@@ -22,8 +22,8 @@ public class ERTabs {
         Registry.register(BuiltInRegistries.CREATIVE_MODE_TAB, ITEM_GROUP, FabricItemGroup.builder()
                 .title(Component.translatable("itemGroup.endrem.endrem_tab"))
                 .icon(() -> new ItemStack(CommonItemRegistry.DUMMY_EYE))
-                .displayItems((enabledFeatures, entries) -> {
-                        entries.acceptAll(TabLoader.populateEndremTab());
+                .displayItems((parameters, entries) -> {
+                    entries.acceptAll(TabLoader.populateEndremTab(parameters.holders().lookup(CommonRegistryKey.EYE_DATA)));
                 }).build());
     }
 }

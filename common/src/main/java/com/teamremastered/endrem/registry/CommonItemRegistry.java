@@ -13,16 +13,11 @@ public class CommonItemRegistry {
 
     public static final Item WITCH_PUPIL = createItem(new Item(new Item.Properties()),"witch_pupil");
     public static final Item UNDEAD_SOUL = createItem(new Item(new Item.Properties()),"undead_soul");
-    public static final Item DUMMY_EYE = new EREnderEye(new Item.Properties().rarity(Rarity.COMMON));
+    public static final Item DUMMY_EYE = createItem(new EREnderEye(new Item.Properties().rarity(Rarity.COMMON)), "dummy_eye");
 
     public static Item createItem(Item item, String id) {
         ITEMS.add(new ERRegistryObject<>(item, id));
         return item;
-    }
-
-    //TODO: Handle wrong eye ID
-    public static void registerEyes() {
-        ITEMS.add(new ERRegistryObject<>(DUMMY_EYE, "dummy_eye"));
     }
 
     public static Collection<ERRegistryObject<Item>> registerERItems() {

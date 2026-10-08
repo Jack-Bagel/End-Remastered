@@ -56,7 +56,8 @@ public class EndPortalFrameBlockEntity extends BlockEntity {
         return this.eye_id;
     }
 
-    public boolean isEmpty() {
-        return this.eye_id.getPath().equals("empty");
+    public boolean isValid() {
+        String eyePath = this.eye_id.getPath();
+        return !eyePath.equals("empty") && !eyePath.isEmpty();
     }
 }

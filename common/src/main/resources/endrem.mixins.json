@@ -9,7 +9,6 @@
     "EnderEyeItemMixin",
     "PlayerEnchantMixin",
     "StrongholdPiecesMixin",
-    "ReloadableServerRegistriesMixin",
     "accessor.EyeOfEnderEntityAccessor"
   ],
   "client": [],

@@ -1,7 +1,10 @@
 package com.teamremastered.endrem.registry;
 
 import com.teamremastered.endrem.Constants;
+import com.teamremastered.endrem.EndRemasteredCommon;
+import com.teamremastered.endrem.item.EyeData;
 import com.teamremastered.endrem.util.TabLoader;
+import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.MinecraftServer;
@@ -25,7 +28,7 @@ public class ERTabs {
             () -> CreativeModeTab.builder()
                     .title(Component.translatable("itemGroup.endrem.endrem_tab"))
                     .icon(() -> new ItemStack(CommonItemRegistry.DUMMY_EYE))
-                    .displayItems((featureFlags, entries) -> {
-                            entries.acceptAll(TabLoader.populateEndremTab());
+                    .displayItems((parameters, entries) -> {
+                        entries.acceptAll(TabLoader.populateEndremTab(parameters.holders().lookup(CommonRegistryKey.EYE_DATA)));
                     }).build());
 }

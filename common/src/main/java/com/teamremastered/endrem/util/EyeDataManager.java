@@ -1,53 +1,27 @@
 package com.teamremastered.endrem.util;
 
-import com.google.gson.JsonElement;
-import com.google.gson.JsonParser;
-import com.mojang.serialization.JsonOps;
 import com.teamremastered.endrem.Constants;
-import com.teamremastered.endrem.item.SerializedEye;
-import net.minecraft.resources.FileToIdConverter;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.server.packs.resources.Resource;
-import net.minecraft.server.packs.resources.ResourceManager;
-
-import java.io.Reader;
+import com.teamremastered.endrem.item.EyeData;
+import net.minecraft.core.HolderLookup;
 import java.util.ArrayList;
-import java.util.Map;
+import java.util.Optional;
 
 public class EyeDataManager {
-    private static final EyeDataManager INSTANCE = new EyeDataManager();
-    private final ArrayList<SerializedEye> loadedEyes = new ArrayList<>();
 
-    private EyeDataManager() {}
+    public static ArrayList<EyeData> getDynamicEyes(Optional<HolderLookup.RegistryLookup<EyeData>> registryLookup) {
+        ArrayList<EyeData> result = new ArrayList<>();
+        registryLookup.ifPresent(lookup -> {
+            lookup.listElements().forEach(eyeRef -> {
+                result.add(eyeRef.value());
+            });
+        });
 
-    public void loadEyes(ResourceManager manager) {
-        final FileToIdConverter FILE_CONVERTER = FileToIdConverter.json("eyes");
-        this.loadedEyes.clear();
-
-        Map<ResourceLocation, Resource> resources = FILE_CONVERTER.listMatchingResources(manager);
-
-        for (Map.Entry<ResourceLocation, Resource> entry : resources.entrySet()) {
-            ResourceLocation filePath = entry.getKey();
-
-            try (Reader reader = entry.getValue().openAsReader()) {
-                JsonElement json = JsonParser.parseReader(reader);
-
-                // Use the Codec to validate and deserialize the JSON
-                SerializedEye.CODEC.parse(JsonOps.INSTANCE, json)
-                        .resultOrPartial(error -> Constants.LOGGER.error("Failed to parse eye file at" + filePath + ": " + error))
-                        .ifPresent(this.loadedEyes::add);
-
-            } catch (Exception e) {
-                Constants.LOGGER.error("Error reading eye file " + filePath + ": " + e.getMessage());
-            }
+        if (registryLookup.isEmpty()) {
+            Constants.LOGGER.error("Could not get the registry lookup for the EyeData. End Remastered won't be able to load the eyes");
+        } else if (result.isEmpty()) {
+            Constants.LOGGER.error("Something went wrong when loading the eyes.");
         }
-    }
 
-    public ArrayList<SerializedEye> getLoadedEyes() {
-        return this.loadedEyes;
-    }
-
-    public static EyeDataManager getInstance() {
-        return INSTANCE;
+        return result;
     }
 }

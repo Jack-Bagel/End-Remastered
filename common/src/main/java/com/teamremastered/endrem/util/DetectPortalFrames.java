@@ -32,8 +32,8 @@ public class DetectPortalFrames {
                     BlockEntity blockEntity = levelIn.getBlockEntity(blockPos);
 
                     if (blockEntity instanceof EndPortalFrameBlockEntity endPortalFrameBlockEntity) {
-                        //TODO: Do we really need to check if it is empty ?
-                        if (!endPortalFrameBlockEntity.isEmpty() && endPortalFrameBlockEntity.getEyeIdentificator().equals(eyeComponentID)) {
+                        //TODO: Do we really need to check if it is valid ?
+                        if (endPortalFrameBlockEntity.isValid() && endPortalFrameBlockEntity.getEyeIdentificator().equals(eyeComponentID)) {
                             return false;
                         }
                     }
