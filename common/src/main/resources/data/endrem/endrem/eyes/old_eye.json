@@ -1,8 +1,10 @@
 {
   "id": "endrem:old_eye",
   "rarity": "common",
-  "pool_id": "endrem:minecraft/chests/desert_pyramid",
-  "loot_tables_id": [
-    "minecraft:chests/desert_pyramid"
+  "injections": [
+    {
+      "source_table_id": "endrem:minecraft/chests/desert_pyramid",
+      "target_table_ids": ["minecraft:chests/desert_pyramid"]
+    }
   ]
 }

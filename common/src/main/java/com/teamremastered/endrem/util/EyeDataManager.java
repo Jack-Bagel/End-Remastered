@@ -1,8 +1,11 @@
 package com.teamremastered.endrem.util;
 
 import com.teamremastered.endrem.Constants;
+import com.teamremastered.endrem.EndRemasteredCommon;
 import com.teamremastered.endrem.item.EyeData;
 import net.minecraft.core.HolderLookup;
+import net.minecraft.resources.ResourceLocation;
+
 import java.util.ArrayList;
 import java.util.Optional;
 
@@ -23,5 +26,10 @@ public class EyeDataManager {
         }
 
         return result;
+    }
+
+    public static boolean isEyeLoaded(ResourceLocation eyeID, Optional<HolderLookup.RegistryLookup<EyeData>> lookup) {
+        return EyeDataManager.getDynamicEyes(lookup).stream().anyMatch(eyeData ->
+                eyeData.id().equals(eyeID));
     }
 }

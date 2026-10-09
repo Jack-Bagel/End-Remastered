@@ -1,8 +1,10 @@
 {
   "id": "endrem:corrupted_eye",
   "rarity": "common",
-  "pool_id": "endrem:minecraft/chests/pillager_outpost",
-  "loot_tables_id": [
-    "minecraft:chests/pillager_outpost"
+  "injections": [
+    {
+      "source_table_id": "endrem:minecraft/chests/pillager_outpost",
+      "target_table_ids": ["minecraft:chests/pillager_outpost"]
+    }
   ]
 }

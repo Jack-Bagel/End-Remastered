@@ -1,8 +1,10 @@
 {
   "id": "endrem:cursed_eye",
   "rarity": "common",
-  "pool_id": "endrem:minecraft/chests/bastion_treasure",
-  "loot_tables_id": [
-    "minecraft:chests/bastion_treasure"
+  "injections": [
+    {
+      "source_table_id": "endrem:minecraft/chests/bastion_treasure",
+      "target_table_ids": ["minecraft:chests/bastion_treasure"]
+    }
   ]
 }

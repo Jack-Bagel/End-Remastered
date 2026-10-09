@@ -1,6 +1,4 @@
 {
   "id": "endrem:exotic_eye",
-  "rarity": "rare",
-  "pool_id": "minecraft:empty",
-  "loot_tables_id": []
+  "rarity": "rare"
 }

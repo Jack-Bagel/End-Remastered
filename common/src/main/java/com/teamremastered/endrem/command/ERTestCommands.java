@@ -153,10 +153,12 @@ public class ERTestCommands {
             ItemStack eyeStack = new ItemStack(CommonItemRegistry.DUMMY_EYE);
             eyeStack.set(CommonDataComponentRegistry.DATA_EYE_COMPONENT, new EyeDataComponent(eye.id()));
 
-            for (ResourceLocation lootTableID : eye.lootTablesID()) {
-                ResourceKey<LootTable> lootTableKey = ResourceKey.create(Registries.LOOT_TABLE, lootTableID);
-                namedIdentifiers.add(new Pair<>(eye.id(), lootTableKey));
-            }
+            eye.injections().forEach(inject -> {
+                inject.targetTableIDs().forEach(lootID -> {
+                    ResourceKey<LootTable> lootTableKey = ResourceKey.create(Registries.LOOT_TABLE, lootID);
+                    namedIdentifiers.add(new Pair<>(eye.id(), lootTableKey));
+                });
+            });
         }
 
         ResourceLocation undeadSoulLootID = ResourceLocation.withDefaultNamespace("entities/skeleton_horse");

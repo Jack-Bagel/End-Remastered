@@ -1,6 +1,4 @@
 {
   "id": "endrem:cryptic_eye",
-  "rarity": "epic",
-  "pool_id": "minecraft:empty",
-  "loot_tables_id": []
+  "rarity": "epic"
 }

@@ -1,8 +1,10 @@
 {
   "id": "endrem:nether_eye",
   "rarity": "rare",
-  "pool_id": "endrem:minecraft/chests/nether_bridge",
-  "loot_tables_id": [
-    "minecraft:chests/nether_bridge"
+  "injections": [
+    {
+      "source_table_id": "endrem:minecraft/chests/nether_bridge",
+      "target_table_ids": ["minecraft:chests/nether_bridge"]
+    }
   ]
 }

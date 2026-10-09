@@ -1,8 +1,10 @@
 {
   "id": "endrem:rogue_eye",
   "rarity": "rare",
-  "pool_id": "endrem:minecraft/chests/jungle_temple",
-  "loot_tables_id": [
-    "minecraft:chests/jungle_temple"
+  "injections": [
+    {
+      "source_table_id": "endrem:minecraft/chests/jungle_temple",
+      "target_table_ids": ["minecraft:chests/jungle_temple"]
+    }
   ]
 }
