@@ -16,13 +16,11 @@ public class ConfigOptions {
     public final boolean THROW_EYE_OF_ENDER;
     public final boolean FRAME_HAS_RANDOM_EYE;
     public final int EYE_BREAK_PROBABILITY;
-    public final boolean CAN_REMOVE_EYE;
     private ConfigOptions() {
         this.USE_EYE_OF_ENDER = false;
         this.THROW_EYE_OF_ENDER = false;
         this.FRAME_HAS_RANDOM_EYE = false;
         this.EYE_BREAK_PROBABILITY = 10;
-        this.CAN_REMOVE_EYE = true;
     }
 
     public static void create() throws IOException {
