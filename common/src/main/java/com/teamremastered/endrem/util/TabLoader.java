@@ -8,6 +8,7 @@ import com.teamremastered.endrem.EndRemasteredCommon;
 import com.teamremastered.endrem.component.EyeDataComponent;
 import com.teamremastered.endrem.item.EyeData;
 import com.teamremastered.endrem.registry.CommonDataComponentRegistry;
+import com.teamremastered.endrem.registry.CommonItemRegistry;
 import net.minecraft.client.Minecraft;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -32,6 +33,9 @@ public class TabLoader {
             stack.set(CommonDataComponentRegistry.DATA_EYE_COMPONENT, new EyeDataComponent(eye.id()));
             displayedItems.add(stack);
         });
+
+        displayedItems.add(new ItemStack(CommonItemRegistry.UNDEAD_SOUL));
+        displayedItems.add(new ItemStack(CommonItemRegistry.WITCH_PUPIL));
 
         return displayedItems;
     }
