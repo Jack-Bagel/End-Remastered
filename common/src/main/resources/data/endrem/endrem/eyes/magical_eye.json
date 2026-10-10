@@ -4,7 +4,7 @@
   "injections": [
     {
       "source_table_id": "endrem:minecraft/entities/evoker",
-      "target_table_ids": ["minecraft:entities/evoker"]
+      "target_table_ids": ["minecraft:entities/evoker", "minecraft:chests/woodland_mansion"]
     }
   ]
 }

@@ -5,6 +5,10 @@
     {
       "source_table_id": "endrem:minecraft/chests/buried_treasure",
       "target_table_ids": ["minecraft:chests/buried_treasure"]
+    },
+    {
+      "source_table_id": "endrem:minecraft/chests/shipwreck_treasure",
+      "target_table_ids": ["minecraft:chests/shipwreck_treasure"]
     }
   ]
 }
