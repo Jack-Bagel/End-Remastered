@@ -6,5 +6,6 @@ public class ConfigHandler {
     public static final boolean USE_EYE_OF_ENDER = CONFIG.USE_EYE_OF_ENDER;
     public static final boolean THROW_EYE_OF_ENDER = CONFIG.THROW_EYE_OF_ENDER;
     public static final boolean FRAME_HAS_RANDOM_EYE = CONFIG.FRAME_HAS_RANDOM_EYE;
+    public static final boolean HIDE_DESCRIPTION = CONFIG.HIDE_DESCRIPTION;
     public static final int EYE_BREAK_PROBABILITY = CONFIG.EYE_BREAK_PROBABILITY;
 }

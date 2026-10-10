@@ -15,11 +15,13 @@ public class ConfigOptions {
     public final boolean USE_EYE_OF_ENDER;
     public final boolean THROW_EYE_OF_ENDER;
     public final boolean FRAME_HAS_RANDOM_EYE;
+    public final boolean HIDE_DESCRIPTION;
     public final int EYE_BREAK_PROBABILITY;
     private ConfigOptions() {
         this.USE_EYE_OF_ENDER = false;
         this.THROW_EYE_OF_ENDER = false;
         this.FRAME_HAS_RANDOM_EYE = false;
+        this.HIDE_DESCRIPTION = false;
         this.EYE_BREAK_PROBABILITY = 10;
     }
 

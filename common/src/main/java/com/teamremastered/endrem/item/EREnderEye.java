@@ -3,9 +3,11 @@ package com.teamremastered.endrem.item;
 import com.teamremastered.endrem.Constants;
 import com.teamremastered.endrem.EndRemasteredCommon;
 import com.teamremastered.endrem.component.EyeDataComponent;
+import com.teamremastered.endrem.config.ConfigHandler;
 import com.teamremastered.endrem.registry.CommonDataComponentRegistry;
 import net.minecraft.ChatFormatting;
 import net.minecraft.MethodsReturnNonnullByDefault;
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.*;
@@ -17,16 +19,24 @@ public class EREnderEye extends EnderEyeItem {
 
     public EREnderEye(Properties properties) {
         super(properties.component(CommonDataComponentRegistry.DATA_EYE_COMPONENT, new EyeDataComponent(
-                ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID,"dummy_eye"))));
+                EndRemasteredCommon.ModResourceLocation("dummy_eye"))));
     }
 
     @Override
-    public void appendHoverText(ItemStack itemStack, TooltipContext world, List<Component> tooltip, TooltipFlag tooltipContext) {
-        EyeDataComponent dataComponent = itemStack.get(CommonDataComponentRegistry.DATA_EYE_COMPONENT);
+    public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltip, TooltipFlag tooltipContext) {
+        if (ConfigHandler.HIDE_DESCRIPTION) {
+            return;
+        }
+
+        EyeDataComponent dataComponent = stack.get(CommonDataComponentRegistry.DATA_EYE_COMPONENT);
+
+        if (dataComponent == null) {
+            Constants.LOGGER.error(getName(stack).getString() + " does not have a data component. The eye is invalid");
+            return;
+        }
 
         String translationKey = String.format("item.%s.%s.description", dataComponent.id().getNamespace(), dataComponent.id().getPath());
         tooltip.add(Component.translatable(translationKey));
-        tooltip.add(Component.translatable("Id: %s", dataComponent.id().toString()).withStyle(ChatFormatting.GOLD));
     }
 
     @Override
