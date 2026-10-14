@@ -10,8 +10,8 @@ plugins {
 publishMods {
     changelog = "- Port to 26.3"
     type = STABLE
-    modLoaders.add("fabric")
-    displayName = "${mod_name} R${project.properties["version"]} [Fabric]"
+    def displayNameNeo = "${mod_name} R${project.properties["version"]} [NeoForge]"
+    def displayNameFabric = "${mod_name} R${project.properties["version"]} [Fabric]"
 
     // CurseForge options used by both Fabric and NeoForge
     def cfOptions = curseforgeOptions {
@@ -41,6 +41,7 @@ publishMods {
         file project(":fabric")
         modLoaders.add("fabric")
         requires("fabric-api")
+        displayName = displayNameFabric
     }
 
     // NeoForge CurseForge
@@ -48,6 +49,7 @@ publishMods {
         from cfOptions
         file project(":neoforge")
         modLoaders.add("neoforge")
+        displayName = displayNameNeo
     }
 
     // Fabric Modrinth
@@ -56,6 +58,7 @@ publishMods {
         file project(":fabric")
         modLoaders.add("fabric")
         requires("fabric-api")
+        displayName = displayNameFabric
     }
 
     // NeoForge Modrinth
@@ -63,5 +66,6 @@ publishMods {
         from mrOptions
         file project(":neoforge")
         modLoaders.add("neoforge")
+        displayName = displayNameNeo
     }
 }
