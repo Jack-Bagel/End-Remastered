@@ -14,12 +14,6 @@ public class EndRemasteredCommon {
     }
 
     public static void init() {
-        try {
             ConfigOptions.create();
-            Constants.LOGGER.info("End Remastered config loaded with success");
-
-        } catch (IOException e) {
-            Constants.LOGGER.error("Something went wrong with the config");
-        }
     }
 }
