@@ -39,8 +39,14 @@ public class ERTestCommands {
 
     public static int testPortal(CommandContext<CommandSourceStack> context) {
         Optional<HolderLookup.RegistryLookup<EyeData>> registryLookup = context.getSource().getServer().registryAccess().lookup(CommonRegistryKey.EYE_DATA);
-        Optional<ServerPlayer> player = Optional.ofNullable(context.getSource().getPlayer());
-        BlockPos portalPos = player.orElseThrow().getOnPos().offset(2, 1, 0);
+        ServerPlayer player = context.getSource().getPlayer();
+
+        if (player == null) {
+            context.getSource().sendFailure(Component.literal("Portal could not be created because there is no player instance"));
+            return 0;
+        }
+
+        BlockPos portalPos = player.getOnPos().above();
         BlockState endPortalFrameState = Blocks.END_PORTAL_FRAME.defaultBlockState().setValue(EndPortalFrameBlock.FACING,  Direction.SOUTH);
         for (int i = 0; i < 3; i++) {
             portalPos = portalPos.offset(1, 0, 0);
