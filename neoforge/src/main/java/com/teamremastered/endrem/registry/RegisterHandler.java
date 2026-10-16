@@ -9,13 +9,11 @@ import net.minecraft.core.component.DataComponentType;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
-import net.neoforged.neoforge.common.loot.IGlobalLootModifier;
 import net.neoforged.neoforge.registries.*;
 import net.neoforged.bus.api.IEventBus;
 
 public class RegisterHandler {
     public static void init(IEventBus modEventBus) {
-        GLMS.register(modEventBus);
         ERTrades.init(modEventBus);
         ERCommands.init(modEventBus);
         VanillaLootInjector.init(modEventBus);
@@ -24,8 +22,6 @@ public class RegisterHandler {
         modEventBus.addListener(RegisterHandler::registerEndRemastered);
         modEventBus.addListener(RegisterHandler::registerEndRemasteredDataPack);
     }
-
-    public static final DeferredRegister<MapCodec<? extends IGlobalLootModifier>> GLMS = DeferredRegister.create(NeoForgeRegistries.Keys.GLOBAL_LOOT_MODIFIER_SERIALIZERS, Constants.MOD_ID);
 
     private static void registerEndRemastered(RegisterEvent event) {
 
